@@ -55,17 +55,17 @@
             "group": "Shop by Size",
             "render": "list",
             "key": "",
-            "desktop_column": 1
+            "desktop_column": 2
           }
         },
         "navigation_group_jR47HJ": {
           "type": "navigation_group",
           "settings": {
-            "parent": "",
-            "group": "",
-            "render": "list",
+            "parent": "Build a Hose",
+            "group": "Shop by Hose Type",
+            "render": "grid",
             "key": "",
-            "desktop_column": 1
+            "desktop_column": 3
           }
         }
       },
