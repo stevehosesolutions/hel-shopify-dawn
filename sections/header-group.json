@@ -51,8 +51,8 @@
         "navigation_group_dEEFHt": {
           "type": "navigation_group",
           "settings": {
-            "parent": "",
-            "group": "",
+            "parent": "Build a Hose",
+            "group": "Shop by Size",
             "render": "list",
             "key": "",
             "desktop_column": 1
