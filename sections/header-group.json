@@ -37,6 +37,43 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "navigation_group_VraEHz": {
+          "type": "navigation_group",
+          "settings": {
+            "parent": "Build a Hose",
+            "group": "Shop by Application",
+            "render": "list",
+            "key": "",
+            "desktop_column": 1
+          }
+        },
+        "navigation_group_dEEFHt": {
+          "type": "navigation_group",
+          "settings": {
+            "parent": "",
+            "group": "",
+            "render": "list",
+            "key": "",
+            "desktop_column": 1
+          }
+        },
+        "navigation_group_jR47HJ": {
+          "type": "navigation_group",
+          "settings": {
+            "parent": "",
+            "group": "",
+            "render": "list",
+            "key": "",
+            "desktop_column": 1
+          }
+        }
+      },
+      "block_order": [
+        "navigation_group_VraEHz",
+        "navigation_group_dEEFHt",
+        "navigation_group_jR47HJ"
+      ],
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
