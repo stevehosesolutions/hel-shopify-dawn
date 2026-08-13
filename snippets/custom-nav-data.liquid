@@ -1,0 +1,246 @@
+<script>
+  window.navData = {
+    items: [
+      {% for link in section.settings.menu.links %}
+
+        {% assign menu_type = blank %}
+        {% assign view_all_label = blank %}
+        {% assign view_all_link = blank %}
+
+        {% assign promo_eyebrow = blank %}
+        {% assign promo_title = blank %}
+        {% assign promo_text = blank %}
+        {% assign promo_cta_label = blank %}
+        {% assign promo_link = blank %}
+        {% assign promo_desktop_image = blank %}
+        {% assign promo_mobile_image = blank %}
+
+          {% for nav_menu in shop.metaobjects.navigation_menu.values %}
+            {% if nav_menu.menu_item.value == link.title %}
+
+              {% assign menu_type = nav_menu.type.value %}
+
+              {% assign view_all_label = nav_menu.view_all_label.value %}
+              {% assign view_all_link = nav_menu.view_all_link.value %}
+
+              {% assign promo_eyebrow = nav_menu.promo_eyebrow.value %}
+              {% assign promo_title = nav_menu.promo_title.value %}
+              {% assign promo_text = nav_menu.promo_text.value %}
+              {% assign promo_cta_label = nav_menu.promo_cta_label.value %}
+              {% assign promo_link = nav_menu.promo_link.value %}
+              {% assign promo_desktop_image = nav_menu.promo_desktop_image.value %}
+              {% assign promo_mobile_image = nav_menu.promo_mobile_image.value %}
+
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          {
+            label: {{ link.title | json }},
+
+            {% if menu_type != blank %}
+              type: {{ menu_type | json }},
+            {% endif %}
+
+            {% if view_all_label != blank and view_all_link != blank %}
+              viewAll: {
+                label: {{ view_all_label | json }},
+                href: {{ view_all_link | json }}
+              },
+            {% endif %}
+
+            {% if promo_title != blank %}
+              promo: {
+                {% if promo_eyebrow != blank %}
+                  eyebrow: {{ promo_eyebrow | json }},
+                {% endif %}
+
+                title: {{ promo_title | json }},
+
+                {% if promo_text != blank %}
+                  text: {{ promo_text | json }},
+                {% endif %}
+
+                {% if promo_cta_label != blank %}
+                  ctaLabel: {{ promo_cta_label | json }},
+                {% endif %}
+
+                {% if promo_link != blank %}
+                  href: {{ promo_link | json }},
+                {% endif %}
+
+                {% if promo_desktop_image != blank %}
+                  imgDesktop: {{ promo_desktop_image | image_url: width: 1200 | json }},
+                {% endif %}
+
+                {% if promo_mobile_image != blank %}
+                  imgMobile: {{ promo_mobile_image | image_url: width: 800 | json }}
+                {% endif %}
+              },
+            {% endif %}
+
+            href: {{ link.url | json }},
+            columns: [
+            {% for child_link in link.links %}
+
+              {% assign render_type = 'list' %}
+              {% assign group_key = child_link.title | handleize %}
+              {% assign desktop_column = 1 %}
+
+              {% for block in section.blocks %}
+                {% if block.type == 'navigation_group'
+                  and block.settings.parent == link.title
+                  and block.settings.group == child_link.title
+                %}
+
+                  {% assign render_type = block.settings.render %}
+                  {% assign desktop_column = block.settings.desktop_column %}
+
+                  {% if block.settings.key != blank %}
+                    {% assign group_key = block.settings.key %}
+                  {% endif %}
+
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {
+                key: {{ group_key | json }},
+                label: {{ child_link.title | json }},
+                render: {{ render_type | json }},
+                items: [
+                  {% for grandchild_link in child_link.links %}
+
+                    {% assign label_note = blank %}
+                    {% assign icon = blank %}
+                    {% assign icon_image = blank %}
+                    {% assign icon_size = blank %}
+
+                    {% for nav_item in shop.metaobjects.navigation_item.values %}
+                      {% if nav_item.parent_menu_item.value == link.title
+                        and nav_item.group.value == child_link.title
+                        and nav_item.menu_item.value == grandchild_link.title
+                      %}
+                        {% assign label_note = nav_item.label_note.value %}
+                        {% assign icon = nav_item.icon.value %}
+                        {% assign icon_image = nav_item.icon_image.value %}
+                        {% assign icon_size = nav_item.icon_size.value %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {
+                      label: {{ grandchild_link.title | json }},
+                      {% if label_note != blank %}
+                        labelNote: {{ label_note | json }},
+                      {% endif %}
+                      {% if icon != blank %}
+                        icon: {{ icon | json }},
+                      {% endif %}
+                      {% if icon_image != blank %}
+                        iconImage: {{ icon_image | image_url: width: 200 | json }},
+                      {% endif %}
+                      {% if icon_size != blank %}
+                        iconSize: {{ icon_size | json }},
+                      {% endif %}
+                      href: {{ grandchild_link.url | json }}
+                    }
+                    {% unless forloop.last %},{% endunless %}
+
+                  {% endfor %}
+                ]
+              }{% unless forloop.last %},{% endunless %}
+
+            {% endfor %}
+          ],
+
+          desktopColumns: [
+            {% assign emitted_columns = 0 %}
+
+            {% for column_number in (1..6) %}
+
+              {% assign section_count = 0 %}
+
+              {% for child_link in link.links %}
+
+                {% assign child_column = 1 %}
+                {% assign child_key = child_link.title | handleize %}
+
+                {% for block in section.blocks %}
+                  {% if block.type == 'navigation_group'
+                    and block.settings.parent == link.title
+                    and block.settings.group == child_link.title
+                  %}
+
+                    {% assign child_column = block.settings.desktop_column %}
+
+                    {% if block.settings.key != blank %}
+                      {% assign child_key = block.settings.key %}
+                    {% endif %}
+
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if child_column == column_number %}
+                  {% assign section_count = section_count | plus: 1 %}
+                {% endif %}
+
+              {% endfor %}
+
+              {% if section_count > 0 %}
+
+                {% if emitted_columns > 0 %},{% endif %}
+
+                {
+                  sections: [
+                    {% assign emitted_sections = 0 %}
+
+                    {% for child_link in link.links %}
+
+                      {% assign child_column = 1 %}
+                      {% assign child_key = child_link.title | handleize %}
+
+                      {% for block in section.blocks %}
+                        {% if block.type == 'navigation_group'
+                          and block.settings.parent == link.title
+                          and block.settings.group == child_link.title
+                        %}
+
+                          {% assign child_column = block.settings.desktop_column %}
+
+                          {% if block.settings.key != blank %}
+                            {% assign child_key = block.settings.key %}
+                          {% endif %}
+
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+
+                      {% if child_column == column_number %}
+
+                        {% if emitted_sections > 0 %},{% endif %}
+                        {{ child_key | json }}
+
+                        {% assign emitted_sections = emitted_sections | plus: 1 %}
+
+                      {% endif %}
+
+                    {% endfor %}
+                  ]
+                }
+
+                {% assign emitted_columns = emitted_columns | plus: 1 %}
+
+              {% endif %}
+
+            {% endfor %}
+          ],
+
+
+        }{% unless forloop.last %},{% endunless %}
+
+      {% endfor %}
+    ]
+  };
+</script>

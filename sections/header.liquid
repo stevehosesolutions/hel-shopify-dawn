@@ -142,6 +142,21 @@
   endif
 %}
 
+{{ 'custom-navigation.css' | asset_url | stylesheet_tag }}
+
+{% render 'custom-nav-data' %}
+{% render 'custom-navigation' %}
+
+{%  comment %}
+<pre id="nav-debug"></pre>
+{% endcomment %}
+
+<script>
+  document.getElementById('nav-debug').textContent =
+    JSON.stringify(window.navData, null, 2);
+</script>
+
+
 <{{ header_tag }}
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
@@ -498,6 +513,8 @@
   </script>
 {%- endif -%}
 
+<script src="{{ 'custom-navigation.js' | asset_url }}" defer></script>
+
 {% schema %}
 {
   "name": "t:sections.header.name",
@@ -681,6 +698,78 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "navigation_group",
+      "name": "Navigation group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "Parent menu item"
+        },
+        {
+          "type": "text",
+          "id": "group",
+          "label": "Group"
+        },
+        {
+          "type": "select",
+          "id": "render",
+          "label": "Display",
+          "options": [
+            {
+              "value": "list",
+              "label": "List"
+            },
+            {
+              "value": "grid",
+              "label": "Grid"
+            }
+          ],
+          "default": "list"
+        },
+        {
+          "type": "text",
+          "id": "key",
+          "label": "Key"
+        },
+        {
+          "type": "range",
+          "id": "desktop_column",
+          "label": "Desktop column",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default": 1
+        }
+      ]
+    },
+    {
+      "type": "navigation_item",
+      "name": "Navigation item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "Parent menu item"
+        },
+        {
+          "type": "text",
+          "id": "group",
+          "label": "Group"
+        },
+        {
+          "type": "text",
+          "id": "item",
+          "label": "Menu item"
+        },
+        {
+          "type": "text",
+          "id": "label_note",
+          "label": "Label note"
+        }
+      ]
     }
   ]
 }

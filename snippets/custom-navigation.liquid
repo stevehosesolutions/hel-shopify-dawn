@@ -1,0 +1,62 @@
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-left">
+    <button
+      class="hamburger show-hamburger"
+      id="hamburger"
+      aria-label="Open menu"
+      aria-controls="mobileNav"
+      aria-expanded="false"
+    >
+      <span class="hamburger-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+
+      <span class="cross-icon" aria-hidden="true">
+        <span></span><span></span>
+      </span>
+    </button>
+  </div>
+
+  <ul class="nav-menu" id="desktopMenu" role="menubar" aria-label="Primary"></ul>
+
+  <div
+    class="mega-container"
+    id="megaContainer"
+    aria-live="polite"
+  ></div>
+</nav>
+
+<div
+  class="mobile-nav"
+  id="mobileNav"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile menu"
+>
+  <div class="mobile-content">
+
+    <div
+      class="mobile-root"
+      id="mobileRoot"
+      aria-label="Main mobile menu container"
+    >
+      <div class="root-scroll" id="rootScroll">
+        <ul
+          class="mobile-menu"
+          id="mobileMenu"
+          aria-label="Main mobile menu"
+        ></ul>
+      </div>
+    </div>
+
+    <div id="mobilePanels"></div>
+
+  </div>
+
+  <div class="mobile-footer">
+    <!-- we'll bring your real footer links/icons across after the basic test -->
+  </div>
+</div>
