@@ -115,6 +115,7 @@
                     {% assign icon = blank %}
                     {% assign icon_image = blank %}
                     {% assign icon_size = blank %}
+                    {% assign thumb = nav_item.thumbnail.value %}
 
                     {% for nav_item in shop.metaobjects.navigation_item.values %}
                       {% if nav_item.parent_menu_item.value == link.title
@@ -125,6 +126,7 @@
                         {% assign icon = nav_item.icon.value %}
                         {% assign icon_image = nav_item.icon_image.value %}
                         {% assign icon_size = nav_item.icon_size.value %}
+                        {% assign thumb = nav_item.thumbnail.value %}
                         {% break %}
                       {% endif %}
                     {% endfor %}
@@ -142,6 +144,9 @@
                       {% endif %}
                       {% if icon_size != blank %}
                         iconSize: {{ icon_size | json }},
+                      {% endif %}
+                      {% if thumb != blank %}
+                        thumb: {{ thumb | image_url: width: 600 | json }},
                       {% endif %}
                       href: {{ grandchild_link.url | json }}
                     }
