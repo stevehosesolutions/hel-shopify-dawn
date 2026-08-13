@@ -44,7 +44,7 @@
             "parent": "Build a Hose",
             "group": "Shop by Application",
             "render": "list",
-            "key": "",
+            "key": "shop-by-application",
             "desktop_column": 1
           }
         },
@@ -54,7 +54,7 @@
             "parent": "Build a Hose",
             "group": "Shop by Size",
             "render": "list",
-            "key": "",
+            "key": "shop-by-size",
             "desktop_column": 2
           }
         },
@@ -64,7 +64,7 @@
             "parent": "Build a Hose",
             "group": "Shop by Hose Type",
             "render": "grid",
-            "key": "",
+            "key": "shop-by-hose-type",
             "desktop_column": 3
           }
         }
