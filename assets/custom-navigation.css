@@ -1213,3 +1213,14 @@
     transition:none !important;
   }
 }
+
+
+
+
+.combined-promo.no-image {
+  background:#2f2c29;
+}
+
+.mobile-feature-promo__link.no-image {
+  background:#2f2c29;
+}

@@ -288,17 +288,22 @@
     if (!promo || !hasText(promo.title) || !hasText(promo.href)) return "";
 
     const img = pickPromoImg(promo);
-    if (!hasText(img)) return "";
 
     if (mobile) {
       return `
         <div class="mobile-feature-promo" aria-label="${esc(
           ariaContextLabel
         )} featured promo">
-          <a class="mobile-feature-promo__link" href="${esc(promo.href)}">
-            <div class="mobile-feature-promo__media">
-              <img src="${esc(img)}" alt="" loading="lazy" decoding="async">
-            </div>
+          <a class="mobile-feature-promo__link${hasText(img) ? " has-image" : " no-image"}" href="${esc(promo.href)}">
+            ${
+                hasText(img)
+                  ? `
+                    <div class="mobile-feature-promo__media">
+                      <img src="${esc(img)}" alt="" loading="lazy" decoding="async">
+                    </div>
+                  `
+                  : ""
+              }
             <div class="mobile-feature-promo__body">
               ${
                 hasText(promo.eyebrow)
@@ -325,11 +330,19 @@
     }
 
     return `
-      <div class="combined-promo" aria-label="${esc(
+      <div class="combined-promo${hasText(img) ? " has-image" : " no-image"}" aria-label="${esc(
         ariaContextLabel
       )} featured promo">
-        <img src="${esc(img)}" alt="" loading="lazy" decoding="async">
-        <div class="combined-promo__overlay"></div>
+
+        ${
+          hasText(img)
+            ? `
+              <img src="${esc(img)}" alt="" loading="lazy" decoding="async">
+              <div class="combined-promo__overlay"></div>
+            `
+            : ""
+        }
+
         <div class="combined-promo__content">
           ${
             hasText(promo.eyebrow)
