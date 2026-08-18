@@ -90,10 +90,19 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "custom_header_YrKrBE": {
+      "type": "custom-header",
+      "name": "Custom header",
+      "settings": {
+        "help_url": "",
+        "dispatch_text": "Same day dispatch – order by 3:30pm (Mon–Fri)"
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "custom_header_YrKrBE"
   ]
 }
