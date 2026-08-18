@@ -26,14 +26,33 @@
       </div>
 
 
-      <div class="custom-header__dispatch">
-        <span class="custom-header__utility-icon" aria-hidden="true">
-          <!-- Truck icon -->
-        </span>
+      <div class="custom-header__messages">
+        <div class="custom-header__messages-track">
 
-        <span>
-          {{ section.settings.dispatch_text }}
-        </span>
+          {% for block in section.blocks %}
+
+            {% if block.type == 'header_message' %}
+
+              <div
+                class="custom-header__message"
+                {{ block.shopify_attributes }}
+              >
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}">
+                    {{ block.settings.text }}
+                  </a>
+                {% else %}
+                  <span>
+                    {{ block.settings.text }}
+                  </span>
+                {% endif %}
+              </div>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
       </div>
 
 
@@ -318,12 +337,6 @@
       "type": "url",
       "id": "help_url",
       "label": "Help centre link"
-    },
-    {
-      "type": "text",
-      "id": "dispatch_text",
-      "label": "Dispatch text",
-      "default": "Same day dispatch – order by 3:30pm (Mon–Fri)"
     }
   ],
 
@@ -397,6 +410,22 @@
           "type": "text",
           "id": "label_note",
           "label": "Label note"
+        }
+      ]
+    },
+    {
+      "type": "header_message",
+      "name": "Header message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
         }
       ]
     }

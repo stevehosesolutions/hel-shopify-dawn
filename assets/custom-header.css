@@ -265,13 +265,10 @@
 /* ==========================================================================
    Navigation row
    ========================================================================== */
-
 .custom-header__navigation{
   position:relative;
-
   border-top:1px solid #ddd;
-
-  background:#fff;
+  background:var(--nav-bg);
 }
 
 .custom-header__navigation-inner{
@@ -281,12 +278,9 @@
   gap:var(--l);
 }
 
-.custom-header__navigation-menu{
-  min-width:0;
-}
-
 .custom-header__search{
   width:100%;
+  background:var(--nav-bg);
 }
 
 
@@ -299,8 +293,29 @@
 
   /* Utility content will move into the mobile menu later */
   .custom-header__utility{
-    display:none;
-  }
+      display:block;
+    }
+
+    .custom-header__utility-inner{
+      display:block;
+
+      min-height:36px;
+    }
+
+    .custom-header__help,
+    .custom-header__social{
+      display:none;
+    }
+
+    .custom-header__messages{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      min-height:36px;
+
+      text-align:center;
+    }
 
 
   /*
@@ -367,4 +382,40 @@
     display:none;
   }
 
+}
+
+
+
+
+/* icons */
+
+.custom-header__utility-icon,
+.custom-header__action-icon,
+.custom-header__site-icon,
+.custom-header__search-button::before{
+  display:block;
+
+  width:24px;
+  height:24px;
+
+  flex:0 0 auto;
+
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+
+.custom-header__action--dealer .custom-header__action-icon{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%23333' d='M192 0C86 0 0 86 0 192c0 77.4 27 99 172.3 309.7 4.3 6.2 11.4 10.3 19.7 10.3s15.4-4.1 19.7-10.3C357 291 384 269.4 384 192 384 86 298 0 192 0zm0 272a80 80 0 1 1 0-160 80 80 0 1 1 0 160z'/%3E%3C/svg%3E");
+}
+.custom-header__action--account .custom-header__action-icon{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23333' d='M224 256a128 128 0 1 0 0-256 128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3 0 498.7 13.3 512 29.7 512h388.6c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304h-91.4z'/%3E%3C/svg%3E");
+}
+.custom-header__search-button::before{
+  content:"";
+
+  width:20px;
+  height:20px;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23333' d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.1 253.9 416 208 416 93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'/%3E%3C/svg%3E");
 }
