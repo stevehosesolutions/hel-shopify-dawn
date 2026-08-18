@@ -37,14 +37,14 @@
       ],
       "settings": {
         "image": "shopify://shop_images/hel-bg.jpg",
-        "image_overlay_opacity": 40,
-        "image_height": "large",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
         "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
+        "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
