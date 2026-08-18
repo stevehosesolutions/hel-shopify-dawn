@@ -97,6 +97,11 @@
 {% schema %}
 {
   "name": "Custom header",
+
+  "enabled_on": {
+    "groups": ["header"]
+  },
+
   "settings": [
     {
       "type": "url",
@@ -108,6 +113,12 @@
       "id": "dispatch_text",
       "label": "Dispatch text",
       "default": "Same day dispatch – order by 3:30pm (Mon–Fri)"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Custom header"
     }
   ]
 }
