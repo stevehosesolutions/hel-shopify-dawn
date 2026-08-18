@@ -1,0 +1,358 @@
+/* ==========================================================================
+   TOOLTIP
+   Global tooltip system
+   ========================================================================== */
+
+
+/* =========================
+   Variables
+   ========================= */
+
+:root{
+  --tooltip-bg:#000;
+  --tooltip-fg:#fff;
+  --tooltip-slide:calc(var(--m, 16px) * .5);
+}
+
+
+/* =========================
+   Trigger
+   ========================= */
+
+.tooltip-trigger{
+  position:absolute;
+  /*top:36px;
+  right:36px;*/
+  z-index:1;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  width:var(--s);
+  height:var(--s);
+
+  padding:0;
+
+  border:0;
+  border-radius:999px;
+
+  background:transparent;
+  color:#333;
+
+  line-height:1;
+
+  cursor:pointer;
+}
+
+.tooltip-trigger::after{
+  content:"";
+
+  width:var(--s);
+  height:var(--s);
+
+  background:currentColor;
+
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l-24 0 0 48 24 0 80 0 24 0 0-48-24 0-8 0 0-88 0-24-24 0-48 0-24 0 0 48 24 0 24 0 0 64-24 0zm72-144l0-64-64 0 0 64 64 0z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l-24 0 0 48 24 0 80 0 24 0 0-48-24 0-8 0 0-88 0-24-24 0-48 0-24 0 0 48 24 0 24 0 0 64-24 0zm72-144l0-64-64 0 0 64 64 0z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+
+  pointer-events:none;
+}
+
+.tooltip-trigger:focus-visible{
+  outline:none;
+}
+
+.tooltip-trigger.is-active{
+  color:#ff5e3a;
+}
+
+@media(hover:hover) and (pointer:fine){
+
+  .tooltip-trigger:hover,
+  .tooltip-trigger:focus-visible{
+    color:#ff5e3a;
+  }
+
+}
+
+@media(max-width:1439px){
+
+  .tooltip-trigger{
+/*    top:28px;
+    right:28px;*/
+  }
+
+  .tooltip-trigger,
+  .tooltip-trigger::after{
+    width:var(--m);
+    height:var(--m);
+  }
+
+}
+
+
+/* =========================
+   Tooltip bubble
+   ========================= */
+
+.tooltip{
+  position:fixed;
+  z-index:var(--z-tooltip);
+
+  max-width:min(640px, 90vw);
+
+  padding:var(--xs) var(--s);
+
+  background:var(--tooltip-bg);
+  color:var(--tooltip-fg);
+
+  border-radius:var(--xxxs);
+
+  font-size:var(--font-s);
+  line-height:var(--line-s);
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transition:
+    transform var(--transition-fast) var(--easing),
+    opacity var(--transition-fast) var(--easing),
+    visibility 0s linear var(--transition-fast);
+}
+
+.tooltip[data-open="true"]{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+
+  transform:translate3d(0, 0, 0);
+
+  transition:
+    transform var(--transition-fast) var(--easing),
+    opacity var(--transition-fast) var(--easing),
+    visibility 0s;
+}
+
+
+/* =========================
+   Placement
+   ========================= */
+
+.tooltip[data-placement="right"]{
+  transform:
+    translate3d(
+      var(--tooltip-slide),
+      0,
+      0
+    );
+}
+
+.tooltip[data-placement="top"]{
+  transform:
+    translate3d(
+      0,
+      calc(var(--tooltip-slide) * -1),
+      0
+    );
+}
+
+.tooltip[data-placement="bottom"]{
+  transform:
+    translate3d(
+      0,
+      var(--tooltip-slide),
+      0
+    );
+}
+
+.tooltip[data-placement="left"]{
+  transform:
+    translate3d(
+      calc(var(--tooltip-slide) * -1),
+      0,
+      0
+    );
+}
+
+
+/*
+ * Open state must come after placement
+ * rules so transform resets to zero.
+ */
+
+.tooltip[data-open="true"]{
+  transform:translate3d(0, 0, 0);
+}
+
+
+/* =========================
+   Arrow
+   ========================= */
+
+.tooltip::after{
+  content:"";
+
+  position:absolute;
+
+  width:0;
+  height:0;
+
+  border:var(--xxs) solid transparent;
+
+  pointer-events:none;
+}
+
+.tooltip[data-placement="top"]::after{
+  left:var(--tooltip-arrow-x, 50%);
+  bottom:calc((-1 * var(--xxs)) + 1px);
+
+  transform:translateX(-50%);
+
+  border-top:
+    var(--xxs)
+    solid
+    var(--tooltip-bg);
+
+  border-bottom:none;
+}
+
+.tooltip[data-placement="bottom"]::after{
+  left:var(--tooltip-arrow-x, 50%);
+  top:calc((-1 * var(--xxs)) + 1px);
+
+  transform:translateX(-50%);
+
+  border-bottom:
+    var(--xxs)
+    solid
+    var(--tooltip-bg);
+
+  border-top:none;
+}
+
+.tooltip[data-placement="right"]::after{
+  top:var(--tooltip-arrow-y, 50%);
+  left:calc((-1 * var(--xxs)) + 1px);
+
+  transform:translateY(-50%);
+
+  border-right:
+    var(--xxs)
+    solid
+    var(--tooltip-bg);
+
+  border-left:none;
+}
+
+.tooltip[data-placement="left"]::after{
+  top:var(--tooltip-arrow-y, 50%);
+  right:calc((-1 * var(--xxs)) + 1px);
+
+  transform:translateY(-50%);
+
+  border-left:
+    var(--xxs)
+    solid
+    var(--tooltip-bg);
+
+  border-right:none;
+}
+
+
+/* =========================
+   Content
+   ========================= */
+
+.tooltip__inner{
+  position:relative;
+}
+
+.tooltip__inner > p:last-of-type{
+  margin-bottom:0;
+  padding-bottom:0;
+}
+.tooltip__inner > p:only-of-type{
+  margin:0;
+  padding:0;
+}
+
+
+.tooltip[data-has-close="true"]
+.tooltip__inner{
+  padding-right:
+    max(
+      calc(var(--m, 16px) * 3),
+      44px
+    );
+}
+
+
+/* =========================
+   Close button
+   ========================= */
+
+.tooltip__close{
+  position:absolute;
+  top:0;
+  right:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:36px;
+  height:36px;
+
+  padding:0;
+
+  border:0;
+  border-radius:999px;
+
+  background:transparent;
+  color:inherit;
+
+  cursor:pointer;
+}
+
+.tooltip__close svg{
+  width:1.25rem;
+  height:1.25rem;
+
+  flex-shrink:0;
+
+  fill:currentColor;
+
+  pointer-events:none;
+}
+
+.tooltip__close:hover,
+.tooltip__close:focus-visible{
+  background:
+    color-mix(
+      in oklab,
+      currentColor 14%,
+      transparent
+    );
+
+  outline:none;
+}
+
+
+/* =========================
+   Reduced motion
+   ========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  .tooltip{
+    transition:none !important;
+  }
+
+}

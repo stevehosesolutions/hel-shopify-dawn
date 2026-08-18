@@ -109,26 +109,20 @@
 
   const warmedSrc = new Set();
 
-  function warmImages(scope, { eager = false } = {}) {
+  function warmImages(scope) {
     if (!scope) return;
 
-    scope.querySelectorAll("img").forEach((img) => {
+    scope.querySelectorAll("img").forEach(img => {
       const src = img.currentSrc || img.src;
+
       if (!src || warmedSrc.has(src)) return;
+
       warmedSrc.add(src);
 
-      if (eager) {
-        try {
-          img.loading = "eager";
-          img.decoding = "sync";
-        } catch {}
-      }
-
-      if (!img.complete) {
-        const pre = new Image();
-        pre.decoding = "async";
-        pre.src = src;
-      }
+      try {
+        img.loading = "eager";
+        img.decoding = "async";
+      } catch {}
     });
   }
 
@@ -675,9 +669,10 @@
     const navData = window.navData;
     if (!navData || !Array.isArray(navData.items)) return;
 
+    const OVERLAY_OWNER = "navigation";
+
     const el = {
       hamburger: document.getElementById("hamburger"),
-      overlay: document.getElementById("overlay"),
       mobileNav: document.getElementById("mobileNav"),
       mobileRoot: document.getElementById("mobileRoot"),
       rootScroll: document.getElementById("rootScroll"),
@@ -688,6 +683,8 @@
       mobileMenu: document.getElementById("mobileMenu"),
       mobilePanels: document.getElementById("mobilePanels"),
     };
+
+
 
     const mqDesktop = window.matchMedia(CONFIG.DESKTOP_MQ);
     const itemIds = navData.items.map((item, idx) => itemKey(item, idx));
@@ -890,7 +887,12 @@
                ${linkAttrs(item?.href)}
                data-mega-trigger="${esc(itemId)}"
                aria-haspopup="true"
-               aria-expanded="false">${renderLabel(item)}</a>
+               aria-expanded="false">
+                  <span class="nav-link-main">
+                    ${renderIcon(item)}
+                    <span class="nav-link-label">${renderLabel(item)}</span>
+                  </span>
+                </a>
             ${buildDesktopPanel(item, itemId)}
           </li>
         `;
@@ -906,10 +908,15 @@
         const itemId = itemIds[idx];
         return `
           <li class="has-submenu">
-            <a ${linkAttrs(item?.href)} class="submenu-trigger" data-submenu="${esc(
-          itemId
-        )}">
-              ${renderLabel(item)}
+            <a ${linkAttrs(item?.href)}
+               class="submenu-trigger"
+               data-submenu="${esc(itemId)}">
+
+              <span class="mobile-link-main">
+                ${renderIcon(item)}
+                <span class="mobile-link-label">${renderLabel(item)}</span>
+              </span>
+
             </a>
           </li>
         `;
@@ -1062,9 +1069,9 @@
       el.hamburger.setAttribute("aria-label", "Close menu");
 
       lockScroll();
-      el.overlay.classList.add("active");
 
-      warmImages(el.mobileNav, { eager: true });
+
+      warmImages(el.mobileRoot);
       queueHintUpdate(el.rootScroll);
       getAllSubmenuScrollers().forEach(queueHintUpdate);
       syncFooterOffset();
@@ -1077,33 +1084,96 @@
     }
 
     function closeMobileNav() {
-      el.mobileNav.classList.add("closing");
+      el.mobileNav.classList.remove("active");
 
       el.hamburger.classList.remove("show-cross");
       el.hamburger.classList.add("show-hamburger");
       el.hamburger.setAttribute("aria-expanded", "false");
       el.hamburger.setAttribute("aria-label", "Open menu");
 
-      unlockScroll();
-
-      setTimeout(() => {
-        el.mobileNav.classList.remove("active", "closing");
+      const finishClose = () => {
         el.mobileNav.setAttribute("aria-hidden", "true");
 
         el.rootScroll.classList.remove("animate");
+
         el.mobileRoot?.style.removeProperty("--fade-top-opacity");
         el.mobileRoot?.style.removeProperty("--fade-bottom-opacity");
 
-        el.mobilePanels.querySelectorAll(".mobile-submenu").forEach((menu) => {
-          menu.style.removeProperty("--fade-top-opacity");
-          menu.style.removeProperty("--fade-bottom-opacity");
-          menu.classList.remove("active", "slide-out");
-        });
+        el.mobilePanels
+          .querySelectorAll(".mobile-submenu")
+          .forEach(menu => {
+            menu.style.removeProperty("--fade-top-opacity");
+            menu.style.removeProperty("--fade-bottom-opacity");
+            menu.classList.remove("active", "slide-out");
+          });
 
-        el.overlay.classList.remove("active");
+        unlockScroll();
+
         releaseFocus();
-        previousFocus && previousFocus.focus({ preventScroll: true });
-      }, 300);
+
+        previousFocus?.focus({
+          preventScroll: true
+        });
+      };
+
+      waitForTransition(
+        el.mobileNav,
+        "transform",
+        finishClose
+      );
+    }
+
+    function waitForTransition(element, propertyName, callback) {
+      const styles = getComputedStyle(element);
+
+      const durations = styles.transitionDuration
+        .split(",")
+        .map(value => parseFloat(value) || 0);
+
+      const hasTransition =
+        durations.some(duration => duration > 0);
+
+      if (!hasTransition) {
+        callback();
+        return;
+      }
+
+      let finished = false;
+
+      const finish = () => {
+        if (finished) return;
+
+        finished = true;
+
+        element.removeEventListener(
+          "transitionend",
+          onEnd
+        );
+
+        element.removeEventListener(
+          "transitioncancel",
+          finish
+        );
+
+        callback();
+      };
+
+      function onEnd(e) {
+        if (e.target !== element) return;
+        if (e.propertyName !== propertyName) return;
+
+        finish();
+      }
+
+      element.addEventListener(
+        "transitionend",
+        onEnd
+      );
+
+      element.addEventListener(
+        "transitioncancel",
+        finish
+      );
     }
 
     /* =========================
@@ -1115,6 +1185,14 @@
 
       const itemToPanel = new Map();
       const panelHeightCache = new WeakMap();
+
+      function ensureOverlay(visible) {
+        if (visible && mqDesktop.matches) {
+          window.CustomOverlay?.show(OVERLAY_OWNER);
+        } else {
+          window.CustomOverlay?.hide(OVERLAY_OWNER);
+        }
+      }
 
       let resizeRaf = null;
 
@@ -1148,9 +1226,6 @@
       let closeToken = 0;
       let closingRafId = null;
 
-      function ensureOverlay(visible) {
-        el.overlay.classList.toggle("active", !!visible && mqDesktop.matches);
-      }
 
       function setAriaExpandedFor(item, expanded) {
         const trigger = item?.querySelector(':scope > a[aria-expanded]');
@@ -1287,11 +1362,16 @@
 
           const targetH = computeTargetHeight(panel);
 
-          const prev = el.megaContainer.style.transition;
-          el.megaContainer.style.transition = "none";
-          el.megaContainer.style.height = state === "closed" ? "0px" : `${fromH}px`;
-          void el.megaContainer.offsetWidth;
-          el.megaContainer.style.transition = prev;
+          if (state === "closed") {
+            el.megaContainer.style.height = "0px";
+          } else {
+            const prev = el.megaContainer.style.transition;
+
+            el.megaContainer.style.transition = "none";
+            el.megaContainer.style.height = `${fromH}px`;
+            void el.megaContainer.offsetWidth;
+            el.megaContainer.style.transition = prev;
+          }
 
           el.megaContainer.classList.add("open");
           ensureOverlay(true);
@@ -1319,7 +1399,7 @@
         currentPanel = panel;
 
         setOnlyPanelVisible(panel);
-        warmImages(panel, { eager: true });
+        warmImages(panel);
 
         const targetH = computeTargetHeight(panel);
 
@@ -1430,10 +1510,12 @@
       el.mobileNav.classList.contains("active") ? closeMobileNav() : openMobileNav();
     });
 
-    el.overlay.addEventListener("click", () => {
+/*    window.CustomOverlay?.element.addEventListener("click", () => {
+      if (!window.CustomOverlay.has(OVERLAY_OWNER)) return;
+
       if (el.mobileNav.classList.contains("active")) closeMobileNav();
       mega?.closeAll(false);
-    });
+    });*/
 
     window.addEventListener(
       "blur",
@@ -1472,23 +1554,31 @@
 
         const scroller = submenu.querySelector(".submenu-scroll");
         if (scroller) {
-          warmImages(scroller, { eager: true });
+          warmImages(scroller);
           queueHintUpdate(scroller);
         }
         return;
       }
 
       const back = e.target.closest(".back-btn");
+
       if (back) {
         const parent = back.closest(".mobile-submenu");
+
         if (!parent) return;
 
         parent.classList.add("slide-out");
-        setTimeout(() => {
-          parent.style.removeProperty("--fade-top-opacity");
-          parent.style.removeProperty("--fade-bottom-opacity");
-          parent.classList.remove("active", "slide-out");
-        }, 300);
+
+        waitForTransition(
+          parent,
+          "transform",
+          () => {
+            parent.style.removeProperty("--fade-top-opacity");
+            parent.style.removeProperty("--fade-bottom-opacity");
+            parent.classList.remove("active", "slide-out");
+          }
+        );
+
         return;
       }
 
@@ -1586,7 +1676,7 @@
       { passive: true }
     );
 
-    el.desktopMenu.addEventListener(
+/*    el.desktopMenu.addEventListener(
       "pointermove",
       (e) => {
         if (!mqDesktop.matches) return;
@@ -1602,7 +1692,7 @@
         mega?.scheduleClose();
       },
       { passive: true }
-    );
+    );*/
 
     el.desktopMenu.addEventListener(
       "mouseleave",
@@ -1672,25 +1762,33 @@
       { passive: true, capture: true }
     );
 
+   let windowResizeRaf = null;
+
     window.addEventListener(
       "resize",
       () => {
-        mega?.invalidateAllPanelHeights();
+        if (windowResizeRaf) return;
 
-        if (
-          window.innerWidth > CONFIG.BREAKPOINT_PX &&
-          el.mobileNav.classList.contains("active")
-        ) {
-          closeMobileNav();
-          return;
-        }
+        windowResizeRaf = requestAnimationFrame(() => {
+          windowResizeRaf = null;
 
-        if (el.mobileNav.classList.contains("active")) {
-          syncDrawerHeaderHeights();
-          syncFooterOffset();
-        }
+          mega?.invalidateAllPanelHeights();
+
+          if (
+            window.innerWidth > CONFIG.BREAKPOINT_PX &&
+            el.mobileNav.classList.contains("active")
+          ) {
+            closeMobileNav();
+            return;
+          }
+
+          if (el.mobileNav.classList.contains("active")) {
+            syncDrawerHeaderHeights();
+            syncFooterOffset();
+          }
+        });
       },
-      { passive: true }
+      { passive:true }
     );
 
     window.addEventListener("orientationchange", () => {

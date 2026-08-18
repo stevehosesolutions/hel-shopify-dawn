@@ -1,0 +1,313 @@
+/* ==========================================================================
+   MODAL
+   Global modal system
+   ========================================================================== */
+
+
+/* =========================
+   Scroll lock
+   ========================= */
+
+html.uxm-modal-open,
+body.uxm-modal-open{
+  overflow:hidden;
+}
+
+body.uxm-modal-open{
+  padding-right:var(--uxm-scrollbar-width, 0px);
+  overscroll-behavior:contain;
+  touch-action:none;
+}
+
+
+
+
+/* =========================
+   Modal root
+   ========================= */
+
+.uxm-modal{
+  position:relative;
+}
+
+
+/*
+ * Closed dialogs must remain completely hidden
+ * and non-interactive.
+ *
+ * JavaScript updates aria-hidden.
+ */
+
+.uxm-modal[aria-hidden="true"] .uxm-dialog{
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.uxm-modal.uxm-active .uxm-dialog{
+  visibility:visible;
+  pointer-events:auto;
+}
+
+
+/* =========================
+   Dialog
+   ========================= */
+
+.uxm-dialog{
+  position:fixed;
+  left:50%;
+  top:50%;
+
+  display:flex;
+  flex-direction:column;
+
+  width:100%;
+  max-width:960px;
+  max-height:85vh;
+
+  overflow:hidden;
+
+  background:#fafafa;
+  border-radius:var(--l);
+  box-shadow:0 24px 64px rgba(0,0,0,.2);
+
+  transform:translate(-50%, calc(-50% + 32px));
+  opacity:0;
+  visibility:hidden;
+
+transition:
+  transform var(--transition-fast) var(--easing),
+  opacity var(--transition-fast) var(--easing),
+  visibility 0s linear var(--transition-fast);
+
+  outline:none;
+  z-index:var(--z-modal);
+}
+
+.uxm-modal.uxm-active .uxm-dialog{
+  transform:translate(-50%, -50%);
+  opacity:1;
+  visibility:visible;
+
+transition:
+  transform var(--transition-fast) var(--easing),
+  opacity var(--transition-fast) var(--easing),
+  visibility 0s;
+}
+
+
+/* =========================
+   Header
+   ========================= */
+
+.uxm-header{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:nowrap;
+
+  gap:var(--s);
+  padding:var(--l);
+
+  background:#f5f5f5;
+}
+
+
+/* =========================
+   Footer
+   ========================= */
+
+.uxm-footer{
+  display:flex;
+  flex-direction:column;
+
+  padding:var(--m);
+
+  background:#f5f5f5;
+}
+
+@media(min-width:768px){
+
+  .uxm-footer{
+    flex-direction:row;
+  }
+
+}
+
+
+/* =========================
+   Scroll shadows
+   ========================= */
+
+.uxm-header.has-shadow{
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+
+.uxm-footer.has-shadow{
+  box-shadow:0 -2px 6px rgba(0,0,0,.04);
+}
+
+
+/* =========================
+   Title
+   ========================= */
+
+.uxm-title{
+  flex:1 1 auto;
+  min-width:0;
+
+  display:flex;
+  align-items:center;
+
+  margin:0;
+
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:-.5px;
+  font-size:var(--font-xl);
+  line-height:var(--line-xxxl);
+}
+
+@media(min-width:961px){
+
+  .uxm-title{
+    font-size:var(--font-xxl);
+  }
+
+}
+
+
+/* =========================
+   Close button
+   ========================= */
+
+.uxm-close{
+  position:relative;
+
+  flex:0 0 auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:var(--l);
+  height:var(--l);
+
+  padding:0;
+  border:0;
+  border-radius:999px;
+
+  background:transparent;
+
+  cursor:pointer;
+}
+
+@media(min-width:961px){
+
+  .uxm-close{
+    width:var(--xl);
+    height:var(--xl);
+  }
+
+}
+
+
+/* X icon */
+
+.uxm-close::before{
+  content:"";
+
+  width:var(--m);
+  height:var(--m);
+
+  background:
+    no-repeat center / contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M192 233.4L59.5 100.9 36.9 123.5 169.4 256 36.9 388.5l22.6 22.6L192 278.6 324.5 411.1l22.6-22.6L214.6 256 347.1 123.5l-22.6-22.6L192 233.4z'/%3E%3C/svg%3E");
+}
+
+.uxm-close:hover,
+.uxm-close:focus-visible{
+  background:#eee;
+}
+
+
+/* =========================
+   Content
+   ========================= */
+
+.uxm-content{
+  overflow:auto;
+  padding:var(--m) var(--l) var(--l);
+}
+
+@media(min-width:961px){
+
+  .uxm-header{
+    padding:var(--l) var(--xl);
+  }
+
+  .uxm-content{
+    padding:var(--l) var(--xl) var(--xl);
+  }
+
+}
+
+
+/* =========================
+   Mobile
+   Bottom sheet
+   ========================= */
+
+@media(max-width:960px){
+
+  .uxm-dialog{
+    left:0;
+    right:0;
+    top:5vh;
+    bottom:0;
+
+    width:100%;
+    height:auto;
+    max-height:none;
+
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+
+    transform:translate3d(0, 32px, 0);
+    opacity:0;
+
+    transition:
+      transform var(--transition-fast) var(--easing),
+      opacity var(--transition-fast) var(--easing),
+      visibility 0s linear var(--transition-slow);
+  }
+
+ .uxm-modal.uxm-active .uxm-dialog{
+    transform:translate3d(0, 0, 0);
+    opacity:1;
+    visibility:visible;
+
+    transition:
+      transform var(--transition-fast) var(--easing),
+      opacity var(--transition-fast) var(--easing),
+      visibility 0s;
+  }
+}
+
+
+/* =========================
+   Reduced motion
+   ========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  .uxm-dialog{
+    transition:none !important;
+  }
+
+}

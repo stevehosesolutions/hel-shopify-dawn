@@ -6,6 +6,9 @@
         {% assign menu_type = blank %}
         {% assign view_all_label = blank %}
         {% assign view_all_link = blank %}
+        {% assign menu_icon = blank %}
+        {% assign menu_icon_image = blank %}
+        {% assign menu_icon_size = blank %}
 
         {% assign promo_eyebrow = blank %}
         {% assign promo_title = blank %}
@@ -19,6 +22,10 @@
             {% if nav_menu.menu_item.value == link.title %}
 
               {% assign menu_type = nav_menu.type.value %}
+
+              {% assign menu_icon = nav_menu.icon.value %}
+              {% assign menu_icon_image = nav_menu.icon_image.value %}
+              {% assign menu_icon_size = nav_menu.icon_size.value %}
 
               {% assign view_all_label = nav_menu.view_all_label.value %}
               {% assign view_all_link = nav_menu.view_all_link.value %}
@@ -37,6 +44,18 @@
 
           {
             label: {{ link.title | json }},
+
+            {% if menu_icon != blank %}
+              icon: {{ menu_icon | json }},
+            {% endif %}
+
+            {% if menu_icon_image != blank %}
+              iconImage: {{ menu_icon_image | image_url: width: 200 | json }},
+            {% endif %}
+
+            {% if menu_icon_size != blank %}
+              iconSize: {{ menu_icon_size | json }},
+            {% endif %}
 
             {% if menu_type != blank %}
               type: {{ menu_type | json }},
@@ -115,7 +134,7 @@
                     {% assign icon = blank %}
                     {% assign icon_image = blank %}
                     {% assign icon_size = blank %}
-                    {% assign thumb = nav_item.thumbnail.value %}
+                    {% assign thumb = blank %}
 
                     {% for nav_item in shop.metaobjects.navigation_item.values %}
                       {% if nav_item.parent_menu_item.value == link.title

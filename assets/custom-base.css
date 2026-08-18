@@ -1,0 +1,88 @@
+:root {
+  --scrollbar-width: 0px;
+
+  --transition-very-fast: 75ms;
+  --transition-fast: 150ms;
+  --transition-slow: 300ms;
+  --transition-slower: 450ms;
+  --easing: cubic-bezier(.22,.61,.36,1);
+  
+  --font-xxxxl: 48px;
+  --line-xxxxl: 1.1;
+  --font-xxxl: 32px;
+  --line-xxxl: 1.2;
+  --font-xxl: 24px;
+  --line-xxl: 1.3;
+  --font-xl: 20px;
+  --line-xl: 1.4;
+  --font-l: 18px;
+  --line-l: 1.6;
+  --font-m: 16px;
+  --line-m: 1.8;
+  --font-s: 14px;
+  --font-xs: 12px;
+  --font-xxs: 11px;
+  --font-xxxs: 10px;
+  --font-button: 14px;
+  --line-button: 1.6;
+  --xxxxxs: 1.5px;
+  --xxxxs: 3px;
+  --xxxs: 6px;
+  --xxs: 9px;
+  --xs: 12px;
+  --s: 16px;
+  --m: 24px;
+  --l: 36px;
+  --xl: 48px;
+  --xxl: 60px;
+  --xxxl: 72px;
+  --xxxxl: 96px;
+  --xxxxxl: 144px;
+  --xxxxxxl: 216px;
+
+  --z-overlay-navigation:20;
+  --z-navigation:30;
+  --z-overlay-modal:40;
+  --z-modal:50;
+  --z-tooltip:60;
+}
+
+
+@media (min-width: 1440px) {
+  :root {
+    --font-xxxxl: 64px;
+    --line-xxxxl: 1;
+    --font-xxxl: 48px;
+    --line-xxxl: 1.1;
+    --font-xxl: 32px;
+    --line-xxl: 1.2;
+    --font-xl: 24px;
+    --line-xl: 1.3;
+    --font-l: 20px;
+    --line-l: 1.4;
+    --font-m: 18px;
+    --line-m: 1.6;
+    --font-s: 16px;
+    --font-xs: 14px;
+    --font-xxs: 12px;
+    --font-xxxs: 10px;
+    --font-button: 16px;
+    --xxxxxs: 2px;
+    --xxxxs: 4px;
+    --xxxs: 8px;
+    --xxs: 12px;
+    --xs: 16px;
+    --s: 24px;
+    --m: 32px;
+    --l: 48px;
+    --xl: 64px;
+    --xxl: 80px;
+    --xxxl: 96px;
+    --xxxxl: 128px;
+    --xxxxxl: 192px;
+    --xxxxxxl: 256px;
+
+
+  }
+}
+

@@ -1,0 +1,43 @@
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:var(--z-overlay-navigation);
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(16px) saturate(1.5);
+
+  will-change:opacity;
+
+  transition:
+    opacity var(--transition-fast) var(--easing),
+    visibility 0s linear var(--transition-fast);
+}
+
+.overlay.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+
+  transition:
+    opacity var(--transition-fast) var(--easing),
+    visibility 0s;
+}
+
+/* Modal owns the overlay */
+.overlay.overlay--modal{
+  z-index:var(--z-overlay-modal);
+}
+
+div.overlay:empty{
+  display:block;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .overlay{
+    transition:none !important;
+  }
+}

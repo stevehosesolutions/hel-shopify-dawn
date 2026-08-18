@@ -143,13 +143,17 @@
 %}
 
 
+{{ 'custom-base.css' | asset_url | stylesheet_tag }}
 {{ 'custom-navigation.css' | asset_url | stylesheet_tag }}
+{{ 'custom-overlay.css' | asset_url | stylesheet_tag }}
+{{ 'custom-modal.css' | asset_url | stylesheet_tag }}
+{{ 'custom-tooltip.css' | asset_url | stylesheet_tag }}
 
 {% render 'custom-nav-data' %}
 {% render 'custom-navigation' %}
 
 
-<pre id="nav-debug"></pre>
+<!-- <pre id="nav-debug"></pre> -->
 
 
 <script>
@@ -513,8 +517,6 @@
     }
   </script>
 {%- endif -%}
-
-<script src="{{ 'custom-navigation.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
