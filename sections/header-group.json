@@ -38,43 +38,6 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "navigation_group_VraEHz": {
-          "type": "navigation_group",
-          "settings": {
-            "parent": "Build a Hose",
-            "group": "Shop by Application",
-            "render": "list",
-            "key": "shop-by-application",
-            "desktop_column": 1
-          }
-        },
-        "navigation_group_dEEFHt": {
-          "type": "navigation_group",
-          "settings": {
-            "parent": "Build a Hose",
-            "group": "Shop by Size",
-            "render": "list",
-            "key": "shop-by-size",
-            "desktop_column": 2
-          }
-        },
-        "navigation_group_jR47HJ": {
-          "type": "navigation_group",
-          "settings": {
-            "parent": "Build a Hose",
-            "group": "Shop by Hose Type",
-            "render": "grid",
-            "key": "shop-by-hose-type",
-            "desktop_column": 3
-          }
-        }
-      },
-      "block_order": [
-        "navigation_group_VraEHz",
-        "navigation_group_dEEFHt",
-        "navigation_group_jR47HJ"
-      ],
       "settings": {
         "logo_position": "top-center",
         "mobile_logo_position": "center",
@@ -92,13 +55,56 @@
       }
     },
     "custom_header_YrKrBE": {
-      "type": "custom-header",
-      "name": "Custom header",
-      "settings": {
-        "help_url": "",
-        "dispatch_text": "Same day dispatch – order by 3:30pm (Mon–Fri)"
+        "type": "custom-header",
+        "name": "Custom header",
+
+        "blocks": {
+          "navigation_group_VraEHz": {
+            "type": "navigation_group",
+            "settings": {
+              "parent": "Build a Hose",
+              "group": "Shop by Application",
+              "render": "list",
+              "key": "shop-by-application",
+              "desktop_column": 1
+            }
+          },
+
+          "navigation_group_dEEFHt": {
+            "type": "navigation_group",
+            "settings": {
+              "parent": "Build a Hose",
+              "group": "Shop by Size",
+              "render": "list",
+              "key": "shop-by-size",
+              "desktop_column": 2
+            }
+          },
+
+          "navigation_group_jR47HJ": {
+            "type": "navigation_group",
+            "settings": {
+              "parent": "Build a Hose",
+              "group": "Shop by Hose Type",
+              "render": "grid",
+              "key": "shop-by-hose-type",
+              "desktop_column": 3
+            }
+          }
+        },
+
+        "block_order": [
+          "navigation_group_VraEHz",
+          "navigation_group_dEEFHt",
+          "navigation_group_jR47HJ"
+        ],
+
+        "settings": {
+          "menu": "hel-uk-menu",
+          "help_url": "",
+          "dispatch_text": "Same day dispatch – order by 3:30pm (Mon–Fri)"
+        }
       }
-    }
   },
   "order": [
     "announcement-bar",

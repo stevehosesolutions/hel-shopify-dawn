@@ -104,6 +104,11 @@
 
   "settings": [
     {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
       "type": "url",
       "id": "help_url",
       "label": "Help centre link"
@@ -113,6 +118,81 @@
       "id": "dispatch_text",
       "label": "Dispatch text",
       "default": "Same day dispatch – order by 3:30pm (Mon–Fri)"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "navigation_group",
+      "name": "Navigation group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "Parent menu item"
+        },
+        {
+          "type": "text",
+          "id": "group",
+          "label": "Group"
+        },
+        {
+          "type": "select",
+          "id": "render",
+          "label": "Display",
+          "options": [
+            {
+              "value": "list",
+              "label": "List"
+            },
+            {
+              "value": "grid",
+              "label": "Grid"
+            }
+          ],
+          "default": "list"
+        },
+        {
+          "type": "text",
+          "id": "key",
+          "label": "Key"
+        },
+        {
+          "type": "range",
+          "id": "desktop_column",
+          "label": "Desktop column",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default": 1
+        }
+      ]
+    },
+    {
+      "type": "navigation_item",
+      "name": "Navigation item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "Parent menu item"
+        },
+        {
+          "type": "text",
+          "id": "group",
+          "label": "Group"
+        },
+        {
+          "type": "text",
+          "id": "item",
+          "label": "Menu item"
+        },
+        {
+          "type": "text",
+          "id": "label_note",
+          "label": "Label note"
+        }
+      ]
     }
   ],
 
