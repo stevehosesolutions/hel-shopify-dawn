@@ -29,8 +29,7 @@
   align-items:center;
   justify-content:center;
 
-  width:var(--s);
-  height:var(--s);
+
 
   padding:0;
 
@@ -48,8 +47,7 @@
 .tooltip-trigger::after{
   content:"";
 
-  width:var(--s);
-  height:var(--s);
+
 
   background:currentColor;
 
@@ -62,6 +60,12 @@
     center / contain no-repeat;
 
   pointer-events:none;
+}
+
+.tooltip-trigger,
+.tooltip-trigger::after{
+  width:var(--s);
+  height:var(--s);
 }
 
 .tooltip-trigger:focus-visible{
@@ -81,20 +85,6 @@
 
 }
 
-@media(max-width:1439px){
-
-  .tooltip-trigger{
-/*    top:28px;
-    right:28px;*/
-  }
-
-  .tooltip-trigger,
-  .tooltip-trigger::after{
-    width:var(--m);
-    height:var(--m);
-  }
-
-}
 
 
 /* =========================

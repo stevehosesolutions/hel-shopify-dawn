@@ -1,4 +1,5 @@
 <nav class="nav" aria-label="Primary">
+
   <div class="nav-left">
     <button
       class="hamburger show-hamburger"
@@ -17,14 +18,85 @@
     </button>
   </div>
 
-  <ul class="nav-menu" id="desktopMenu" role="menubar" aria-label="Primary"></ul>
+
+  <div class="nav-mobile-logo">
+    <a href="{{ routes.root_url }}">
+      {% if settings.logo != blank %}
+        {{
+          settings.logo
+          | image_url: width: 240
+          | image_tag:
+            alt: shop.name,
+            loading: 'eager'
+        }}
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
+    </a>
+  </div>
+
+
+  <ul
+    class="nav-menu"
+    id="desktopMenu"
+    role="menubar"
+    aria-label="Primary"
+  ></ul>
+
+
+  <div class="nav-mobile-actions">
+
+    <button
+      type="button"
+      class="nav-mobile-action nav-mobile-action--search"
+      aria-label="Search"
+    >
+      <span aria-hidden="true">
+        <!-- search icon -->
+      </span>
+    </button>
+
+
+    {% if shop.customer_accounts_enabled %}
+      <a
+        href="{{ routes.account_url }}"
+        class="nav-mobile-action"
+        aria-label="Account"
+      >
+        <span aria-hidden="true">
+          <!-- account icon -->
+        </span>
+      </a>
+    {% endif %}
+
+
+    <a
+      href="{{ routes.cart_url }}"
+      class="nav-mobile-action nav-mobile-action--basket"
+      aria-label="Basket"
+    >
+      <span aria-hidden="true">
+        <!-- basket icon -->
+      </span>
+
+      {% if cart.item_count > 0 %}
+        <span class="nav-mobile-basket-count">
+          {{ cart.item_count }}
+        </span>
+      {% endif %}
+    </a>
+
+  </div>
+
 
   <div
     class="mega-container"
     id="megaContainer"
     aria-live="polite"
   ></div>
+
 </nav>
+
 
 <div
   class="mobile-nav"
@@ -55,7 +127,6 @@
   </div>
 
   <div class="mobile-footer">
-    <!-- we'll bring your real footer links/icons across after the basic test -->
+    <!-- footer content later -->
   </div>
 </div>
-

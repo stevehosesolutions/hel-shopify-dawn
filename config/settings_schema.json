@@ -149,7 +149,7 @@
   {
     "name": "t:settings_schema.layout.name",
     "settings": [
-      {
+      /*{
         "type": "range",
         "id": "page_width",
         "min": 1000,
@@ -158,7 +158,7 @@
         "default": 1200,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.page_width.label"
-      },
+      },*/
       {
         "type": "range",
         "id": "spacing_sections",

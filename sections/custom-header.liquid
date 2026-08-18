@@ -2,42 +2,83 @@
 
 <header class="custom-header">
 
+  <!-- =========================================================
+       Utility bar
+       Desktop only
+       ========================================================= -->
+
   <div class="custom-header__utility">
     <div class="custom-header__utility-inner page-width">
 
       <div class="custom-header__help">
         {% if section.settings.help_url != blank %}
-          <a href="{{ section.settings.help_url }}">
-            Help Centre
+          <a
+            href="{{ section.settings.help_url }}"
+            class="custom-header__utility-link"
+          >
+            <span class="custom-header__utility-icon" aria-hidden="true">
+              <!-- Help icon -->
+            </span>
+
+            <span>Help Centre</span>
           </a>
         {% endif %}
       </div>
 
+
       <div class="custom-header__dispatch">
-        {{ section.settings.dispatch_text }}
+        <span class="custom-header__utility-icon" aria-hidden="true">
+          <!-- Truck icon -->
+        </span>
+
+        <span>
+          {{ section.settings.dispatch_text }}
+        </span>
       </div>
 
+
       <div class="custom-header__social">
-        Follow us
+        <span class="custom-header__social-label">
+          Follow us
+        </span>
+
+        <div class="custom-header__social-links">
+          <!-- Social icons later -->
+        </div>
       </div>
 
     </div>
   </div>
 
 
+  <!-- =========================================================
+       Main header
+       Hamburger / Logo / Actions
+       ========================================================= -->
+
   <div class="custom-header__main">
     <div class="custom-header__main-inner page-width">
 
+      <!--
+        Mobile navigation trigger lives inside your existing
+        custom navigation system, so this is just its placement area.
+      -->
       <div class="custom-header__main-left">
-        <div class="custom-header__switcher">
-          Site switcher
+
+        <div class="custom-header__mobile-navigation">
+          <!-- We will move/reference the existing hamburger here next -->
         </div>
+
       </div>
 
+
       <div class="custom-header__main-centre">
+
         <div class="custom-header__logo">
           <a href="{{ routes.root_url }}">
+
             {% if settings.logo != blank %}
+
               {{
                 settings.logo
                 | image_url: width: 400
@@ -45,48 +86,214 @@
                   alt: shop.name,
                   loading: 'eager'
               }}
+
             {% else %}
+
               {{ shop.name }}
+
             {% endif %}
+
           </a>
         </div>
+
       </div>
 
+
       <div class="custom-header__main-right">
+
         <div class="custom-header__actions">
 
-          <a href="#">
-            Find a Dealer
+          <a
+            href="#"
+            class="custom-header__action custom-header__action--dealer"
+          >
+            <span
+              class="custom-header__action-icon"
+              aria-hidden="true"
+            >
+              <!-- Dealer/location icon -->
+            </span>
+
+            <span class="custom-header__action-label">
+              Find a Dealer
+            </span>
           </a>
 
+
+          <button
+            type="button"
+            class="custom-header__action custom-header__action--search"
+            aria-label="Search"
+          >
+            <span
+              class="custom-header__action-icon"
+              aria-hidden="true"
+            >
+              <!-- Search icon -->
+            </span>
+
+            <span class="custom-header__action-label">
+              Search
+            </span>
+          </button>
+
+
           {% if shop.customer_accounts_enabled %}
-            <a href="{{ routes.account_url }}">
-              Account
+
+            <a
+              href="{{ routes.account_url }}"
+              class="custom-header__action custom-header__action--account"
+            >
+              <span
+                class="custom-header__action-icon"
+                aria-hidden="true"
+              >
+                <!-- Account icon -->
+              </span>
+
+              <span class="custom-header__action-label">
+                Account
+              </span>
             </a>
+
           {% endif %}
 
-          <a href="{{ routes.cart_url }}">
-            Basket
+
+          <a
+            href="{{ routes.cart_url }}"
+            class="custom-header__action custom-header__action--basket"
+          >
+
+            <span
+              class="custom-header__action-icon"
+              aria-hidden="true"
+            >
+              <!-- Basket icon -->
+            </span>
+
+            <span class="custom-header__action-label">
+              Basket
+            </span>
 
             {% if cart.item_count > 0 %}
-              <span>
+              <span class="custom-header__basket-count">
                 {{ cart.item_count }}
               </span>
             {% endif %}
+
           </a>
 
         </div>
+
       </div>
 
     </div>
   </div>
 
 
+  <!-- =========================================================
+       Site switcher
+       ========================================================= -->
+
+  <div class="custom-header__switcher-row">
+
+    <div class="custom-header__switcher">
+
+      <span class="custom-header__switcher-title">
+        Switch site
+      </span>
+
+      <div class="custom-header__switcher-options">
+
+        <a
+          href="#"
+          class="custom-header__site custom-header__site--active"
+          aria-current="page"
+        >
+          <span class="custom-header__site-icon" aria-hidden="true">
+            <!-- Moto icon -->
+          </span>
+
+          <span>Moto</span>
+        </a>
+
+
+        <a
+          href="#"
+          class="custom-header__site"
+        >
+          <span class="custom-header__site-icon" aria-hidden="true">
+            <!-- Auto icon -->
+          </span>
+
+          <span>Auto</span>
+        </a>
+
+
+        <a
+          href="#"
+          class="custom-header__site"
+        >
+          <span class="custom-header__site-icon" aria-hidden="true">
+            <!-- MTB icon -->
+          </span>
+
+          <span>MTB</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       Navigation
+       Existing custom navigation
+       ========================================================= -->
+
   <div class="custom-header__navigation">
+    <div class="custom-header__navigation-inner page-width">
 
-    {% render 'custom-nav-data' %}
-    {% render 'custom-navigation' %}
+      <div class="custom-header__navigation-menu">
 
+        {% render 'custom-nav-data' %}
+        {% render 'custom-navigation' %}
+
+      </div>
+
+
+      <div class="custom-header__search">
+
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="custom-header__search-form"
+        >
+
+          <input
+            type="search"
+            name="q"
+            class="custom-header__search-input"
+            placeholder="Search products, parts, applications..."
+            aria-label="Search"
+          >
+
+          <button
+            type="submit"
+            class="custom-header__search-button"
+            aria-label="Search"
+          >
+            <!-- Search icon -->
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
   </div>
 
 </header>

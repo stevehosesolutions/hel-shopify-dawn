@@ -45,8 +45,9 @@
   --z-overlay-modal:40;
   --z-modal:50;
   --z-tooltip:60;
-}
 
+  --page-padding:var(--l);
+}
 
 @media (min-width: 1440px) {
   :root {
@@ -83,6 +84,17 @@
     --xxxxxxl: 256px;
 
 
+
   }
+}
+
+
+
+.page-width{
+  width:100%;
+  max-width:none;
+  margin:0 auto;
+  padding-left:var(--page-padding);
+  padding-right:var(--page-padding);
 }
 
