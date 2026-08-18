@@ -27,23 +27,23 @@
 
 
       {% assign message_count = 0 %}
+      {% assign default_message_index = 0 %}
+      {% assign default_found = false %}
+      {% assign message_index = 0 %}
 
       {% for block in section.blocks %}
         {% if block.type == 'header_message' %}
+
+          {% if block.settings.default and default_found == false %}
+            {% assign default_message_index = message_index %}
+            {% assign default_found = true %}
+          {% endif %}
+
           {% assign message_count = message_count | plus: 1 %}
+          {% assign message_index = message_index | plus: 1 %}
+
         {% endif %}
       {% endfor %}
-
-
-      {% assign default_message_index = section.settings.default_message | minus: 1 %}
-
-      {% if default_message_index < 0 %}
-        {% assign default_message_index = 0 %}
-      {% endif %}
-
-      {% if default_message_index >= message_count %}
-        {% assign default_message_index = 0 %}
-      {% endif %}
 
 
       <div class="custom-header__messages">
