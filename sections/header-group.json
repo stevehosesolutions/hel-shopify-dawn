@@ -61,19 +61,19 @@
         "header_message_4UhNfb": {
           "type": "header_message",
           "settings": {
-            "content": "<p>Test 2 BLAH</p>"
+            "content": "Test 2 <a href=\"/blah\" title=\"/blah\">BLAH2</a>"
           }
         },
         "header_message_9TX76w": {
           "type": "header_message",
           "settings": {
-            "content": "<p>Test 2 BLAH</p>"
+            "content": "Test 3 <a href=\"/blah3\" title=\"/blah3\">BLAH3</a>"
           }
         },
         "header_message_tpDYHT": {
           "type": "header_message",
           "settings": {
-            "content": "<p>Test 3 BLAH</p>"
+            "content": "Test 3 <a href=\"/blah3\" title=\"/blah3\">BLAH3</a>"
           }
         },
         "navigation_group_VraEHz": {
