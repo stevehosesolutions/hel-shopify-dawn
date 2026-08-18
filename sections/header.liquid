@@ -186,11 +186,6 @@
         assign render_search_left = true
       endif
       
-      comment
-      if section.settings.menu != blank
-        render 'header-drawer', show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
-      endif
-      endcomment
     
       if render_search_left
         render 'header-search', input_id: 'Search-In-Modal-1'
@@ -232,17 +227,7 @@
       {%- endif -%}
     {%- endif -%}
 
-    {% comment %}
-    {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
-        endif
-      endif
-    %}
-    {% endcomment %}
+
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -709,78 +694,6 @@
   "blocks": [
     {
       "type": "@app"
-    },
-    {
-      "type": "navigation_group",
-      "name": "Navigation group",
-      "settings": [
-        {
-          "type": "text",
-          "id": "parent",
-          "label": "Parent menu item"
-        },
-        {
-          "type": "text",
-          "id": "group",
-          "label": "Group"
-        },
-        {
-          "type": "select",
-          "id": "render",
-          "label": "Display",
-          "options": [
-            {
-              "value": "list",
-              "label": "List"
-            },
-            {
-              "value": "grid",
-              "label": "Grid"
-            }
-          ],
-          "default": "list"
-        },
-        {
-          "type": "text",
-          "id": "key",
-          "label": "Key"
-        },
-        {
-          "type": "range",
-          "id": "desktop_column",
-          "label": "Desktop column",
-          "min": 1,
-          "max": 6,
-          "step": 1,
-          "default": 1
-        }
-      ]
-    },
-    {
-      "type": "navigation_item",
-      "name": "Navigation item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "parent",
-          "label": "Parent menu item"
-        },
-        {
-          "type": "text",
-          "id": "group",
-          "label": "Group"
-        },
-        {
-          "type": "text",
-          "id": "item",
-          "label": "Menu item"
-        },
-        {
-          "type": "text",
-          "id": "label_note",
-          "label": "Label note"
-        }
-      ]
     }
   ]
 }

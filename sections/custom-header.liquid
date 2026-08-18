@@ -6,9 +6,11 @@
     <div class="custom-header__utility-inner page-width">
 
       <div class="custom-header__help">
-        <a href="{{ section.settings.help_url }}">
-          Help Centre
-        </a>
+        {% if section.settings.help_url != blank %}
+          <a href="{{ section.settings.help_url }}">
+            Help Centre
+          </a>
+        {% endif %}
       </div>
 
       <div class="custom-header__dispatch">
@@ -26,58 +28,54 @@
   <div class="custom-header__main">
     <div class="custom-header__main-inner page-width">
 
-      <div class="custom-header__switcher">
-        Site switcher
+      <div class="custom-header__main-left">
+        <div class="custom-header__switcher">
+          Site switcher
+        </div>
       </div>
 
-
-      <div class="custom-header__logo">
-
-        <a href="{{ routes.root_url }}">
-
-          {% if settings.logo != blank %}
-
-            {{
-              settings.logo
-              | image_url: width: 400
-              | image_tag:
-                alt: shop.name,
-                loading: 'eager'
-            }}
-
-          {% else %}
-
-            {{ shop.name }}
-
-          {% endif %}
-
-        </a>
-
-      </div>
-
-
-      <div class="custom-header__actions">
-
-        <a href="#">
-          Find a Dealer
-        </a>
-
-        {% if shop.customer_accounts_enabled %}
-          <a href="{{ routes.account_url }}">
-            Account
+      <div class="custom-header__main-centre">
+        <div class="custom-header__logo">
+          <a href="{{ routes.root_url }}">
+            {% if settings.logo != blank %}
+              {{
+                settings.logo
+                | image_url: width: 400
+                | image_tag:
+                  alt: shop.name,
+                  loading: 'eager'
+              }}
+            {% else %}
+              {{ shop.name }}
+            {% endif %}
           </a>
-        {% endif %}
+        </div>
+      </div>
 
-        <a href="{{ routes.cart_url }}">
-          Basket
+      <div class="custom-header__main-right">
+        <div class="custom-header__actions">
 
-          {% if cart.item_count > 0 %}
-            <span>
-              {{ cart.item_count }}
-            </span>
+          <a href="#">
+            Find a Dealer
+          </a>
+
+          {% if shop.customer_accounts_enabled %}
+            <a href="{{ routes.account_url }}">
+              Account
+            </a>
           {% endif %}
-        </a>
 
+          <a href="{{ routes.cart_url }}">
+            Basket
+
+            {% if cart.item_count > 0 %}
+              <span>
+                {{ cart.item_count }}
+              </span>
+            {% endif %}
+          </a>
+
+        </div>
       </div>
 
     </div>
