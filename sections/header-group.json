@@ -58,11 +58,11 @@
     "custom_header_YrKrBE": {
       "type": "custom-header",
       "blocks": {
-        "header_message_tpDYHT": {
+        "header_message_4UhNfb": {
           "type": "header_message",
           "settings": {
-            "text": "Test message 3",
-            "link": "/test3"
+            "text": "Test message 1",
+            "link": "/test1"
           }
         },
         "header_message_9TX76w": {
@@ -72,11 +72,11 @@
             "link": "/test2"
           }
         },
-        "header_message_4UhNfb": {
+        "header_message_tpDYHT": {
           "type": "header_message",
           "settings": {
-            "text": "Test message 1",
-            "link": "/test1"
+            "text": "Test message 3",
+            "link": "/test3"
           }
         },
         "navigation_group_VraEHz": {
@@ -111,9 +111,9 @@
         }
       },
       "block_order": [
-        "header_message_tpDYHT",
-        "header_message_9TX76w",
         "header_message_4UhNfb",
+        "header_message_9TX76w",
+        "header_message_tpDYHT",
         "navigation_group_VraEHz",
         "navigation_group_dEEFHt",
         "navigation_group_jR47HJ"
