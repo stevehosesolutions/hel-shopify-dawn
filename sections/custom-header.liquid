@@ -1,0 +1,114 @@
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+
+<header class="custom-header">
+
+  <div class="custom-header__utility">
+    <div class="custom-header__utility-inner page-width">
+
+      <div class="custom-header__help">
+        <a href="{{ section.settings.help_url }}">
+          Help Centre
+        </a>
+      </div>
+
+      <div class="custom-header__dispatch">
+        {{ section.settings.dispatch_text }}
+      </div>
+
+      <div class="custom-header__social">
+        Follow us
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="custom-header__main">
+    <div class="custom-header__main-inner page-width">
+
+      <div class="custom-header__switcher">
+        Site switcher
+      </div>
+
+
+      <div class="custom-header__logo">
+
+        <a href="{{ routes.root_url }}">
+
+          {% if settings.logo != blank %}
+
+            {{
+              settings.logo
+              | image_url: width: 400
+              | image_tag:
+                alt: shop.name,
+                loading: 'eager'
+            }}
+
+          {% else %}
+
+            {{ shop.name }}
+
+          {% endif %}
+
+        </a>
+
+      </div>
+
+
+      <div class="custom-header__actions">
+
+        <a href="#">
+          Find a Dealer
+        </a>
+
+        {% if shop.customer_accounts_enabled %}
+          <a href="{{ routes.account_url }}">
+            Account
+          </a>
+        {% endif %}
+
+        <a href="{{ routes.cart_url }}">
+          Basket
+
+          {% if cart.item_count > 0 %}
+            <span>
+              {{ cart.item_count }}
+            </span>
+          {% endif %}
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="custom-header__navigation">
+
+    {% render 'custom-nav-data' %}
+    {% render 'custom-navigation' %}
+
+  </div>
+
+</header>
+
+
+{% schema %}
+{
+  "name": "Custom header",
+  "settings": [
+    {
+      "type": "url",
+      "id": "help_url",
+      "label": "Help centre link"
+    },
+    {
+      "type": "text",
+      "id": "dispatch_text",
+      "label": "Dispatch text",
+      "default": "Same day dispatch – order by 3:30pm (Mon–Fri)"
+    }
+  ]
+}
+{% endschema %}

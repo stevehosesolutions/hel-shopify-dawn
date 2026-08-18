@@ -143,14 +143,7 @@
 %}
 
 
-{{ 'custom-base.css' | asset_url | stylesheet_tag }}
-{{ 'custom-navigation.css' | asset_url | stylesheet_tag }}
-{{ 'custom-overlay.css' | asset_url | stylesheet_tag }}
-{{ 'custom-modal.css' | asset_url | stylesheet_tag }}
-{{ 'custom-tooltip.css' | asset_url | stylesheet_tag }}
 
-{% render 'custom-nav-data' %}
-{% render 'custom-navigation' %}
 
 
 <!-- <pre id="nav-debug"></pre> -->
@@ -185,20 +178,26 @@
     endif
   -%}
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if country_selector or language_selector %} header--has-localizations{% endif %}">
+
+
     {%- liquid
       assign render_search_left = false
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank or shop.customer_accounts_enabled
         assign render_search_left = true
       endif
-
+      
+      comment
       if section.settings.menu != blank
         render 'header-drawer', show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
       endif
-
+      endcomment
+    
       if render_search_left
         render 'header-search', input_id: 'Search-In-Modal-1'
       endif
     -%}
+
+
 
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -233,6 +232,7 @@
       {%- endif -%}
     {%- endif -%}
 
+    {% comment %}
     {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
@@ -242,6 +242,7 @@
         endif
       endif
     %}
+    {% endcomment %}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -338,6 +339,14 @@
     </div>
   </header>
 </{{ header_tag }}>
+
+
+
+{% render 'custom-nav-data' %}
+{% render 'custom-navigation' %}
+
+
+
 
 {%- if settings.cart_type == 'notification' -%}
   {%- render 'cart-notification',
