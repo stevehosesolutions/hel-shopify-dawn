@@ -62,21 +62,24 @@
           "type": "header_message",
           "settings": {
             "text": "Test message 1",
-            "link": "/test1"
+            "link": "/test1",
+            "default": false
           }
         },
         "header_message_9TX76w": {
           "type": "header_message",
           "settings": {
             "text": "Test message 2",
-            "link": "/test2"
+            "link": "/test2",
+            "default": true
           }
         },
         "header_message_tpDYHT": {
           "type": "header_message",
           "settings": {
             "text": "Test message 3",
-            "link": "/test3"
+            "link": "/test3",
+            "default": false
           }
         },
         "navigation_group_VraEHz": {
