@@ -64,12 +64,40 @@
   align-items:center;
   justify-content:center;
 
+  gap:var(--xs);
+
   opacity:0;
   visibility:hidden;
 
   transition:
     opacity var(--transition-fast) var(--easing),
     visibility 0s linear var(--transition-fast);
+}
+
+.custom-header__message-text{
+  white-space:nowrap;
+}
+
+.custom-header__message-link{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:2px;
+  white-space:nowrap;
+}
+
+@media(max-width:1199px){
+
+  .custom-header__message{
+    flex-wrap:wrap;
+    column-gap:var(--xs);
+    row-gap:0;
+  }
+
+  .custom-header__message-text,
+  .custom-header__message-link{
+    white-space:normal;
+  }
+
 }
 
 .custom-header__message.is-active{
