@@ -61,25 +61,19 @@
         "header_message_4UhNfb": {
           "type": "header_message",
           "settings": {
-            "text": "Test message 1",
-            "link": "/test1",
-            "default": false
+            "content": "<p>Test 2 BLAH</p>"
           }
         },
         "header_message_9TX76w": {
           "type": "header_message",
           "settings": {
-            "text": "Test message 2",
-            "link": "/test2",
-            "default": true
+            "content": ""
           }
         },
         "header_message_tpDYHT": {
           "type": "header_message",
           "settings": {
-            "text": "Test message 3",
-            "link": "/test3",
-            "default": false
+            "content": ""
           }
         },
         "navigation_group_VraEHz": {
