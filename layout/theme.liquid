@@ -342,7 +342,21 @@
     {% sections 'header-group' %}
 
 
-            <!-- sample modal -->
+            
+
+
+    <main
+      id="MainContent"
+      class="content-for-layout focus-none"
+      role="main"
+      tabindex="-1"
+      data-template="{{ template.name }}"
+    >
+      {{ content_for_layout }}
+    </main>
+
+
+<!-- sample modal -->
 
         <button type="button" data-uxm-modal-open="test-modal">
           Open Test Modal
@@ -384,17 +398,6 @@
 
           </div>
         </div>
-
-
-    <main
-      id="MainContent"
-      class="content-for-layout focus-none"
-      role="main"
-      tabindex="-1"
-      data-template="{{ template.name }}"
-    >
-      {{ content_for_layout }}
-    </main>
 
     {% sections 'footer-group' %}
 

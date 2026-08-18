@@ -46,7 +46,7 @@
   --z-modal:50;
   --z-tooltip:60;
 
-  --page-padding:var(--l);
+  --page-padding:var(--s);
 }
 
 @media (min-width: 1440px) {
@@ -83,7 +83,7 @@
     --xxxxxl: 192px;
     --xxxxxxl: 256px;
 
-
+    --page-padding:var(--l);
 
   }
 }
