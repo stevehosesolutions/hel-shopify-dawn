@@ -58,6 +58,27 @@
     "custom_header_YrKrBE": {
       "type": "custom-header",
       "blocks": {
+        "header_message_tpDYHT": {
+          "type": "header_message",
+          "settings": {
+            "text": "Test message 3",
+            "link": "/test3"
+          }
+        },
+        "header_message_9TX76w": {
+          "type": "header_message",
+          "settings": {
+            "text": "Test message 2",
+            "link": "/test2"
+          }
+        },
+        "header_message_4UhNfb": {
+          "type": "header_message",
+          "settings": {
+            "text": "Test message 1",
+            "link": "/test1"
+          }
+        },
         "navigation_group_VraEHz": {
           "type": "navigation_group",
           "settings": {
@@ -90,6 +111,9 @@
         }
       },
       "block_order": [
+        "header_message_tpDYHT",
+        "header_message_9TX76w",
+        "header_message_4UhNfb",
         "navigation_group_VraEHz",
         "navigation_group_dEEFHt",
         "navigation_group_jR47HJ"
@@ -97,8 +121,7 @@
       "name": "Custom header",
       "settings": {
         "menu": "hel-uk-menu",
-        "help_url": "/help",
-        "dispatch_text": "Same day dispatch – order by 3:30pm (Mon–Fri)"
+        "help_url": "/help"
       }
     }
   },
