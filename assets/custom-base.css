@@ -88,7 +88,13 @@
   }
 }
 
-
+body{
+  padding-top:
+    calc(
+      var(--utility-height, 0px) +
+      var(--nav-height)
+    );
+}
 
 .page-width{
   width:100%;

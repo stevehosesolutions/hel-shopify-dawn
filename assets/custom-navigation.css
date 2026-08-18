@@ -1081,52 +1081,75 @@
 
 /* =========================
    Mobile-only adjustments
-========================= */
+   ========================= */
 
-@media (max-width:1199px){
+@media(max-width:1199px){
+
   .hamburger{
     display:inline-flex;
   }
 
   .nav{
     position:fixed;
-    top:0;
+    top:var(--utility-height, 0px);
     left:0;
+
     width:100%;
+
     z-index:11;
   }
 
   body{
-    padding-top:var(--nav-height);
+    padding-top:
+      calc(
+        var(--utility-height, 0px) +
+        var(--nav-height)
+      );
   }
 
   .mobile-menu .has-submenu > a,
   .mobile-submenu .has-submenu > a{
     position:relative;
-    padding-right:calc(var(--m) + var(--l));
+
+    padding-right:
+      calc(
+        var(--m) +
+        var(--l)
+      );
   }
 
   .mobile-menu .has-submenu > a::after,
   .mobile-submenu .has-submenu > a::after{
     content:"→";
+
     position:absolute;
     right:0;
     top:50%;
+
     transform:translateY(-50%);
+
     font-size:1rem;
+
     color:var(--nav-text);
   }
+
 }
 
 /* =========================
    Desktop-only adjustments
-========================= */
+   ========================= */
 
-@media (min-width:1200px){
+@media(min-width:1200px){
+
+  body{
+    padding-top:0;
+  }
+
   .mobile-nav,
   .mobile-footer{
     display:none;
   }
+
 }
 
 /* =========================

@@ -26,34 +26,103 @@
       </div>
 
 
+      {% assign message_count = 0 %}
+
+      {% for block in section.blocks %}
+        {% if block.type == 'header_message' %}
+          {% assign message_count = message_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+
+
+      {% assign default_message_index = section.settings.default_message | minus: 1 %}
+
+      {% if default_message_index < 0 %}
+        {% assign default_message_index = 0 %}
+      {% endif %}
+
+      {% if default_message_index >= message_count %}
+        {% assign default_message_index = 0 %}
+      {% endif %}
+
+
       <div class="custom-header__messages">
+
         <div class="custom-header__messages-track">
+
+          {% assign message_index = 0 %}
 
           {% for block in section.blocks %}
 
             {% if block.type == 'header_message' %}
 
               <div
-                class="custom-header__message"
+                class="custom-header__message{% if message_index == default_message_index %} is-active{% endif %}"
+                data-message-index="{{ message_index }}"
                 {{ block.shopify_attributes }}
               >
+
                 {% if block.settings.link != blank %}
+
                   <a href="{{ block.settings.link }}">
                     {{ block.settings.text }}
                   </a>
+
                 {% else %}
+
                   <span>
                     {{ block.settings.text }}
                   </span>
+
                 {% endif %}
+
               </div>
+
+              {% assign message_index = message_index | plus: 1 %}
 
             {% endif %}
 
           {% endfor %}
 
         </div>
+
+
+        {% if message_count > 1 %}
+
+          <div
+            class="custom-header__message-pagination"
+            aria-label="Header messages"
+          >
+
+            {% assign dot_index = 0 %}
+
+            {% for block in section.blocks %}
+
+              {% if block.type == 'header_message' %}
+
+                <button
+                  type="button"
+                  class="custom-header__message-dot{% if dot_index == default_message_index %} is-active{% endif %}"
+                  data-message-index="{{ dot_index }}"
+                  aria-label="Show message {{ dot_index | plus: 1 }}"
+                  {% if dot_index == default_message_index %}
+                    aria-current="true"
+                  {% endif %}
+                ></button>
+
+                {% assign dot_index = dot_index | plus: 1 %}
+
+              {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+        {% endif %}
+
       </div>
+
+
 
 
       <div class="custom-header__social">
@@ -426,6 +495,12 @@
           "type": "url",
           "id": "link",
           "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "default",
+          "label": "Show by default",
+          "default": false
         }
       ]
     }
