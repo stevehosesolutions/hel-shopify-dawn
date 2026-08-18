@@ -85,6 +85,26 @@
   white-space:nowrap;
 }
 
+.custom-header__message-content{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0;
+  padding:0;
+}
+
+.custom-header__message-content p{
+  margin:0;
+  padding:0;
+}
+
+.custom-header__message-content a{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+
 @media(max-width:1199px){
 
   .custom-header__message{
