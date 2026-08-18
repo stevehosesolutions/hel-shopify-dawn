@@ -35,7 +35,10 @@
 }
 
 
-
+.section-custom-header{
+  position:relative;
+  z-index:var(--z-navigation);
+}
 
 /* ==========================================================================
    Utility bar
