@@ -686,9 +686,70 @@
 
 
 
-    const mqDesktop = window.matchMedia(CONFIG.DESKTOP_MQ);
+   const mqDesktop = window.matchMedia(CONFIG.DESKTOP_MQ);
 
-       /* =========================
+const itemIds = navData.items.map(
+  (item, idx) => itemKey(item, idx)
+);
+
+
+/* =========================
+   Desktop hover intent
+   ========================= */
+
+let pendingOpenTimer = null;
+let pendingOpenItem = null;
+
+function clearPendingOpens() {
+  if (pendingOpenTimer) {
+    clearTimeout(pendingOpenTimer);
+    pendingOpenTimer = null;
+  }
+
+  pendingOpenItem = null;
+}
+
+function scheduleOpenFor(item, mega) {
+  clearPendingOpens();
+
+  pendingOpenItem = item;
+
+  pendingOpenTimer = setTimeout(() => {
+    mega?.openFor(item);
+
+    pendingOpenTimer = null;
+    pendingOpenItem = null;
+  }, CONFIG.HOVER_INTENT_DELAY);
+}
+
+
+/* =========================
+   Mobile drawer helpers
+   ========================= */
+
+function getAllSubmenuScrollers() {
+  return el.mobilePanels.querySelectorAll(
+    ".mobile-submenu .submenu-scroll"
+  );
+}
+
+function syncDrawerHeaderHeights() {
+  el.mobilePanels
+    .querySelectorAll(".mobile-submenu")
+    .forEach((panel) => {
+      const header = panel.querySelector(".back-header");
+
+      if (!header) return;
+
+      panel.style.setProperty(
+        "--drawer-header-height",
+        `${Math.round(header.offsetHeight)}px`
+      );
+    });
+}
+
+
+/* =========================
    Compact mobile header
    ========================= */
 
@@ -709,19 +770,19 @@ function syncCompactHeader() {
 
   const scrollY = Math.max(0, window.scrollY);
 
-  /*
-   * Use separate enter / exit thresholds.
-   *
-   * This prevents the header constantly toggling
-   * around one scroll position on touch devices.
-   */
-  if (!headerIsCompact && scrollY >= COMPACT_HEADER_ENTER_Y) {
+  if (
+    !headerIsCompact &&
+    scrollY >= COMPACT_HEADER_ENTER_Y
+  ) {
     headerIsCompact = true;
     document.body.classList.add("header-compact");
     return;
   }
 
-  if (headerIsCompact && scrollY <= COMPACT_HEADER_EXIT_Y) {
+  if (
+    headerIsCompact &&
+    scrollY <= COMPACT_HEADER_EXIT_Y
+  ) {
     headerIsCompact = false;
     document.body.classList.remove("header-compact");
   }
