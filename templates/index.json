@@ -15,6 +15,8 @@
       "settings": {
         "image": "shopify://shop_images/hel-bg.jpg",
         "mobile_image": "shopify://shop_images/axel-1.jpg",
+        "desktop_position_x": 0,
+        "mobile_position_x": 47,
         "eyebrow": "<p>Eyebrow</p>",
         "heading_line_1": "Heading - line 1",
         "heading_line_2": "Heading - line 2",
