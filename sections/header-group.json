@@ -11,19 +11,6 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "custom_hero_nDGHdp": {
-      "type": "custom-hero",
-      "name": "Custom hero",
-      "settings": {
-        "image": "shopify://shop_images/hel-bg.jpg",
-        "mobile_image": "shopify://shop_images/axel-1.jpg",
-        "overlay_opacity": 20,
-        "heading": "Performance through precision",
-        "text": "",
-        "button_label": "Shop now",
-        "button_link": ""
-      }
-    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -136,7 +123,6 @@
     }
   },
   "order": [
-    "custom_hero_nDGHdp",
     "announcement-bar",
     "header",
     "custom_header_YrKrBE"
