@@ -521,3 +521,54 @@
   }
 
 }
+
+
+
+
+/* ==========================================================================
+   Homepage header overlay
+   Desktop only
+   ========================================================================== */
+
+@media(min-width:1200px){
+
+  /*
+   * Remove the homepage header from normal document flow
+   * so the first homepage section begins at the top
+   * of the viewport behind it.
+   */
+
+  .custom-header--homepage{
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:100%;
+  }
+
+
+  /*
+   * Keep utility and main header opaque.
+   */
+
+  .custom-header--homepage .custom-header__utility{
+    background:#f5f5f5;
+  }
+
+  .custom-header--homepage .custom-header__main{
+    background:#fff;
+  }
+
+
+  /*
+   * Allow the hero image to show through
+   * the desktop navigation row.
+   */
+
+  .custom-header--homepage .custom-header__navigation,
+  .custom-header--homepage .custom-header__search,
+  .custom-header--homepage .nav{
+    background:transparent;
+  }
+
+}

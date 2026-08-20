@@ -1,6 +1,6 @@
 {{ 'custom-header.css' | asset_url | stylesheet_tag }}
 
-<header class="custom-header">
+<header class="custom-header{% if template.name == 'index' %} custom-header--homepage{% endif %}">
 
   <!-- =========================================================
        Utility bar
