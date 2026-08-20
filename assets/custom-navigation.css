@@ -1099,6 +1099,7 @@
     z-index:11;
   }
 
+
   body{
     padding-top:
       calc(
@@ -1106,6 +1107,11 @@
         var(--nav-height)
       );
   }
+
+  body:has(.custom-header--homepage){
+    padding-top:0;
+  }
+
 
   .mobile-menu .has-submenu > a,
   .mobile-submenu .has-submenu > a{

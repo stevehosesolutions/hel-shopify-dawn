@@ -527,32 +527,65 @@
 
 /* ==========================================================================
    Homepage header overlay
-   Desktop only
    ========================================================================== */
 
-@media(min-width:1200px){
+/*
+ * On the homepage the entire header sits over the hero.
+ * This means the hero starts at the true top of the viewport
+ * on desktop, tablet and mobile.
+ */
+
+.section-custom-header:has(.custom-header--homepage){
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:100%;
+
+  z-index:var(--z-navigation);
+}
+
+
+/* ==========================================================================
+   Homepage mobile / tablet
+   ========================================================================== */
+
+@media(max-width:1199px){
 
   /*
-   * Take the entire Shopify header section out of document flow
-   * on the homepage.
+   * Utility and navigation are already fixed.
    *
-   * The hero can then begin at the very top of the viewport.
+   * Position the site switcher underneath them,
+   * but keep it out of normal page flow.
    */
 
-  .section-custom-header:has(.custom-header--homepage){
+  .custom-header--homepage .custom-header__switcher-row{
     position:absolute;
-    top:0;
+
+    top:
+      calc(
+        var(--utility-height, 36px) +
+        var(--nav-height)
+      );
+
     left:0;
 
     width:100%;
+    height:auto;
 
-    z-index:var(--z-navigation);
+    margin:0;
+
+    background:#fff;
   }
 
+}
 
-  /*
-   * Header itself no longer needs positioning.
-   */
+
+/* ==========================================================================
+   Homepage desktop
+   ========================================================================== */
+
+@media(min-width:1200px){
 
   .custom-header--homepage{
     position:relative;
@@ -561,32 +594,25 @@
 
   /* Utility stays opaque */
 
-  .custom-header--homepage
-  .custom-header__utility{
+  .custom-header--homepage .custom-header__utility{
     background:#f5f5f5;
   }
 
 
   /* Main header stays opaque */
 
-  .custom-header--homepage
-  .custom-header__main{
+  .custom-header--homepage .custom-header__main{
     background:#fff;
   }
 
 
   /*
-   * Navigation exposes the hero beneath it.
+   * Navigation allows the hero to show through.
    */
 
-  .custom-header--homepage
-  .custom-header__navigation,
-
-  .custom-header--homepage
-  .custom-header__search,
-
-  .custom-header--homepage
-  .nav{
+  .custom-header--homepage .custom-header__navigation,
+  .custom-header--homepage .custom-header__search,
+  .custom-header--homepage .nav{
     background:transparent;
   }
 
