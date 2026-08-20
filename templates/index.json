@@ -48,6 +48,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/hel-bg.jpg",
         "image_overlay_opacity": 0,
