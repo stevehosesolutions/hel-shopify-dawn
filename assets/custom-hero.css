@@ -64,7 +64,7 @@
 
 
 /* ==========================================================================
-   Content
+   Hero content
    ========================================================================== */
 
 .custom-hero__content{
@@ -80,35 +80,96 @@
 
 .custom-hero__content-inner{
   width:100%;
-  max-width:640px;
+  max-width:720px;
 }
+
+
+/* Eyebrow */
+
+.custom-hero__eyebrow{
+  margin-bottom:var(--s);
+
+  font-size:var(--font-xs);
+  line-height:1.2;
+  font-weight:600;
+
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.custom-hero__eyebrow p{
+  margin:0;
+}
+
+
+/* Heading */
 
 .custom-hero__heading{
   margin:0;
 
+  font-size:var(--font-xxxl);
+  line-height:var(--line-xxxl);
+  font-weight:600;
+
+  letter-spacing:-.03em;
+
   color:inherit;
 }
 
-.custom-hero__text{
-  margin-top:var(--s);
+.custom-hero__heading-line{
+  display:block;
 }
 
-.custom-hero__text p{
+.custom-hero__heading-line + .custom-hero__heading-line{
+  margin-top:var(--xxxs);
+}
+
+
+/* Subheading */
+
+.custom-hero__subheading{
+  margin-top:var(--m);
+
+  font-size:var(--font-m);
+  line-height:var(--line-m);
+}
+
+.custom-hero__subheading-line{
+  display:block;
+}
+
+.custom-hero__subheading-line + .custom-hero__subheading-line{
+  margin-top:var(--xxxs);
+}
+
+.custom-hero__subheading-line p{
   margin:0;
 }
+
+
+/* Button */
 
 .custom-hero__button{
   display:inline-flex;
   align-items:center;
   justify-content:center;
 
-  margin-top:var(--m);
+  margin-top:var(--l);
   padding:var(--s) var(--m);
+
+  border:1px solid transparent;
+  border-radius:var(--xxxs);
 
   background:var(--primary-color);
   color:#fff;
 
+  font-weight:600;
   text-decoration:none;
+
+  transition:
+    background var(--transition-fast) var(--easing),
+    color var(--transition-fast) var(--easing),
+    border-color var(--transition-fast) var(--easing);
 }
 
 
@@ -118,14 +179,33 @@
 
 @media(max-width:1199px){
 
-  .custom-hero,
   .custom-hero__content{
-    min-height:100vh;
-    min-height:100svh;
+    align-items:flex-end;
+
+    padding-bottom:var(--xl);
+  }
+
+  .custom-hero__content-inner{
+    max-width:100%;
+  }
+
+  .custom-hero__heading{
+    font-size:var(--font-xxl);
+    line-height:var(--line-xxl);
+  }
+
+  .custom-hero__subheading{
+    margin-top:var(--s);
+
+    font-size:var(--font-s);
+    line-height:var(--line-s);
+  }
+
+  .custom-hero__button{
+    margin-top:var(--m);
   }
 
 }
-
 
 /* ==========================================================================
    Reduced motion

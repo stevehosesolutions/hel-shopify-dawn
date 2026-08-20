@@ -55,13 +55,19 @@
 
       {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2 != blank %}
         <h1 class="custom-hero__heading">
-          <span class="custom-hero__heading-line">
-            {{ section.settings.heading_line_1 }}
-          </span>
 
-          <span class="custom-hero__heading-line">
-            {{ section.settings.heading_line_2 }}
-          </span>
+          {% if section.settings.heading_line_1 != blank %}
+            <span class="custom-hero__heading-line">
+              {{ section.settings.heading_line_1 }}
+            </span>
+          {% endif %}
+
+          {% if section.settings.heading_line_2 != blank %}
+            <span class="custom-hero__heading-line">
+              {{ section.settings.heading_line_2 }}
+            </span>
+          {% endif %}
+
         </h1>
       {% endif %}
 
