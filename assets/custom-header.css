@@ -397,9 +397,7 @@
 }
 
 
-/* ==========================================================================
-   Mobile / Tablet
-   ========================================================================== */
+
 
 /* ==========================================================================
    Mobile / Tablet
@@ -429,11 +427,9 @@
     background:#f5f5f5;
 
     transform:translate3d(0, 0, 0);
-    opacity:1;
 
     transition:
-      transform var(--transition-fast) var(--easing),
-      opacity var(--transition-fast) var(--easing);
+      transform var(--transition-fast) var(--easing);
   }
 
   .custom-header__utility-inner{
@@ -466,13 +462,11 @@
 
   /* Compact scroll state */
 
-  body.header-compact .custom-header__utility{
-    transform:translate3d(0, -100%, 0);
-    opacity:0;
+body.header-compact .custom-header__utility{
+  transform:translate3d(0, -100%, 0);
 
-    pointer-events:none;
-  }
-
+  pointer-events:none;
+}
 
   /* ==========================================================================
      Desktop main header
@@ -539,69 +533,7 @@
 }
 
 
-  /* ==========================================================
-     Desktop main header
-     ========================================================== */
-
-  .custom-header__main{
-    display:none;
-  }
-
-
-  /* ==========================================================
-     Site switcher
-     ========================================================== */
-
-  .custom-header__switcher-row{
-    position:static;
-
-    display:block;
-
-    height:auto;
-
-    padding:
-      var(--m)
-      var(--page-padding);
-
-    pointer-events:auto;
-  }
-
-  .custom-header__switcher{
-    width:100%;
-  }
-
-  .custom-header__switcher-options{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:var(--s);
-
-    width:100%;
-  }
-
-  .custom-header__site{
-    min-width:0;
-    width:100%;
-    height:52px;
-  }
-
-
-  /* ==========================================================
-     Navigation
-     ========================================================== */
-
-  .custom-header__navigation{
-    border-top:0;
-  }
-
-  .custom-header__navigation-inner{
-    display:block;
-  }
-
-  .custom-header__search{
-    display:none;
-  }
-
-}
+  
 
 /* ==========================================================================
    Reduced motion
@@ -631,24 +563,8 @@
 
 
 /* ==========================================================================
-   Homepage header overlay
+   Homepage header
    ========================================================================== */
-
-/*
- * On the homepage the entire header sits over the hero.
- * This means the hero starts at the true top of the viewport
- * on desktop, tablet and mobile.
- */
-
-.section-custom-header:has(.custom-header--homepage){
-  position:absolute;
-  top:0;
-  left:0;
-
-  width:100%;
-
-  z-index:var(--z-navigation);
-}
 
 
 /* ==========================================================================
@@ -656,13 +572,6 @@
    ========================================================================== */
 
 @media(max-width:1199px){
-
-  /*
-   * Utility and navigation are already fixed.
-   *
-   * Position the site switcher underneath them,
-   * but keep it out of normal page flow.
-   */
 
   .custom-header--homepage .custom-header__switcher-row{
     position:absolute;
@@ -681,6 +590,25 @@
     margin:0;
 
     background:#fff;
+
+    transform:translate3d(0, 0, 0);
+
+    transition:
+      transform var(--transition-fast) var(--easing);
+  }
+
+
+  /* Follow the navigation upwards when the message bar disappears */
+
+  body.header-compact
+  .custom-header--homepage
+  .custom-header__switcher-row{
+    transform:
+      translate3d(
+        0,
+        calc(-1 * var(--utility-height, 36px)),
+        0
+      );
   }
 
 }
@@ -692,19 +620,29 @@
 
 @media(min-width:1200px){
 
+  /*
+   * Desktop header remains in normal document flow.
+   *
+   * Utility + main header therefore sit above the hero.
+   */
+
+  .section-custom-header:has(.custom-header--homepage){
+    width:100%;
+  }
+
   .custom-header--homepage{
     position:relative;
   }
 
 
-  /* Utility stays opaque */
+  /* Utility */
 
   .custom-header--homepage .custom-header__utility{
     background:#f5f5f5;
   }
 
 
-  /* Main header stays opaque */
+  /* Main header */
 
   .custom-header--homepage .custom-header__main{
     background:#fff;
@@ -712,13 +650,43 @@
 
 
   /*
-   * Navigation allows the hero to show through.
+   * Navigation is removed from normal flow and placed directly
+   * beneath the main header.
+   *
+   * The hero therefore begins here and appears behind the
+   * transparent navigation row.
    */
 
-  .custom-header--homepage .custom-header__navigation,
+  .custom-header--homepage .custom-header__navigation{
+    position:absolute;
+    top:100%;
+    left:0;
+
+    width:100%;
+
+    background:transparent;
+  }
+
   .custom-header--homepage .custom-header__search,
   .custom-header--homepage .nav{
     background:transparent;
   }
 
+
+
+}
+
+
+/* ==========================================================================
+   Homepage header group overlay
+   ========================================================================== */
+
+body:has(.custom-header--homepage) .shopify-section-group-header-group{
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:100%;
+
+  z-index:var(--z-navigation);
 }

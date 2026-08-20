@@ -688,83 +688,61 @@
 
     const mqDesktop = window.matchMedia(CONFIG.DESKTOP_MQ);
 
-        /* =========================
-       Compact mobile header
-       ========================= */
+       /* =========================
+   Compact mobile header
+   ========================= */
 
-    const COMPACT_HEADER_SCROLL_Y = 80;
+const COMPACT_HEADER_ENTER_Y = 100;
+const COMPACT_HEADER_EXIT_Y = 30;
 
-    let headerScrollRaf = null;
+let headerScrollRaf = null;
+let headerIsCompact = false;
 
-    function syncCompactHeader() {
-      const isMobile = !mqDesktop.matches;
+function syncCompactHeader() {
+  const isMobile = !mqDesktop.matches;
 
-      const shouldCompact =
-        isMobile &&
-        window.scrollY > COMPACT_HEADER_SCROLL_Y;
+  if (!isMobile) {
+    headerIsCompact = false;
+    document.body.classList.remove("header-compact");
+    return;
+  }
 
-      document.body.classList.toggle(
-        "header-compact",
-        shouldCompact
-      );
-    }
+  const scrollY = Math.max(0, window.scrollY);
 
-    function onHeaderScroll() {
-      if (headerScrollRaf) return;
+  /*
+   * Use separate enter / exit thresholds.
+   *
+   * This prevents the header constantly toggling
+   * around one scroll position on touch devices.
+   */
+  if (!headerIsCompact && scrollY >= COMPACT_HEADER_ENTER_Y) {
+    headerIsCompact = true;
+    document.body.classList.add("header-compact");
+    return;
+  }
 
-      headerScrollRaf = requestAnimationFrame(() => {
-        headerScrollRaf = null;
-        syncCompactHeader();
-      });
-    }
+  if (headerIsCompact && scrollY <= COMPACT_HEADER_EXIT_Y) {
+    headerIsCompact = false;
+    document.body.classList.remove("header-compact");
+  }
+}
 
-    window.addEventListener(
-      "scroll",
-      onHeaderScroll,
-      { passive:true }
-    );
+function onHeaderScroll() {
+  if (headerScrollRaf) return;
 
+  headerScrollRaf = requestAnimationFrame(() => {
+    headerScrollRaf = null;
     syncCompactHeader();
+  });
+}
 
+window.addEventListener(
+  "scroll",
+  onHeaderScroll,
+  { passive:true }
+);
 
-    const itemIds = navData.items.map((item, idx) => itemKey(item, idx));
-
-    let pendingOpenTimer = null;
-    let pendingOpenItem = null;
-
-    function clearPendingOpens() {
-      if (pendingOpenTimer) {
-        clearTimeout(pendingOpenTimer);
-        pendingOpenTimer = null;
-      }
-      pendingOpenItem = null;
-    }
-
-    function scheduleOpenFor(item, mega) {
-      clearPendingOpens();
-
-      pendingOpenItem = item;
-      pendingOpenTimer = setTimeout(() => {
-        mega?.openFor(item);
-        pendingOpenTimer = null;
-        pendingOpenItem = null;
-      }, CONFIG.HOVER_INTENT_DELAY);
-    }
-
-    function getAllSubmenuScrollers() {
-      return el.mobilePanels.querySelectorAll(".mobile-submenu .submenu-scroll");
-    }
-
-    function syncDrawerHeaderHeights() {
-      el.mobilePanels.querySelectorAll(".mobile-submenu").forEach((panel) => {
-        const header = panel.querySelector(".back-header");
-        if (!header) return;
-        panel.style.setProperty(
-          "--drawer-header-height",
-          `${Math.round(header.offsetHeight)}px`
-        );
-      });
-    }
+syncCompactHeader();
 
     /* =========================
        Desktop render

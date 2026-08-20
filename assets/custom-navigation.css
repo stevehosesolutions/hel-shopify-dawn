@@ -1418,19 +1418,18 @@
 
     transform:translate3d(0, 0, 0);
 
-    /*
-     * Extends the navigation background upwards behind
-     * the utility/message bar. This prevents the hero
-     * showing through while the header compacts.
-     */
-    box-shadow:
-      0 calc(-1 * var(--utility-height, 36px)) 0
-      var(--nav-bg);
 
-    transition:
-      transform var(--transition-fast) var(--easing),
-      height var(--transition-fast) var(--easing);
+transition:
+  transform var(--transition-fast) var(--easing);
+  
+      backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+
+  transform:translate3d(0, 0, 0);
+  will-change:transform;
   }
+
+
 
 
   /* Hamburger */
@@ -1534,8 +1533,6 @@
   /* Compact scroll state */
 
   body.header-compact .nav{
-    height:var(--nav-height-compact);
-
     transform:
       translate3d(
         0,
@@ -1548,9 +1545,7 @@
     max-height:36px;
   }
 
-  body.header-compact .mobile-content{
-    margin-top:var(--nav-height-compact);
-  }
+
 
 }
 
