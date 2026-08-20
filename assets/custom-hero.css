@@ -34,27 +34,20 @@
 
 .custom-hero__image{
   display:block;
-
   width:100%;
   height:100%;
 
   object-fit:cover;
-
-  object-position:
-    var(--hero-position-x)
-    var(--hero-position-y);
+  object-position:var(--hero-position-x) center;
 }
 
 @media(max-width:1199px){
 
   .custom-hero__image{
-    object-position:
-      var(--hero-mobile-position-x)
-      var(--hero-mobile-position-y);
+    object-position:var(--hero-mobile-position-x) center;
   }
 
 }
-
 
 /* ==========================================================================
    Overlay
