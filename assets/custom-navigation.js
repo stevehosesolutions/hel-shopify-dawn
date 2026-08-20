@@ -687,6 +687,46 @@
 
 
     const mqDesktop = window.matchMedia(CONFIG.DESKTOP_MQ);
+
+        /* =========================
+       Compact mobile header
+       ========================= */
+
+    const COMPACT_HEADER_SCROLL_Y = 80;
+
+    let headerScrollRaf = null;
+
+    function syncCompactHeader() {
+      const isMobile = !mqDesktop.matches;
+
+      const shouldCompact =
+        isMobile &&
+        window.scrollY > COMPACT_HEADER_SCROLL_Y;
+
+      document.body.classList.toggle(
+        "header-compact",
+        shouldCompact
+      );
+    }
+
+    function onHeaderScroll() {
+      if (headerScrollRaf) return;
+
+      headerScrollRaf = requestAnimationFrame(() => {
+        headerScrollRaf = null;
+        syncCompactHeader();
+      });
+    }
+
+    window.addEventListener(
+      "scroll",
+      onHeaderScroll,
+      { passive:true }
+    );
+
+    syncCompactHeader();
+
+
     const itemIds = navData.items.map((item, idx) => itemKey(item, idx));
 
     let pendingOpenTimer = null;
@@ -1773,6 +1813,8 @@
           windowResizeRaf = null;
 
           mega?.invalidateAllPanelHeights();
+
+          syncCompactHeader();
 
           if (
             window.innerWidth > CONFIG.BREAKPOINT_PX &&

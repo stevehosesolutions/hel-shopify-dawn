@@ -401,6 +401,10 @@
    Mobile / Tablet
    ========================================================================== */
 
+/* ==========================================================================
+   Mobile / Tablet
+   ========================================================================== */
+
 @media(max-width:1199px){
 
   :root{
@@ -408,7 +412,9 @@
   }
 
 
-  /* Utility message bar */
+  /* ==========================================================================
+     Utility message bar
+     ========================================================================== */
 
   .custom-header__utility{
     position:fixed;
@@ -421,6 +427,13 @@
     height:var(--utility-height);
 
     background:#f5f5f5;
+
+    transform:translate3d(0, 0, 0);
+    opacity:1;
+
+    transition:
+      transform var(--transition-fast) var(--easing),
+      opacity var(--transition-fast) var(--easing);
   }
 
   .custom-header__utility-inner{
@@ -451,14 +464,28 @@
   }
 
 
-  /* Desktop main header is replaced by custom-navigation */
+  /* Compact scroll state */
+
+  body.header-compact .custom-header__utility{
+    transform:translate3d(0, -100%, 0);
+    opacity:0;
+
+    pointer-events:none;
+  }
+
+
+  /* ==========================================================================
+     Desktop main header
+     ========================================================================== */
 
   .custom-header__main{
     display:none;
   }
 
 
-  /* Site switcher */
+  /* ==========================================================================
+     Site switcher
+     ========================================================================== */
 
   .custom-header__switcher-row{
     position:static;
@@ -493,7 +520,9 @@
   }
 
 
-  /* Navigation */
+  /* ==========================================================================
+     Navigation
+     ========================================================================== */
 
   .custom-header__navigation{
     border-top:0;
@@ -510,18 +539,94 @@
 }
 
 
+  /* ==========================================================
+     Desktop main header
+     ========================================================== */
+
+  .custom-header__main{
+    display:none;
+  }
+
+
+  /* ==========================================================
+     Site switcher
+     ========================================================== */
+
+  .custom-header__switcher-row{
+    position:static;
+
+    display:block;
+
+    height:auto;
+
+    padding:
+      var(--m)
+      var(--page-padding);
+
+    pointer-events:auto;
+  }
+
+  .custom-header__switcher{
+    width:100%;
+  }
+
+  .custom-header__switcher-options{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:var(--s);
+
+    width:100%;
+  }
+
+  .custom-header__site{
+    min-width:0;
+    width:100%;
+    height:52px;
+  }
+
+
+  /* ==========================================================
+     Navigation
+     ========================================================== */
+
+  .custom-header__navigation{
+    border-top:0;
+  }
+
+  .custom-header__navigation-inner{
+    display:block;
+  }
+
+  .custom-header__search{
+    display:none;
+  }
+
+}
+
 /* ==========================================================================
    Reduced motion
    ========================================================================== */
 
 @media(prefers-reduced-motion:reduce){
 
-  .custom-header__message{
+  .mobile-nav,
+  .hamburger-icon,
+  .cross-icon,
+  .mega-container,
+  .mobile-submenu,
+  .nav,
+  .nav-mobile-logo img{
+    transition:none !important;
+  }
+
+  .mobile-submenu::before,
+  .mobile-submenu::after,
+  .mobile-root::before,
+  .mobile-root::after{
     transition:none !important;
   }
 
 }
-
 
 
 
