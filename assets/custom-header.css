@@ -533,41 +533,60 @@
 @media(min-width:1200px){
 
   /*
-   * Remove the homepage header from normal document flow
-   * so the first homepage section begins at the top
-   * of the viewport behind it.
+   * Take the entire Shopify header section out of document flow
+   * on the homepage.
+   *
+   * The hero can then begin at the very top of the viewport.
    */
 
-  .custom-header--homepage{
+  .section-custom-header:has(.custom-header--homepage){
     position:absolute;
     top:0;
     left:0;
 
     width:100%;
+
+    z-index:var(--z-navigation);
   }
 
 
   /*
-   * Keep utility and main header opaque.
+   * Header itself no longer needs positioning.
    */
 
-  .custom-header--homepage .custom-header__utility{
+  .custom-header--homepage{
+    position:relative;
+  }
+
+
+  /* Utility stays opaque */
+
+  .custom-header--homepage
+  .custom-header__utility{
     background:#f5f5f5;
   }
 
-  .custom-header--homepage .custom-header__main{
+
+  /* Main header stays opaque */
+
+  .custom-header--homepage
+  .custom-header__main{
     background:#fff;
   }
 
 
   /*
-   * Allow the hero image to show through
-   * the desktop navigation row.
+   * Navigation exposes the hero beneath it.
    */
 
-  .custom-header--homepage .custom-header__navigation,
-  .custom-header--homepage .custom-header__search,
-  .custom-header--homepage .nav{
+  .custom-header--homepage
+  .custom-header__navigation,
+
+  .custom-header--homepage
+  .custom-header__search,
+
+  .custom-header--homepage
+  .nav{
     background:transparent;
   }
 
