@@ -88,12 +88,20 @@
   }
 }
 
-body{
-  padding-top:
-    calc(
-      var(--utility-height, 0px) +
-      var(--nav-height)
-    );
+@media(max-width:1199px){
+
+  body{
+    padding-top:
+      calc(
+        var(--utility-height, 0px) +
+        var(--nav-height)
+      );
+  }
+
+  body:has(.custom-header--homepage){
+    padding-top:0;
+  }
+
 }
 
 .page-width{

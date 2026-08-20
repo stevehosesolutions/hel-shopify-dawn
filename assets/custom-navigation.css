@@ -1421,7 +1421,7 @@
 
 transition:
   transform var(--transition-fast) var(--easing);
-  
+
       backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
 
@@ -1556,9 +1556,7 @@ transition:
 
 @media(min-width:1200px){
 
-  body{
-    padding-top:0;
-  }
+
 
   .mobile-nav,
   .mobile-footer{
