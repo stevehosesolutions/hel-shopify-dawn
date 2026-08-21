@@ -165,7 +165,7 @@
   .custom-hero__content{
     align-items:flex-start;
 
-    padding-top:var(--xl);
+    padding-top: var(--page-padding);
   }
 
 
@@ -200,7 +200,7 @@
   .custom-hero__content{
     align-items:flex-end;
 
-    padding-bottom:var(--xl);
+    padding-bottom: var(--page-padding);
   }
 
 
@@ -459,6 +459,8 @@
   .custom-hero--mobile-top-right
   .custom-hero__content{
     align-items:flex-start;
+
+    padding-top:var(--page-padding);
   }
 
 
@@ -487,6 +489,8 @@
   .custom-hero--mobile-bottom-right
   .custom-hero__content{
     align-items:flex-end;
+
+    padding-bottom:var(--page-padding);
   }
 
 
