@@ -677,7 +677,6 @@
       mobileRoot: document.getElementById("mobileRoot"),
       rootScroll: document.getElementById("rootScroll"),
       megaContainer: document.getElementById("megaContainer"),
-      navEl: document.querySelector("nav"),
       mobileFooter: document.querySelector(".mobile-footer"),
       desktopMenu: document.getElementById("desktopMenu"),
       mobileMenu: document.getElementById("mobileMenu"),
@@ -977,6 +976,8 @@ syncCompactHeader();
         `;
       })
       .join("");
+
+
 
     /* =========================
        Mobile render
@@ -1589,12 +1590,6 @@ syncCompactHeader();
       el.mobileNav.classList.contains("active") ? closeMobileNav() : openMobileNav();
     });
 
-/*    window.CustomOverlay?.element.addEventListener("click", () => {
-      if (!window.CustomOverlay.has(OVERLAY_OWNER)) return;
-
-      if (el.mobileNav.classList.contains("active")) closeMobileNav();
-      mega?.closeAll(false);
-    });*/
 
     window.addEventListener(
       "blur",
@@ -1755,23 +1750,6 @@ syncCompactHeader();
       { passive: true }
     );
 
-/*    el.desktopMenu.addEventListener(
-      "pointermove",
-      (e) => {
-        if (!mqDesktop.matches) return;
-
-        const item = closestHasMegaFromEvent(e);
-
-        if (item) {
-          mega?.cancelClose();
-          return;
-        }
-
-        clearPendingOpens();
-        mega?.scheduleClose();
-      },
-      { passive: true }
-    );*/
 
     el.desktopMenu.addEventListener(
       "mouseleave",

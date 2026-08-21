@@ -164,7 +164,12 @@
 }
 
 .custom-header__main-left{
+  display:block;
   justify-self:start;
+}
+
+.custom-header__main-left:empty{
+  display:block;
 }
 
 .custom-header__main-centre{
@@ -182,7 +187,7 @@
   display:block;
 
   width:auto;
-  max-height:90px;
+  max-height:84px;
 }
 
 
@@ -666,9 +671,84 @@
     background:transparent;
   }
 
+}
+
+
+/* ==========================================================================
+   Desktop compact header
+   ========================================================================== */
+
+@media(min-width:1200px){
+
+/*
+ * Structural compact state.
+ *
+ * Active while the desktop compact header is visible.
+ */
+
+  body.header-desktop-compact-layout
+  .custom-header__navigation{
+    position:fixed;
+    top:0;
+    left:0;
+
+    z-index:var(--z-navigation);
+
+    width:100%;
+
+    background:var(--nav-bg);
+  }
+
+  body.header-desktop-compact-layout
+  .custom-header__navigation-inner{
+    display:block;
+
+    padding-left:0;
+    padding-right:0;
+  }
+
+  body.header-desktop-compact-layout
+  .custom-header__navigation-menu{
+    width:100%;
+  }
+
+  body.header-desktop-compact-layout
+  .custom-header__search{
+    display:none;
+  }
+
+
+  /* Enter */
+
+  body.header-compact-desktop
+  .custom-header__navigation{
+    animation:
+      custom-desktop-header-in
+      var(--transition-slow)
+      var(--easing)
+      both;
+  }
+
 
 
 }
+
+
+@keyframes custom-desktop-header-in{
+
+  from{
+    opacity:0;
+    transform:translate3d(0, -16px, 0);
+  }
+
+  to{
+    opacity:1;
+    transform:translate3d(0, 0, 0);
+  }
+
+}
+
+
 
 
 /* ==========================================================================
@@ -688,3 +768,15 @@ body:has(.custom-header--homepage) .shopify-section-group-header-group{
 
 
 
+
+
+@media(prefers-reduced-motion:reduce){
+
+  .custom-header__message,
+  .custom-header__utility-inner,
+  .custom-header__navigation{
+    transition:none !important;
+    animation:none !important;
+  }
+
+}

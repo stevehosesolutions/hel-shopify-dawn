@@ -36,12 +36,87 @@
   </div>
 
 
+  <div class="nav-desktop-logo">
+    <a href="{{ routes.root_url }}">
+      {% if settings.logo != blank %}
+        {{
+          settings.logo
+          | image_url: width: 180
+          | image_tag:
+            alt: shop.name,
+            loading: 'eager'
+        }}
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
+    </a>
+  </div>
+
+
   <ul
     class="nav-menu"
     id="desktopMenu"
     role="menubar"
     aria-label="Primary"
   ></ul>
+
+<div class="nav-desktop-search">
+
+  <form
+    action="{{ routes.search_url }}"
+    method="get"
+    role="search"
+    class="custom-header__search-form"
+  >
+
+    <input
+      type="search"
+      name="q"
+      class="custom-header__search-input"
+      placeholder="Search products, parts, applications..."
+      aria-label="Search"
+    >
+
+    <button
+      type="submit"
+      class="custom-header__search-button"
+      aria-label="Search"
+    ></button>
+
+  </form>
+
+</div>
+
+
+  <div class="nav-desktop-actions">
+
+
+    {% if shop.customer_accounts_enabled %}
+      <a
+        href="{{ routes.account_url }}"
+        class="nav-desktop-action nav-desktop-action--account"
+        aria-label="Account"
+      >
+        <span aria-hidden="true"></span>
+      </a>
+    {% endif %}
+
+
+    <a
+      href="{{ routes.cart_url }}"
+      class="nav-desktop-action nav-desktop-action--basket"
+      aria-label="Basket"
+    >
+      <span aria-hidden="true"></span>
+
+      {% if cart.item_count > 0 %}
+        <span class="nav-desktop-basket-count">
+          {{ cart.item_count }}
+        </span>
+      {% endif %}
+    </a>
+
+  </div>
 
 
   <div class="nav-mobile-actions">

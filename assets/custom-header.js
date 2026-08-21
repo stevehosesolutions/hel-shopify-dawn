@@ -69,4 +69,178 @@
       });
 
     });
+
+
+
+
+   const desktopBreakpoint = window.matchMedia(
+  "(min-width: 1200px)"
+);
+
+const desktopNavigation = document.querySelector(
+  ".custom-header__navigation"
+);
+
+let desktopHeaderScrollRaf = null;
+let desktopHeaderTriggerY = 0;
+
+
+function removeDesktopHeaderStates() {
+
+  document.body.classList.remove(
+    "header-desktop-compact-layout",
+    "header-compact-desktop"
+  );
+
+}
+
+
+function measureDesktopHeaderTrigger() {
+
+  if (!desktopNavigation) {
+    return;
+  }
+
+  /*
+   * Only call this while the navigation is in its
+   * normal document position.
+   */
+
+  desktopHeaderTriggerY =
+    desktopNavigation.getBoundingClientRect().bottom +
+    window.scrollY;
+
+}
+
+function showDesktopCompactHeader() {
+
+  document.body.classList.add(
+    "header-desktop-compact-layout",
+    "header-compact-desktop"
+  );
+
+}
+
+
+function hideDesktopCompactHeader() {
+
+  /*
+   * Restore the normal desktop navigation immediately.
+   *
+   * The compact header has an animated entrance only.
+   */
+
+  removeDesktopHeaderStates();
+
+}
+
+
+function updateDesktopHeader() {
+
+  if (
+    !desktopBreakpoint.matches ||
+    !desktopNavigation
+  ) {
+    removeDesktopHeaderStates();
+    return;
+  }
+
+  const shouldCompact =
+    window.scrollY >= desktopHeaderTriggerY;
+
+
+  if (shouldCompact) {
+
+    if (
+      !document.body.classList.contains(
+        "header-compact-desktop"
+      )
+    ) {
+      showDesktopCompactHeader();
+    }
+
+    return;
+  }
+
+
+  hideDesktopCompactHeader();
+
+}
+
+
+function onDesktopHeaderScroll() {
+
+  if (desktopHeaderScrollRaf) {
+    return;
+  }
+
+  desktopHeaderScrollRaf =
+    requestAnimationFrame(() => {
+
+      desktopHeaderScrollRaf = null;
+
+      updateDesktopHeader();
+
+    });
+
+}
+
+
+function onDesktopHeaderResize() {
+
+  /*
+   * Crossing out of desktop:
+   * remove all desktop compact state.
+   */
+
+  if (!desktopBreakpoint.matches) {
+    removeDesktopHeaderStates();
+    return;
+  }
+
+
+  /*
+   * If the normal navigation is currently in-flow,
+   * it is safe to remeasure its trigger position.
+   *
+   * Do not temporarily remove the compact state while
+   * resizing — that causes the header to flash.
+   */
+
+  if (
+    !document.body.classList.contains(
+      "header-desktop-compact-layout"
+    )
+  ) {
+    measureDesktopHeaderTrigger();
+    updateDesktopHeader();
+  }
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  onDesktopHeaderScroll,
+  { passive:true }
+);
+
+
+window.addEventListener(
+  "resize",
+  onDesktopHeaderResize
+);
+
+
+desktopBreakpoint.addEventListener(
+  "change",
+  onDesktopHeaderResize
+);
+
+
+measureDesktopHeaderTrigger();
+updateDesktopHeader();
+
+
 })();
+
