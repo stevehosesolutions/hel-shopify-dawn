@@ -1,8 +1,13 @@
 {{ 'custom-hero.css' | asset_url | stylesheet_tag }}
 
 <section
-  class="custom-hero"
-    style="
+  class="
+    custom-hero
+    custom-hero--desktop-{{ section.settings.desktop_content_position }}
+    custom-hero--mobile-{{ section.settings.mobile_content_position }}
+    custom-hero--theme-{{ section.settings.content_theme }}
+  "
+  style="
     --hero-position-x: {{ section.settings.desktop_position_x }}%;
     --hero-mobile-position-x: {{ section.settings.mobile_position_x }}%;
   "
@@ -137,6 +142,118 @@
       "step": 1,
       "unit": "%",
       "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Content layout"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "top-centre",
+          "label": "Top centre"
+        },
+        {
+          "value": "top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "centre-left",
+          "label": "Centre left"
+        },
+        {
+          "value": "centre",
+          "label": "Centre"
+        },
+        {
+          "value": "centre-right",
+          "label": "Centre right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-centre",
+          "label": "Bottom centre"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom right"
+        }
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "top-centre",
+          "label": "Top centre"
+        },
+        {
+          "value": "top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "centre-left",
+          "label": "Centre left"
+        },
+        {
+          "value": "centre",
+          "label": "Centre"
+        },
+        {
+          "value": "centre-right",
+          "label": "Centre right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-centre",
+          "label": "Bottom centre"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom right"
+        }
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "select",
+      "id": "content_theme",
+      "label": "Content theme",
+      "options": [
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "dark",
+          "label": "Dark"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "Content"
     },
     {
       "type": "header",

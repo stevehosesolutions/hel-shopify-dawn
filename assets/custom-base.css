@@ -7,8 +7,15 @@
   --transition-slower: 450ms;
   --easing: cubic-bezier(.22,.61,.36,1);
 
-  --font-barlow-condensed:
+
+   --font-barlow-condensed:
     "Barlow Condensed",
+    "Arial Narrow",
+    Arial,
+    sans-serif;
+
+  --font-barlow-condensed-italic:
+    "Barlow Condensed Italic",
     "Arial Narrow",
     Arial,
     sans-serif;
