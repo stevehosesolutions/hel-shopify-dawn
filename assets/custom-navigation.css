@@ -1374,10 +1374,6 @@
 
 @media(max-width:1199px){
 
-  :root{
-    --nav-height:72px;
-    --nav-height-compact:56px;
-  }
 
 
   /* Fixed navigation */

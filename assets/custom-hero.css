@@ -21,12 +21,21 @@
 @media(min-width:1200px){
 
   .custom-hero{
-    --hero-content-top-offset:var(--nav-height);
+    --hero-content-top-offset:
+      calc(
+        var(--header-utility-height) +
+        var(--header-main-height) +
+        var(--nav-height)
+      );
 
     height:min(960px, 100svh);
   }
 
 }
+
+  
+
+
 
 
 /* ==========================================================================
@@ -118,9 +127,6 @@
 
   width:100%;
   height:100%;
-
-  padding-top:var(--xl);
-  padding-bottom:var(--xl);
 }
 
 
@@ -136,6 +142,17 @@
 
 @media(min-width:1200px){
 
+
+    .custom-hero__content{
+    height:
+      calc(
+        100% -
+        var(--hero-content-top-offset)
+      );
+
+    margin-top:
+      var(--hero-content-top-offset);
+  }
   /* --------------------------------------------------------------------------
      Vertical — top
      -------------------------------------------------------------------------- */
@@ -148,11 +165,7 @@
   .custom-hero__content{
     align-items:flex-start;
 
-    padding-top:
-      calc(
-        var(--xl) +
-        var(--hero-content-top-offset)
-      );
+    padding-top:var(--xl);
   }
 
 
@@ -171,12 +184,7 @@
   .custom-hero__content{
     align-items:center;
 
-    transform:
-      translateY(
-        calc(
-          var(--hero-content-top-offset) / 2
-        )
-      );
+  
   }
 
 
@@ -191,6 +199,8 @@
   .custom-hero--desktop-bottom-right
   .custom-hero__content{
     align-items:flex-end;
+
+    padding-bottom:var(--xl);
   }
 
 
@@ -401,6 +411,17 @@
       );
   }
 
+  .custom-hero__content{
+    height:
+      calc(
+        100% -
+        var(--hero-content-top-offset)
+      );
+
+    margin-top:
+      var(--hero-content-top-offset);
+  }
+
 
   /*
    * Mobile content typically sits towards the bottom, so the overlay
@@ -438,12 +459,6 @@
   .custom-hero--mobile-top-right
   .custom-hero__content{
     align-items:flex-start;
-
-    padding-top:
-      calc(
-        var(--xl) +
-        var(--hero-content-top-offset)
-      );
   }
 
 
@@ -458,13 +473,6 @@
   .custom-hero--mobile-centre-right
   .custom-hero__content{
     align-items:center;
-
-    transform:
-      translateY(
-        calc(
-          var(--hero-content-top-offset) / 2
-        )
-      );
   }
 
 

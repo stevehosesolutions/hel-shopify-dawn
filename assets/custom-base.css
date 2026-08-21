@@ -7,6 +7,11 @@
   --transition-slower: 450ms;
   --easing: cubic-bezier(.22,.61,.36,1);
 
+  --header-utility-height:40px;
+  --header-main-height:140px;
+  --nav-height:64px;
+  --nav-height-compact:56px;
+
 
    --font-barlow-condensed:
     "Barlow Condensed",
@@ -105,10 +110,17 @@
 
 @media(max-width:1199px){
 
+:root{
+    --header-utility-height:36px;
+    --header-main-height:0px;
+    --nav-height:72px;
+    --nav-height-compact:56px;
+  }
+
   body{
     padding-top:
       calc(
-        var(--utility-height, 0px) +
+        var(--header-utility-height) +
         var(--nav-height)
       );
   }

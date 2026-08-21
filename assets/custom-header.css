@@ -28,7 +28,8 @@
     minmax(0, 1fr);
 
   align-items:center;
-  min-height:40px;
+
+  height:var(--header-utility-height);
 }
 
 .custom-header__help{
@@ -54,7 +55,7 @@
   justify-self:stretch;
 
   width:100%;
-  height:40px;
+  height:var(--header-utility-height);
 
   overflow:hidden;
 
@@ -150,7 +151,7 @@
 .custom-header__main{
   position:relative;
 
-  min-height:140px;
+  height:var(--header-main-height);
 
   background:#fff;
 }
@@ -160,7 +161,7 @@
   grid-template-columns:1fr auto 1fr;
   align-items:center;
 
-  min-height:140px;
+  height:100%;
 }
 
 .custom-header__main-left{
@@ -278,13 +279,13 @@
 .custom-header__switcher-row{
   position:absolute;
 
-  top:40px;
+  top:var(--header-utility-height);
   left:var(--page-padding);
 
   display:flex;
   align-items:center;
 
-  height:140px;
+  height:var(--header-main-height);
 
   pointer-events:none;
 }
@@ -410,9 +411,7 @@
 
 @media(max-width:1199px){
 
-  :root{
-    --utility-height:36px;
-  }
+
 
 
   /* ==========================================================================
@@ -427,7 +426,7 @@
   z-index:12;
 
   width:100%;
-  height:var(--utility-height);
+  height:var(--header-utility-height);
 
   background:#f5f5f5;
 
@@ -437,31 +436,30 @@
    * Small visual overlap prevents a compositing seam
    * appearing between the utility bar and navigation.
    */
+
   box-shadow:0 2px 0 #f5f5f5;
 
   transition:
     transform var(--transition-fast) var(--easing);
 }
 
-  .custom-header__utility-inner{
-    display:block;
+.custom-header__utility-inner{
+  display:block;
 
-    width:100%;
-    height:var(--utility-height);
-    min-height:var(--utility-height);
+  width:100%;
+  height:var(--header-utility-height);
 
-    padding:0 var(--page-padding);
-  }
+  padding:0 var(--page-padding);
+}
 
   .custom-header__help,
   .custom-header__social{
     display:none;
   }
 
-  .custom-header__messages{
-    height:var(--utility-height);
-  }
-
+.custom-header__messages{
+  height:var(--header-utility-height);
+}
   .custom-header__message{
     padding:0 var(--page-padding);
   }
@@ -478,15 +476,14 @@
     pointer-events:none;
   }
 
-  body.header-compact .nav{
+body.header-compact .nav{
   transform:
     translate3d(
       0,
-      calc(-1 * var(--utility-height, 36px)),
+      calc(-1 * var(--header-utility-height)),
       0
     );
 }
-
   /* ==========================================================================
      Desktop main header
      ========================================================================== */
@@ -571,7 +568,7 @@
 
     top:
       calc(
-        var(--utility-height, 36px) +
+        var(--header-utility-height) +
         var(--nav-height)
       );
 
@@ -601,7 +598,7 @@
           0,
           calc(
             -1 * (
-              var(--utility-height, 36px) +
+              var(--header-utility-height) +
               var(--nav-height) -
               var(--nav-height-compact)
             )
