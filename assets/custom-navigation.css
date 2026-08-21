@@ -1390,7 +1390,7 @@
 
   :root{
     --nav-height:72px;
-    --nav-height-compact:60px;
+    --nav-height-compact:56px;
   }
 
 
@@ -1417,16 +1417,14 @@
     background:var(--nav-bg);
 
     transform:translate3d(0, 0, 0);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
 
+    will-change:transform;
 
-transition:
-  transform var(--transition-fast) var(--easing);
-
-      backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-
-  transform:translate3d(0, 0, 0);
-  will-change:transform;
+    transition:
+      height var(--transition-fast) var(--easing),
+      transform var(--transition-fast) var(--easing);
   }
 
 
@@ -1533,6 +1531,8 @@ transition:
   /* Compact scroll state */
 
   body.header-compact .nav{
+    height:var(--nav-height-compact);
+
     transform:
       translate3d(
         0,
@@ -1620,3 +1620,6 @@ transition:
   }
 
 }
+
+
+

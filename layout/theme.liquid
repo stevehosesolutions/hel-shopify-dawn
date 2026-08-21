@@ -356,48 +356,6 @@
     </main>
 
 
-<!-- sample modal -->
-
-        <button type="button" data-uxm-modal-open="test-modal">
-          Open Test Modal
-        </button>
-        <div
-          class="uxm-modal"
-          id="test-modal"
-          aria-hidden="true"
-        >
-          <div
-            class="uxm-dialog"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="test-modal-title"
-          >
-
-            <header class="uxm-header">
-              <h2 class="uxm-title" id="test-modal-title">
-                Test Modal
-              </h2>
-
-              <button
-                type="button"
-                class="uxm-close"
-                data-uxm-close
-                aria-label="Close"
-              ></button>
-            </header>
-
-            <div class="uxm-content">
-              <p>This is a test of the new global modal system.</p>
-
-              <p>
-                The modal should appear above the shared global overlay.
-                Clicking the overlay, the close button or pressing Escape
-                should close the modal.
-              </p>
-            </div>
-
-          </div>
-        </div>
 
     {% sections 'footer-group' %}
 
@@ -462,63 +420,7 @@
 
 
 
-        <!-- sample tooltip -->
 
-<div style="display:flex;justify-content: space-between;">
-<div style="position:relative; display:flex;">
-  <span>aaaa</span>
-        <button
-          type="button"
-          class="tooltip-trigger"
-          data-tooltip="#tip-test"
-          aria-expanded="false"
-          aria-label="More info"
-        ></button>
-
-        <template id="tip-test">
-          <div class="tooltip__inner">
-            <p>
-              Banjo bolts and copper washers available separately.
-            </p>
-          </div>
-        </template>
-
-</div>
-<div style="position:relative;display:flex;">
-  <span>aaaa</span>
-        <button
-            type="button"
-            class="tooltip-trigger"
-            data-tooltip="#tip-test-close"
-            aria-expanded="false"
-            aria-label="More info"
-          ></button>
-
-          <template id="tip-test-close">
-            <div class="tooltip__inner">
-
-              <button
-                type="button"
-                class="tooltip__close"
-                data-tooltip-close
-                aria-label="Close"
-              >
-                <svg
-                  viewBox="0 0 384 512"
-                  aria-hidden="true"
-                >
-                  <path d="M192 233.4L59.5 100.9 36.9 123.5 169.4 256 36.9 388.5l22.6 22.6L192 278.6 324.5 411.1l22.6-22.6L214.6 256 347.1 123.5l-22.6-22.6L192 233.4z"/>
-                </svg>
-              </button>
-
-              <p>
-                Banjo bolts and copper washers available separately.
-              </p>
-
-            </div>
-          </template>
-</div>
-</div>
 
     <script src="{{ 'custom-header.js' | asset_url }}" defer></script>
     <script src="{{ 'custom-navigation.js' | asset_url }}" defer></script>

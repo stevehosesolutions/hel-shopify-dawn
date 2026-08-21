@@ -414,23 +414,29 @@
      Utility message bar
      ========================================================================== */
 
-  .custom-header__utility{
-    position:fixed;
-    top:0;
-    left:0;
+.custom-header__utility{
+  position:fixed;
+  top:0;
+  left:0;
 
-    z-index:12;
+  z-index:12;
 
-    width:100%;
-    height:var(--utility-height);
+  width:100%;
+  height:var(--utility-height);
 
-    background:#f5f5f5;
+  background:#f5f5f5;
 
-    transform:translate3d(0, 0, 0);
+  transform:translate3d(0, 0, 0);
 
-    transition:
-      transform var(--transition-fast) var(--easing);
-  }
+  /*
+   * Small visual overlap prevents a compositing seam
+   * appearing between the utility bar and navigation.
+   */
+  box-shadow:0 2px 0 #f5f5f5;
+
+  transition:
+    transform var(--transition-fast) var(--easing);
+}
 
   .custom-header__utility-inner{
     display:block;
@@ -462,10 +468,18 @@
 
   /* Compact scroll state */
 
-body.header-compact .custom-header__utility{
-  transform:translate3d(0, -100%, 0);
+  body.header-compact .custom-header__utility{
+    transform:translate3d(0, -100%, 0);
+    pointer-events:none;
+  }
 
-  pointer-events:none;
+  body.header-compact .nav{
+  transform:
+    translate3d(
+      0,
+      calc(-1 * var(--utility-height, 36px)),
+      0
+    );
 }
 
   /* ==========================================================================
@@ -535,32 +549,6 @@ body.header-compact .custom-header__utility{
 
   
 
-/* ==========================================================================
-   Reduced motion
-   ========================================================================== */
-
-@media(prefers-reduced-motion:reduce){
-
-  .mobile-nav,
-  .hamburger-icon,
-  .cross-icon,
-  .mega-container,
-  .mobile-submenu,
-  .nav,
-  .nav-mobile-logo img{
-    transition:none !important;
-  }
-
-  .mobile-submenu::before,
-  .mobile-submenu::after,
-  .mobile-root::before,
-  .mobile-root::after{
-    transition:none !important;
-  }
-
-}
-
-
 
 /* ==========================================================================
    Homepage header
@@ -600,16 +588,22 @@ body.header-compact .custom-header__utility{
 
   /* Follow the navigation upwards when the message bar disappears */
 
-  body.header-compact
-  .custom-header--homepage
-  .custom-header__switcher-row{
-    transform:
-      translate3d(
-        0,
-        calc(-1 * var(--utility-height, 36px)),
-        0
-      );
-  }
+    body.header-compact
+    .custom-header--homepage
+    .custom-header__switcher-row{
+      transform:
+        translate3d(
+          0,
+          calc(
+            -1 * (
+              var(--utility-height, 36px) +
+              var(--nav-height) -
+              var(--nav-height-compact)
+            )
+          ),
+          0
+        );
+    }
 
 }
 
@@ -690,3 +684,7 @@ body:has(.custom-header--homepage) .shopify-section-group-header-group{
 
   z-index:var(--z-navigation);
 }
+
+
+
+
