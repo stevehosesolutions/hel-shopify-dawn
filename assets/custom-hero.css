@@ -44,11 +44,13 @@
 
 .custom-hero--theme-light{
   --hero-text-color:#fff;
+  --hero-overlay-rgb:0,0,0;
 }
 
 
 .custom-hero--theme-dark{
   --hero-text-color:#111;
+  --hero-overlay-rgb:255,255,255;
 }
 
 
@@ -68,7 +70,6 @@
  * Protects the left-hand content area while allowing
  * the product photography to retain contrast on the right.
  */
-
 .custom-hero__media::after{
   content:"";
 
@@ -76,21 +77,187 @@
   inset:0;
   z-index:1;
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.72) 0%,
-      rgba(0,0,0,.42) 30%,
-      rgba(0,0,0,.14) 58%,
-      rgba(0,0,0,0) 78%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,.18) 0%,
-      rgba(0,0,0,0) 40%
-    );
-
   pointer-events:none;
+}
+
+/* ==========================================================================
+   Desktop overlays
+   ========================================================================== */
+
+@media(min-width:1200px){
+
+  /* --------------------------------------------------------------------------
+     Left
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-centre-left
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Right
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-centre-right
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        270deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Top centre
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-top-centre
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Bottom centre
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-bottom-centre
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        0deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Centre
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-centre
+  .custom-hero__media::after{
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(var(--hero-overlay-rgb), .50) 0%,
+        rgba(var(--hero-overlay-rgb), .28) 35%,
+        rgba(var(--hero-overlay-rgb), .08) 65%,
+        rgba(var(--hero-overlay-rgb), 0) 82%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Top left
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-top-left
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(var(--hero-overlay-rgb), .24) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 45%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Top right
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-top-right
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        270deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(var(--hero-overlay-rgb), .24) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 45%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Bottom left
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-bottom-left
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(var(--hero-overlay-rgb), .24) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 45%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Bottom right
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-bottom-right
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        270deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .42) 30%,
+        rgba(var(--hero-overlay-rgb), .14) 58%,
+        rgba(var(--hero-overlay-rgb), 0) 78%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(var(--hero-overlay-rgb), .24) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 45%
+      );
+  }
+
 }
 
 
@@ -423,20 +590,165 @@
   }
 
 
-  /*
-   * Mobile content typically sits towards the bottom, so the overlay
-   * protects the lower portion of the photography.
-   */
+    /* --------------------------------------------------------------------------
+     Mobile overlays — left
+     -------------------------------------------------------------------------- */
 
+  .custom-hero--mobile-centre-left
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .40) 38%,
+        rgba(var(--hero-overlay-rgb), .10) 68%,
+        rgba(var(--hero-overlay-rgb), 0) 90%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Mobile overlays — right
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--mobile-centre-right
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        270deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .40) 38%,
+        rgba(var(--hero-overlay-rgb), .10) 68%,
+        rgba(var(--hero-overlay-rgb), 0) 90%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Mobile overlays — top
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--mobile-top-centre
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--hero-overlay-rgb), .82) 0%,
+        rgba(var(--hero-overlay-rgb), .58) 28%,
+        rgba(var(--hero-overlay-rgb), .25) 50%,
+        rgba(var(--hero-overlay-rgb), .06) 68%,
+        rgba(var(--hero-overlay-rgb), 0) 82%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Mobile overlays — bottom
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--mobile-bottom-centre
   .custom-hero__media::after{
     background:
       linear-gradient(
         0deg,
-        rgba(0,0,0,.82) 0%,
-        rgba(0,0,0,.58) 28%,
-        rgba(0,0,0,.25) 50%,
-        rgba(0,0,0,.06) 68%,
-        rgba(0,0,0,0) 82%
+        rgba(var(--hero-overlay-rgb), .82) 0%,
+        rgba(var(--hero-overlay-rgb), .58) 28%,
+        rgba(var(--hero-overlay-rgb), .25) 50%,
+        rgba(var(--hero-overlay-rgb), .06) 68%,
+        rgba(var(--hero-overlay-rgb), 0) 82%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Mobile overlay — centre
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--mobile-centre
+  .custom-hero__media::after{
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(var(--hero-overlay-rgb), .52) 0%,
+        rgba(var(--hero-overlay-rgb), .30) 40%,
+        rgba(var(--hero-overlay-rgb), .08) 70%,
+        rgba(var(--hero-overlay-rgb), 0) 88%
+      );
+  }
+
+
+  /* --------------------------------------------------------------------------
+     Mobile overlays — corners
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--mobile-top-left
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .28) 45%,
+        rgba(var(--hero-overlay-rgb), 0) 75%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(var(--hero-overlay-rgb), .40) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 75%
+      );
+  }
+
+
+  .custom-hero--mobile-top-right
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--hero-overlay-rgb), .72) 0%,
+        rgba(var(--hero-overlay-rgb), .28) 45%,
+        rgba(var(--hero-overlay-rgb), 0) 75%
+      ),
+      linear-gradient(
+        270deg,
+        rgba(var(--hero-overlay-rgb), .40) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 75%
+      );
+  }
+
+
+  .custom-hero--mobile-bottom-left
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        0deg,
+        rgba(var(--hero-overlay-rgb), .82) 0%,
+        rgba(var(--hero-overlay-rgb), .58) 28%,
+        rgba(var(--hero-overlay-rgb), .25) 50%,
+        rgba(var(--hero-overlay-rgb), .06) 68%,
+        rgba(var(--hero-overlay-rgb), 0) 82%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(var(--hero-overlay-rgb), .25) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 70%
+      );
+  }
+
+
+  .custom-hero--mobile-bottom-right
+  .custom-hero__media::after{
+    background:
+      linear-gradient(
+        0deg,
+        rgba(var(--hero-overlay-rgb), .82) 0%,
+        rgba(var(--hero-overlay-rgb), .58) 28%,
+        rgba(var(--hero-overlay-rgb), .25) 50%,
+        rgba(var(--hero-overlay-rgb), .06) 68%,
+        rgba(var(--hero-overlay-rgb), 0) 82%
+      ),
+      linear-gradient(
+        270deg,
+        rgba(var(--hero-overlay-rgb), .25) 0%,
+        rgba(var(--hero-overlay-rgb), 0) 70%
       );
   }
 
