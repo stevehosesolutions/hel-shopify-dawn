@@ -40,8 +40,8 @@
    ========================================================================== */
 
 .custom-hero--overlay-light{
-  --hero-overlay-strong:.52;
-  --hero-overlay-medium:.30;
+  --hero-overlay-strong:.56;
+  --hero-overlay-medium:.32;
   --hero-overlay-soft:.10;
   --hero-overlay-extra-soft:.04;
 }
@@ -56,10 +56,10 @@
 
 
 .custom-hero--overlay-strong{
-  --hero-overlay-strong:.88;
-  --hero-overlay-medium:.62;
-  --hero-overlay-soft:.28;
-  --hero-overlay-extra-soft:.10;
+  --hero-overlay-strong:.84;
+  --hero-overlay-medium:.56;
+  --hero-overlay-soft:.22;
+  --hero-overlay-extra-soft:.09;
 }
 
 
