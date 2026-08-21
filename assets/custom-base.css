@@ -6,6 +6,14 @@
   --transition-slow: 300ms;
   --transition-slower: 450ms;
   --easing: cubic-bezier(.22,.61,.36,1);
+
+  --font-barlow-condensed:
+    "Barlow Condensed",
+    "Arial Narrow",
+    Arial,
+    sans-serif;
+
+  --hel-red: #ed1c24;
   
   --font-xxxxl: 48px;
   --line-xxxxl: 1.1;

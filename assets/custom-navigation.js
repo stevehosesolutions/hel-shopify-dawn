@@ -673,6 +673,7 @@
 
     const el = {
       hamburger: document.getElementById("hamburger"),
+      nav: document.querySelector(".nav"),
       mobileNav: document.getElementById("mobileNav"),
       mobileRoot: document.getElementById("mobileRoot"),
       rootScroll: document.getElementById("rootScroll"),
@@ -747,7 +748,23 @@ function syncDrawerHeaderHeights() {
     });
 }
 
+function syncMobileNavOffset() {
 
+  if (!el.nav) {
+    return;
+  }
+
+  const navBottom =
+    Math.round(
+      el.nav.getBoundingClientRect().bottom
+    );
+
+  document.documentElement.style.setProperty(
+    "--mobile-nav-offset",
+    `${Math.max(0, navBottom)}px`
+  );
+
+}
 /* =========================
    Compact mobile header
    ========================= */
@@ -803,6 +820,7 @@ window.addEventListener(
 );
 
 syncCompactHeader();
+syncMobileNavOffset();
 
     /* =========================
        Desktop render
@@ -1140,6 +1158,9 @@ syncCompactHeader();
     }
 
     function openMobileNav() {
+
+      syncMobileNavOffset();
+
       el.mobileNav.classList.add("active");
       el.mobileNav.removeAttribute("aria-hidden");
 
@@ -1832,6 +1853,7 @@ syncCompactHeader();
           mega?.invalidateAllPanelHeights();
 
           syncCompactHeader();
+          syncMobileNavOffset();
 
           if (
             window.innerWidth > CONFIG.BREAKPOINT_PX &&

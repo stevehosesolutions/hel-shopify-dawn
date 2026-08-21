@@ -827,7 +827,10 @@
 
   overflow:hidden;
 
-  margin-top:var(--nav-height);
+  margin-top:var(
+    --mobile-nav-offset,
+    var(--nav-height)
+  );
 }
 
 .mobile-root,
