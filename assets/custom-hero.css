@@ -35,6 +35,33 @@
 
   
 
+  /* ==========================================================================
+   Overlay strength
+   ========================================================================== */
+
+.custom-hero--overlay-light{
+  --hero-overlay-strong:.52;
+  --hero-overlay-medium:.30;
+  --hero-overlay-soft:.10;
+  --hero-overlay-extra-soft:.04;
+}
+
+
+.custom-hero--overlay-medium{
+  --hero-overlay-strong:.72;
+  --hero-overlay-medium:.42;
+  --hero-overlay-soft:.14;
+  --hero-overlay-extra-soft:.06;
+}
+
+
+.custom-hero--overlay-strong{
+  --hero-overlay-strong:.88;
+  --hero-overlay-medium:.62;
+  --hero-overlay-soft:.28;
+  --hero-overlay-extra-soft:.10;
+}
+
 
 
 
@@ -95,10 +122,22 @@
     background:
       linear-gradient(
         90deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       );
   }
 
@@ -112,10 +151,22 @@
     background:
       linear-gradient(
         270deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       );
   }
 
@@ -129,10 +180,22 @@
     background:
       linear-gradient(
         180deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       );
   }
 
@@ -146,10 +209,22 @@
     background:
       linear-gradient(
         0deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       );
   }
 
@@ -163,10 +238,22 @@
     background:
       radial-gradient(
         ellipse at center,
-        rgba(var(--hero-overlay-rgb), .50) 0%,
-        rgba(var(--hero-overlay-rgb), .28) 35%,
-        rgba(var(--hero-overlay-rgb), .08) 65%,
-        rgba(var(--hero-overlay-rgb), 0) 82%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 45%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-extra-soft)
+        ) 68%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 84%
       );
   }
 
@@ -180,15 +267,33 @@
     background:
       linear-gradient(
         90deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       ),
       linear-gradient(
         180deg,
-        rgba(var(--hero-overlay-rgb), .24) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 45%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 45%
       );
   }
 
@@ -202,15 +307,33 @@
     background:
       linear-gradient(
         270deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       ),
       linear-gradient(
         180deg,
-        rgba(var(--hero-overlay-rgb), .24) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 45%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 45%
       );
   }
 
@@ -224,15 +347,33 @@
     background:
       linear-gradient(
         90deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       ),
       linear-gradient(
         0deg,
-        rgba(var(--hero-overlay-rgb), .24) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 45%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 45%
       );
   }
 
@@ -246,15 +387,33 @@
     background:
       linear-gradient(
         270deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .42) 30%,
-        rgba(var(--hero-overlay-rgb), .14) 58%,
-        rgba(var(--hero-overlay-rgb), 0) 78%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 30%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 58%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 78%
       ),
       linear-gradient(
         0deg,
-        rgba(var(--hero-overlay-rgb), .24) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 45%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 45%
       );
   }
 
@@ -336,12 +495,9 @@
   }
 
 
-  /* --------------------------------------------------------------------------
-     Vertical — centre
-
-     Shift by half the header offset so the content is centred within the
-     usable hero area beneath the header rather than the full hero box.
-     -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Vertical — centre
+   -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-centre-left
   .custom-hero__content,
@@ -590,7 +746,7 @@
   }
 
 
-    /* --------------------------------------------------------------------------
+     /* --------------------------------------------------------------------------
      Mobile overlays — left
      -------------------------------------------------------------------------- */
 
@@ -599,10 +755,22 @@
     background:
       linear-gradient(
         90deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .40) 38%,
-        rgba(var(--hero-overlay-rgb), .10) 68%,
-        rgba(var(--hero-overlay-rgb), 0) 90%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 38%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 68%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 90%
       );
   }
 
@@ -616,10 +784,22 @@
     background:
       linear-gradient(
         270deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .40) 38%,
-        rgba(var(--hero-overlay-rgb), .10) 68%,
-        rgba(var(--hero-overlay-rgb), 0) 90%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 38%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 68%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 90%
       );
   }
 
@@ -633,11 +813,26 @@
     background:
       linear-gradient(
         180deg,
-        rgba(var(--hero-overlay-rgb), .82) 0%,
-        rgba(var(--hero-overlay-rgb), .58) 28%,
-        rgba(var(--hero-overlay-rgb), .25) 50%,
-        rgba(var(--hero-overlay-rgb), .06) 68%,
-        rgba(var(--hero-overlay-rgb), 0) 82%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 28%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 50%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-extra-soft)
+        ) 68%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 82%
       );
   }
 
@@ -651,11 +846,26 @@
     background:
       linear-gradient(
         0deg,
-        rgba(var(--hero-overlay-rgb), .82) 0%,
-        rgba(var(--hero-overlay-rgb), .58) 28%,
-        rgba(var(--hero-overlay-rgb), .25) 50%,
-        rgba(var(--hero-overlay-rgb), .06) 68%,
-        rgba(var(--hero-overlay-rgb), 0) 82%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 28%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 50%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-extra-soft)
+        ) 68%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 82%
       );
   }
 
@@ -669,16 +879,28 @@
     background:
       radial-gradient(
         ellipse at center,
-        rgba(var(--hero-overlay-rgb), .52) 0%,
-        rgba(var(--hero-overlay-rgb), .30) 40%,
-        rgba(var(--hero-overlay-rgb), .08) 70%,
-        rgba(var(--hero-overlay-rgb), 0) 88%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 45%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-extra-soft)
+        ) 70%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 88%
       );
   }
 
 
   /* --------------------------------------------------------------------------
-     Mobile overlays — corners
+     Mobile overlays — top left
      -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-top-left
@@ -686,69 +908,153 @@
     background:
       linear-gradient(
         180deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .28) 45%,
-        rgba(var(--hero-overlay-rgb), 0) 75%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 45%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 75%
       ),
       linear-gradient(
         90deg,
-        rgba(var(--hero-overlay-rgb), .40) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 75%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 75%
       );
   }
 
+
+  /* --------------------------------------------------------------------------
+     Mobile overlays — top right
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-top-right
   .custom-hero__media::after{
     background:
       linear-gradient(
         180deg,
-        rgba(var(--hero-overlay-rgb), .72) 0%,
-        rgba(var(--hero-overlay-rgb), .28) 45%,
-        rgba(var(--hero-overlay-rgb), 0) 75%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 45%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 75%
       ),
       linear-gradient(
         270deg,
-        rgba(var(--hero-overlay-rgb), .40) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 75%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 75%
       );
   }
 
+
+  /* --------------------------------------------------------------------------
+     Mobile overlays — bottom left
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-bottom-left
   .custom-hero__media::after{
     background:
       linear-gradient(
         0deg,
-        rgba(var(--hero-overlay-rgb), .82) 0%,
-        rgba(var(--hero-overlay-rgb), .58) 28%,
-        rgba(var(--hero-overlay-rgb), .25) 50%,
-        rgba(var(--hero-overlay-rgb), .06) 68%,
-        rgba(var(--hero-overlay-rgb), 0) 82%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 28%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 50%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-extra-soft)
+        ) 68%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 82%
       ),
       linear-gradient(
         90deg,
-        rgba(var(--hero-overlay-rgb), .25) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 70%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 70%
       );
   }
 
+
+  /* --------------------------------------------------------------------------
+     Mobile overlays — bottom right
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-bottom-right
   .custom-hero__media::after{
     background:
       linear-gradient(
         0deg,
-        rgba(var(--hero-overlay-rgb), .82) 0%,
-        rgba(var(--hero-overlay-rgb), .58) 28%,
-        rgba(var(--hero-overlay-rgb), .25) 50%,
-        rgba(var(--hero-overlay-rgb), .06) 68%,
-        rgba(var(--hero-overlay-rgb), 0) 82%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-strong)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-medium)
+        ) 28%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 50%,
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-extra-soft)
+        ) 68%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 82%
       ),
       linear-gradient(
         270deg,
-        rgba(var(--hero-overlay-rgb), .25) 0%,
-        rgba(var(--hero-overlay-rgb), 0) 70%
+        rgba(
+          var(--hero-overlay-rgb),
+          var(--hero-overlay-soft)
+        ) 0%,
+        rgba(
+          var(--hero-overlay-rgb),
+          0
+        ) 70%
       );
   }
 

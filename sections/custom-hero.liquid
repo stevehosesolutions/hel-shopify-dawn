@@ -6,6 +6,7 @@
     custom-hero--desktop-{{ section.settings.desktop_content_position }}
     custom-hero--mobile-{{ section.settings.mobile_content_position }}
     custom-hero--theme-{{ section.settings.content_theme }}
+    custom-hero--overlay-{{ section.settings.overlay_strength }}
   "
   style="
     --hero-position-x: {{ section.settings.desktop_position_x }}%;
@@ -250,6 +251,26 @@
         }
       ],
       "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "overlay_strength",
+      "label": "Overlay strength",
+      "options": [
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "strong",
+          "label": "Strong"
+        }
+      ],
+      "default": "medium"
     },
     {
       "type": "header",
