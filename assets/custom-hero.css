@@ -3,6 +3,8 @@
    ========================================================================== */
 
 .custom-hero{
+  --hero-content-top-offset:0px;
+
   position:relative;
 
   width:100%;
@@ -19,10 +21,13 @@
 @media(min-width:1200px){
 
   .custom-hero{
+    --hero-content-top-offset:var(--nav-height);
+
     height:min(960px, 100svh);
   }
 
 }
+
 
 /* ==========================================================================
    Content themes
@@ -118,10 +123,12 @@
   padding-bottom:var(--xl);
 }
 
+
 .custom-hero__content-inner{
   width:100%;
   max-width:1200px;
 }
+
 
 /* ==========================================================================
    Desktop content positions
@@ -129,7 +136,9 @@
 
 @media(min-width:1200px){
 
-  /* Vertical */
+  /* --------------------------------------------------------------------------
+     Vertical — top
+     -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-top-left
   .custom-hero__content,
@@ -138,8 +147,21 @@
   .custom-hero--desktop-top-right
   .custom-hero__content{
     align-items:flex-start;
+
+    padding-top:
+      calc(
+        var(--xl) +
+        var(--hero-content-top-offset)
+      );
   }
 
+
+  /* --------------------------------------------------------------------------
+     Vertical — centre
+
+     Shift by half the header offset so the content is centred within the
+     usable hero area beneath the header rather than the full hero box.
+     -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-centre-left
   .custom-hero__content,
@@ -148,8 +170,19 @@
   .custom-hero--desktop-centre-right
   .custom-hero__content{
     align-items:center;
+
+    transform:
+      translateY(
+        calc(
+          var(--hero-content-top-offset) / 2
+        )
+      );
   }
 
+
+  /* --------------------------------------------------------------------------
+     Vertical — bottom
+     -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-bottom-left
   .custom-hero__content,
@@ -161,7 +194,9 @@
   }
 
 
-  /* Horizontal */
+  /* --------------------------------------------------------------------------
+     Horizontal — left
+     -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-top-left
   .custom-hero__content-inner,
@@ -174,6 +209,10 @@
     text-align:left;
   }
 
+
+  /* --------------------------------------------------------------------------
+     Horizontal — centre
+     -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-top-centre
   .custom-hero__content-inner,
@@ -188,6 +227,10 @@
   }
 
 
+  /* --------------------------------------------------------------------------
+     Horizontal — right
+     -------------------------------------------------------------------------- */
+
   .custom-hero--desktop-top-right
   .custom-hero__content-inner,
   .custom-hero--desktop-centre-right
@@ -199,10 +242,37 @@
     text-align:right;
   }
 
+
+  /* --------------------------------------------------------------------------
+     Constrained subheading alignment
+     -------------------------------------------------------------------------- */
+
+  .custom-hero--desktop-top-centre
+  .custom-hero__subheading,
+  .custom-hero--desktop-centre
+  .custom-hero__subheading,
+  .custom-hero--desktop-bottom-centre
+  .custom-hero__subheading{
+    margin-right:auto;
+    margin-left:auto;
+  }
+
+
+  .custom-hero--desktop-top-right
+  .custom-hero__subheading,
+  .custom-hero--desktop-centre-right
+  .custom-hero__subheading,
+  .custom-hero--desktop-bottom-right
+  .custom-hero__subheading{
+    margin-left:auto;
+  }
+
 }
 
 
-/* Eyebrow */
+/* ==========================================================================
+   Eyebrow
+   ========================================================================== */
 
 .custom-hero__eyebrow{
   margin-bottom:var(--s);
@@ -221,11 +291,12 @@
 }
 
 
-/* Heading */
+/* ==========================================================================
+   Heading
+   ========================================================================== */
 
 .custom-hero__heading{
   margin:0;
-
 
   font-family:var(--font-barlow-condensed-italic);
   font-size:clamp(80px, 10vw, 168px);
@@ -250,7 +321,9 @@
 }
 
 
-/* Subheading */
+/* ==========================================================================
+   Subheading
+   ========================================================================== */
 
 .custom-hero__subheading{
   max-width:680px;
@@ -277,7 +350,9 @@
 }
 
 
-/* Button */
+/* ==========================================================================
+   Button
+   ========================================================================== */
 
 .custom-hero__button{
   display:inline-flex;
@@ -318,8 +393,17 @@
 
 @media(max-width:1199px){
 
+  .custom-hero{
+    --hero-content-top-offset:
+      var(
+        --mobile-nav-offset,
+        var(--nav-height)
+      );
+  }
+
+
   /*
-   * Mobile content sits at the bottom, so the overlay
+   * Mobile content typically sits towards the bottom, so the overlay
    * protects the lower portion of the photography.
    */
 
@@ -342,7 +426,10 @@
       center;
   }
 
-    /* Vertical */
+
+  /* --------------------------------------------------------------------------
+     Vertical — top
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-top-left
   .custom-hero__content,
@@ -351,8 +438,18 @@
   .custom-hero--mobile-top-right
   .custom-hero__content{
     align-items:flex-start;
+
+    padding-top:
+      calc(
+        var(--xl) +
+        var(--hero-content-top-offset)
+      );
   }
 
+
+  /* --------------------------------------------------------------------------
+     Vertical — centre
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-centre-left
   .custom-hero__content,
@@ -361,8 +458,19 @@
   .custom-hero--mobile-centre-right
   .custom-hero__content{
     align-items:center;
+
+    transform:
+      translateY(
+        calc(
+          var(--hero-content-top-offset) / 2
+        )
+      );
   }
 
+
+  /* --------------------------------------------------------------------------
+     Vertical — bottom
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-bottom-left
   .custom-hero__content,
@@ -374,7 +482,9 @@
   }
 
 
-  /* Horizontal */
+  /* --------------------------------------------------------------------------
+     Horizontal — left
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-top-left
   .custom-hero__content-inner,
@@ -386,6 +496,10 @@
   }
 
 
+  /* --------------------------------------------------------------------------
+     Horizontal — centre
+     -------------------------------------------------------------------------- */
+
   .custom-hero--mobile-top-centre
   .custom-hero__content-inner,
   .custom-hero--mobile-centre
@@ -396,6 +510,10 @@
   }
 
 
+  /* --------------------------------------------------------------------------
+     Horizontal — right
+     -------------------------------------------------------------------------- */
+
   .custom-hero--mobile-top-right
   .custom-hero__content-inner,
   .custom-hero--mobile-centre-right
@@ -405,6 +523,10 @@
     text-align:right;
   }
 
+
+  /* --------------------------------------------------------------------------
+     Constrained subheading alignment
+     -------------------------------------------------------------------------- */
 
   .custom-hero--mobile-top-centre
   .custom-hero__subheading,
@@ -426,10 +548,10 @@
     margin-left:auto;
   }
 
-  .custom-hero__content{
-    padding-bottom:var(--xl);
-  }
 
+  /* --------------------------------------------------------------------------
+     Mobile typography
+     -------------------------------------------------------------------------- */
 
   .custom-hero__content-inner{
     max-width:100%;
@@ -437,8 +559,6 @@
 
 
   .custom-hero__heading{
-
-
     font-size:
       clamp(
         64px,
@@ -473,31 +593,6 @@
 
   .custom-hero__button::after{
     transition:none;
-  }
-
-}
-
-
-@media(min-width:1200px){
-
-  .custom-hero--desktop-top-centre
-  .custom-hero__subheading,
-  .custom-hero--desktop-centre
-  .custom-hero__subheading,
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__subheading{
-    margin-right:auto;
-    margin-left:auto;
-  }
-
-
-  .custom-hero--desktop-top-right
-  .custom-hero__subheading,
-  .custom-hero--desktop-centre-right
-  .custom-hero__subheading,
-  .custom-hero--desktop-bottom-right
-  .custom-hero__subheading{
-    margin-left:auto;
   }
 
 }
