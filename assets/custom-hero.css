@@ -44,14 +44,15 @@
 .custom-hero--theme-light{
   --hero-text-color:#fff;
   --hero-overlay-rgb:0,0,0;
+  --hero-button-contrast-color:#111;
 }
 
 
 .custom-hero--theme-dark{
   --hero-text-color:#111;
   --hero-overlay-rgb:255,255,255;
+  --hero-button-contrast-color:#fff;
 }
-
 
 /* ==========================================================================
    Media
@@ -749,14 +750,10 @@
 }
 
 .custom-hero--theme-light.custom-hero--button-solid
-.custom-hero__button{
-  color:#111;
-}
-
-
+.custom-hero__button,
 .custom-hero--theme-dark.custom-hero--button-solid
 .custom-hero__button{
-  color:#fff;
+  color:var(--hero-button-contrast-color);
 }
 
 .custom-hero--button-outline
