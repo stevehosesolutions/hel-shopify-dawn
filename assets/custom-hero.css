@@ -33,34 +33,6 @@
 
 }
 
-  
-
-  /* ==========================================================================
-   Overlay strength
-   ========================================================================== */
-
-.custom-hero--overlay-light{
-  --hero-overlay-strong:.56;
-  --hero-overlay-medium:.32;
-  --hero-overlay-soft:.10;
-  --hero-overlay-extra-soft:.04;
-}
-
-
-.custom-hero--overlay-medium{
-  --hero-overlay-strong:.72;
-  --hero-overlay-medium:.42;
-  --hero-overlay-soft:.14;
-  --hero-overlay-extra-soft:.06;
-}
-
-
-.custom-hero--overlay-strong{
-  --hero-overlay-strong:.84;
-  --hero-overlay-medium:.56;
-  --hero-overlay-soft:.22;
-  --hero-overlay-extra-soft:.09;
-}
 
 
 
@@ -619,10 +591,6 @@
 }
 
 
-.custom-hero__eyebrow p{
-  margin:0;
-}
-
 
 /* ==========================================================================
    Heading sizes
@@ -715,9 +683,6 @@
 }
 
 
-.custom-hero__subheading-line p{
-  margin:0;
-}
 
 
 /* ==========================================================================

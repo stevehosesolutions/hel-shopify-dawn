@@ -1,5 +1,7 @@
 {{ 'custom-hero.css' | asset_url | stylesheet_tag }}
 
+{% assign overlay_strength = section.settings.overlay_strength | divided_by: 100.0 %}
+
 <section
   class="
     custom-hero
@@ -8,11 +10,14 @@
     custom-hero--theme-{{ section.settings.content_theme }}
     custom-hero--heading-{{ section.settings.heading_size }}
     custom-hero--heading-{{ section.settings.heading_emphasis }}
-    custom-hero--overlay-{{ section.settings.overlay_strength }}
   "
   style="
     --hero-position-x: {{ section.settings.desktop_position_x }}%;
     --hero-mobile-position-x: {{ section.settings.mobile_position_x }}%;
+    --hero-overlay-strong: {{ 0.84 | times: overlay_strength }};
+    --hero-overlay-medium: {{ 0.56 | times: overlay_strength }};
+    --hero-overlay-soft: {{ 0.22 | times: overlay_strength }};
+    --hero-overlay-extra-soft: {{ 0.09 | times: overlay_strength }};
   "
 >
 
@@ -255,24 +260,14 @@
       "default": "light"
     },
     {
-      "type": "select",
+      "type": "range",
       "id": "overlay_strength",
       "label": "Overlay strength",
-      "options": [
-        {
-          "value": "light",
-          "label": "Light"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "strong",
-          "label": "Strong"
-        }
-      ],
-      "default": "medium"
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 70
     },
     {
       "type": "header",
@@ -293,7 +288,7 @@
       "default": 50
     },
     {
-      "type": "richtext",
+      "type": "inline_richtext",
       "id": "eyebrow",
       "label": "Eyebrow"
     },
@@ -348,12 +343,12 @@
       "label": "Heading - line 2"
     },
     {
-      "type": "richtext",
+      "type": "inline_richtext",
       "id": "subheading_line_1",
       "label": "Subheading - line 1"
     },
     {
-      "type": "richtext",
+      "type": "inline_richtext",
       "id": "subheading_line_2",
       "label": "Subheading - line 2"
     },
