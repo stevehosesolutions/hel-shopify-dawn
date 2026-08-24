@@ -639,13 +639,13 @@
 }
 
 
-.custom-hero--accent-top
+.custom-hero--accent-line-1
 .custom-hero__heading-line:first-of-type{
   color:var(--hel-red);
 }
 
 
-.custom-hero--accent-bottom
+.custom-hero--accent-line-2
 .custom-hero__heading-line:last-of-type{
   color:var(--hel-red);
 }
