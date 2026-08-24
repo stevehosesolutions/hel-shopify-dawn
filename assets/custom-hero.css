@@ -753,6 +753,10 @@
 }
 
 
+/* ==========================================================================
+   Button arrow
+   ========================================================================== */
+
 .custom-hero--button-arrow
 .custom-hero__button::after{
   content:"→";
@@ -771,23 +775,36 @@
     var(--easing);
 }
 
+
 .custom-hero--button-arrow
 .custom-hero__button:hover::after{
   transform:translate(4px, 0);
 }
 
+
+/* ==========================================================================
+   Button styles
+   ========================================================================== */
+
+/* Text */
+
 .custom-hero--button-text
 .custom-hero__button{
   padding:0;
-  gap:var(--xs);
 
   border:0;
   background:none;
 }
 
 
+/* Solid */
 
+.custom-hero--button-solid
+.custom-hero__button{
+  border:1px solid var(--hero-text-color);
 
+  background:var(--hero-text-color);
+}
 
 
 .custom-hero--theme-light.custom-hero--button-solid
@@ -797,18 +814,6 @@
   color:var(--hero-button-contrast-color);
 }
 
-.custom-hero--button-outline
-.custom-hero__button{
-
-
-  border:1px solid var(--hero-text-color);
-  background:transparent;
-
-  color:var(--hero-text-color);
-}
-
-
-/* Solid — invert on hover */
 
 .custom-hero--button-solid
 .custom-hero__button:hover{
@@ -817,7 +822,16 @@
 }
 
 
-/* Outline — fill on hover */
+/* Outline */
+
+.custom-hero--button-outline
+.custom-hero__button{
+  border:1px solid var(--hero-text-color);
+
+  background:transparent;
+  color:var(--hero-text-color);
+}
+
 
 .custom-hero--button-outline
 .custom-hero__button:hover{
@@ -830,22 +844,13 @@
    Button sizes
    ========================================================================== */
 
+/* Small */
+
 .custom-hero--button-size-small
 .custom-hero__button{
   font-size:var(--font-s);
 }
 
-
-.custom-hero--button-size-medium
-.custom-hero__button{
-  font-size:var(--font-m);
-}
-
-
-.custom-hero--button-size-large
-.custom-hero__button{
-  font-size:var(--font-l);
-}
 
 .custom-hero--button-size-small.custom-hero--button-solid
 .custom-hero__button,
@@ -855,11 +860,27 @@
 }
 
 
+/* Medium */
+
+.custom-hero--button-size-medium
+.custom-hero__button{
+  font-size:var(--font-m);
+}
+
+
 .custom-hero--button-size-medium.custom-hero--button-solid
 .custom-hero__button,
 .custom-hero--button-size-medium.custom-hero--button-outline
 .custom-hero__button{
   padding:var(--xs) var(--s);
+}
+
+
+/* Large */
+
+.custom-hero--button-size-large
+.custom-hero__button{
+  font-size:var(--font-l);
 }
 
 
