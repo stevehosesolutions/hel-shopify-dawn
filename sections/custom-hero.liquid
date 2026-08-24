@@ -13,6 +13,7 @@
     custom-hero--heading-{{ section.settings.heading_emphasis }}
     custom-hero--button-{{ section.settings.button_style }}
     custom-hero--button-size-{{ section.settings.button_size }}
+    {% if section.settings.button_show_arrow %}custom-hero--button-arrow{% endif %}
   "
   style="
     --hero-position-x: {{ section.settings.desktop_position_x }}%;
@@ -414,6 +415,12 @@
         }
       ],
       "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_show_arrow",
+      "label": "Show arrow",
+      "default": true
     },
     {
       "type": "text",

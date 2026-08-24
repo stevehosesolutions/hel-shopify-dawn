@@ -716,6 +716,7 @@
 }
 
 
+.custom-hero--button-arrow
 .custom-hero__button::after{
   content:"→";
 
@@ -727,7 +728,7 @@
     var(--easing);
 }
 
-
+.custom-hero--button-arrow
 .custom-hero__button:hover::after{
   transform:translateX(4px);
 }
@@ -1339,6 +1340,7 @@
 
 @media(prefers-reduced-motion:reduce){
 
+  .custom-hero--button-arrow
   .custom-hero__button::after{
     transition:none;
   }
