@@ -675,6 +675,21 @@
   color:var(--hel-red);
 }
 
+/* ==========================================================================
+   Heading emphasis
+   ========================================================================== */
+
+.custom-hero--heading-top
+.custom-hero__heading-line:nth-child(2){
+  font-size:.72em;
+}
+
+
+.custom-hero--heading-bottom
+.custom-hero__heading-line:nth-child(1){
+  font-size:.72em;
+}
+
 
 /* ==========================================================================
    Subheading

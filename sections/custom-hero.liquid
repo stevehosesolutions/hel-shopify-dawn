@@ -7,6 +7,7 @@
     custom-hero--mobile-{{ section.settings.mobile_content_position }}
     custom-hero--theme-{{ section.settings.content_theme }}
     custom-hero--heading-{{ section.settings.heading_size }}
+    custom-hero--heading-{{ section.settings.heading_emphasis }}
     custom-hero--overlay-{{ section.settings.overlay_strength }}
   "
   style="
@@ -295,6 +296,26 @@
       "type": "richtext",
       "id": "eyebrow",
       "label": "Eyebrow"
+    },
+    {
+      "type": "select",
+      "id": "heading_emphasis",
+      "label": "Heading emphasis",
+      "options": [
+        {
+          "value": "top",
+          "label": "Large top line"
+        },
+        {
+          "value": "equal",
+          "label": "Equal"
+        },
+        {
+          "value": "bottom",
+          "label": "Large bottom line"
+        }
+      ],
+      "default": "equal"
     },
     {
       "type": "inline_richtext",
