@@ -11,6 +11,7 @@
     custom-hero--accent-{{ section.settings.heading_accent }}
     custom-hero--heading-{{ section.settings.heading_size }}
     custom-hero--heading-{{ section.settings.heading_emphasis }}
+    custom-hero--button-{{ section.settings.button_style }}
   "
   style="
     --hero-position-x: {{ section.settings.desktop_position_x }}%;
@@ -372,6 +373,26 @@
       "type": "inline_richtext",
       "id": "subheading_line_2",
       "label": "Subheading - line 2"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "text",
+          "label": "Text link"
+        },
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "outline",
+          "label": "Outline"
+        }
+      ],
+      "default": "text"
     },
     {
       "type": "text",

@@ -702,15 +702,16 @@
   gap:var(--xs);
 
   margin-top:var(--l);
-  padding:0;
 
-  border:0;
-
-  background:none;
   color:var(--hero-text-color);
 
   font-weight:700;
   text-decoration:none;
+
+  transition:
+    background-color var(--transition-fast) var(--easing),
+    border-color var(--transition-fast) var(--easing),
+    color var(--transition-fast) var(--easing);
 }
 
 
@@ -726,6 +727,57 @@
 
 .custom-hero__button:hover::after{
   transform:translateX(4px);
+}
+
+
+.custom-hero--button-text
+.custom-hero__button{
+  padding:0;
+
+  border:0;
+  background:none;
+}
+
+.custom-hero--button-solid
+.custom-hero__button{
+  padding:var(--xs) var(--s);
+
+  border:1px solid var(--hero-text-color);
+  background:var(--hero-text-color);
+
+  color:
+    var(
+      --hero-button-contrast-color
+    );
+}
+
+
+.custom-hero--button-outline
+.custom-hero__button{
+  padding:var(--xs) var(--s);
+
+  border:1px solid var(--hero-text-color);
+  background:transparent;
+
+  color:var(--hero-text-color);
+}
+
+
+/* Solid — invert on hover */
+
+.custom-hero--button-solid
+.custom-hero__button:hover{
+  background:transparent;
+  color:var(--hero-text-color);
+}
+
+
+/* Outline — fill on hover */
+
+.custom-hero--button-outline
+.custom-hero__button:hover{
+  background:var(--hero-text-color);
+  color:var(--hero-button-contrast-color);
 }
 
 
