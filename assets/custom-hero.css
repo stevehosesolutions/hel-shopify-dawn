@@ -718,6 +718,8 @@
 .custom-hero__button::after{
   content:"→";
 
+  color:currentColor;
+
   transition:
     transform
     var(--transition-fast)
@@ -745,12 +747,8 @@
   border:1px solid var(--hero-text-color);
   background:var(--hero-text-color);
 
-  color:
-    var(
-      --hero-button-contrast-color
-    );
+  color:var(--hero-button-contrast-color);
 }
-
 
 .custom-hero--button-outline
 .custom-hero__button{
