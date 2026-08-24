@@ -1,6 +1,6 @@
 {{ 'custom-hero.css' | asset_url | stylesheet_tag }}
 
-{% assign overlay_strength = section.settings.overlay_strength | divided_by: 100.0 %}
+{% assign overlay_strength = section.settings.overlay_strength_percent | divided_by: 100.0 %}
 
 <section
   class="
@@ -261,7 +261,7 @@
     },
     {
       "type": "range",
-      "id": "overlay_strength",
+      "id": "overlay_strength_percent",
       "label": "Overlay strength",
       "min": 0,
       "max": 100,
