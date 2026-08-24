@@ -12,6 +12,7 @@
     custom-hero--heading-{{ section.settings.heading_size }}
     custom-hero--heading-{{ section.settings.heading_emphasis }}
     custom-hero--button-{{ section.settings.button_style }}
+    custom-hero--button-size-{{ section.settings.button_size }}
   "
   style="
     --hero-position-x: {{ section.settings.desktop_position_x }}%;
@@ -393,6 +394,26 @@
         }
       ],
       "default": "text"
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Button size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
     },
     {
       "type": "text",
