@@ -746,8 +746,17 @@
 
   border:1px solid var(--hero-text-color);
   background:var(--hero-text-color);
+}
 
-  color:var(--hero-button-contrast-color);
+.custom-hero--theme-light.custom-hero--button-solid
+.custom-hero__button{
+  color:#111;
+}
+
+
+.custom-hero--theme-dark.custom-hero--button-solid
+.custom-hero__button{
+  color:#fff;
 }
 
 .custom-hero--button-outline
