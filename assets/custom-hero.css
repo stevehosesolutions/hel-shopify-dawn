@@ -625,6 +625,28 @@
 
 
 /* ==========================================================================
+   Heading sizes
+   ========================================================================== */
+
+.custom-hero--heading-small{
+  --hero-heading-size:
+    clamp(64px, 7vw, 120px);
+}
+
+
+.custom-hero--heading-medium{
+  --hero-heading-size:
+    clamp(72px, 8.5vw, 144px);
+}
+
+
+.custom-hero--heading-large{
+  --hero-heading-size:
+    clamp(80px, 10vw, 168px);
+}
+
+
+/* ==========================================================================
    Heading
    ========================================================================== */
 
@@ -632,7 +654,7 @@
   margin:0;
 
   font-family:var(--font-barlow-condensed-italic);
-  font-size:clamp(80px, 10vw, 168px);
+  font-size:var(--hero-heading-size);
   line-height:.78;
   font-weight:800;
   font-style:italic;
@@ -743,6 +765,23 @@
 
     margin-top:
       var(--hero-content-top-offset);
+  }
+
+  .custom-hero--heading-small{
+    --hero-heading-size:
+      clamp(48px, 12vw, 72px);
+  }
+
+
+  .custom-hero--heading-medium{
+    --hero-heading-size:
+      clamp(56px, 15vw, 88px);
+  }
+
+
+  .custom-hero--heading-large{
+    --hero-heading-size:
+      clamp(64px, 18vw, 104px);
   }
 
 
@@ -1187,15 +1226,6 @@
     max-width:100%;
   }
 
-
-  .custom-hero__heading{
-    font-size:
-      clamp(
-        64px,
-        18vw,
-        104px
-      );
-  }
 
 
   .custom-hero__subheading{
