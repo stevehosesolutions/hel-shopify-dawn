@@ -581,7 +581,7 @@
    ========================================================================== */
 
 .custom-hero__eyebrow{
-  display:flex;
+  display:inline-flex;
   align-items:center;
   gap:var(--xs);
 
