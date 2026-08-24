@@ -581,6 +581,10 @@
    ========================================================================== */
 
 .custom-hero__eyebrow{
+  display:flex;
+  align-items:center;
+  gap:var(--xs);
+
   margin-bottom:var(--s);
 
   font-size:var(--font-xs);
@@ -589,6 +593,20 @@
 
   letter-spacing:.08em;
   text-transform:uppercase;
+}
+
+
+.custom-hero__eyebrow::before{
+  content:"";
+
+  display:block;
+
+  width:2px;
+  height:1.8em;
+
+  flex:0 0 2px;
+
+  background:var(--hel-red);
 }
 
 
@@ -677,7 +695,26 @@
   margin-top:var(--m);
 
   font-size:var(--font-m);
-  line-height:var(--line-m);
+  line-height:1.45;
+  font-weight:500;
+
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+@media(max-width:1199px){
+
+  .custom-hero__subheading{
+    max-width:560px;
+
+    margin-top:var(--s);
+
+    font-size:var(--font-s);
+    line-height:1.5;
+
+    letter-spacing:.10em;
+  }
+
 }
 
 
@@ -720,7 +757,13 @@
 .custom-hero__button::after{
   content:"→";
 
-  color:currentColor;
+  display:block;
+
+  color:var(--hel-red);
+
+  line-height:1;
+
+  transform:translateY(0);
 
   transition:
     transform
@@ -730,25 +773,22 @@
 
 .custom-hero--button-arrow
 .custom-hero__button:hover::after{
-  transform:translateX(4px);
+  transform:translate(4px, 0);
 }
-
 
 .custom-hero--button-text
 .custom-hero__button{
   padding:0;
+  gap:var(--xs);
 
   border:0;
   background:none;
 }
 
-.custom-hero--button-solid
-.custom-hero__button{
 
 
-  border:1px solid var(--hero-text-color);
-  background:var(--hero-text-color);
-}
+
+
 
 .custom-hero--theme-light.custom-hero--button-solid
 .custom-hero__button,
