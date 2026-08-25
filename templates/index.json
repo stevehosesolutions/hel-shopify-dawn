@@ -113,7 +113,7 @@
       ],
       "name": "Custom hero",
       "settings": {
-        "auto_rotate": true,
+        "auto_rotate": false,
         "rotation_speed": 10
       }
     },
