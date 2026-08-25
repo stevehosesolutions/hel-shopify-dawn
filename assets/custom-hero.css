@@ -109,44 +109,34 @@
 
 @media(min-width:1200px){
 
-  /* --------------------------------------------------------------------------
-     Left
-     -------------------------------------------------------------------------- */
+  /*
+   * Standard directional profile.
+   */
+
+  .custom-hero--desktop-centre-left{
+    --hero-overlay-angle:90deg;
+  }
+
+
+  .custom-hero--desktop-centre-right{
+    --hero-overlay-angle:270deg;
+  }
+
+
+  .custom-hero--desktop-bottom-centre{
+    --hero-overlay-angle:0deg;
+  }
+
 
   .custom-hero--desktop-centre-left
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        90deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 30%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 58%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 78%
-      );
-  }
-
-
-  /* --------------------------------------------------------------------------
-     Right
-     -------------------------------------------------------------------------- */
-
+  .custom-hero__media::after,
   .custom-hero--desktop-centre-right
+  .custom-hero__media::after,
+  .custom-hero--desktop-bottom-centre
   .custom-hero__media::after{
     background:
       linear-gradient(
-        270deg,
+        var(--hero-overlay-angle),
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-strong)
@@ -154,22 +144,26 @@
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-medium)
-        ) 30%,
+        ) 38%,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-soft)
-        ) 58%,
+        ) 68%,
         rgba(
           var(--hero-overlay-rgb),
           0
-        ) 78%
+        ) 90%
       );
   }
 
 
-  /* --------------------------------------------------------------------------
-     Top centre
-     -------------------------------------------------------------------------- */
+  /*
+   * Top centre.
+   *
+   * Hold the strongest part of the gradient through the
+   * overlaid header so the visible content area receives
+   * the same protection as the other positions.
+   */
 
   .custom-hero--desktop-top-centre
   .custom-hero__media::after{
@@ -179,55 +173,36 @@
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 30%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 58%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 78%
-      );
-  }
-
-
-  /* --------------------------------------------------------------------------
-     Bottom centre
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        0deg,
+        ) 0,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-strong)
-        ) 0%,
+        ) var(--hero-content-top-offset),
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-medium)
-        ) 30%,
+        ) calc(
+          var(--hero-content-top-offset) + 30%
+        ),
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-soft)
-        ) 58%,
+        ) calc(
+          var(--hero-content-top-offset) + 58%
+        ),
         rgba(
           var(--hero-overlay-rgb),
           0
-        ) 78%
+        ) calc(
+          var(--hero-content-top-offset) + 82%
+        )
       );
   }
 
 
-  /* --------------------------------------------------------------------------
-     Centre
-     -------------------------------------------------------------------------- */
+  /*
+   * Centre.
+   */
 
   .custom-hero--desktop-centre
   .custom-hero__media::after{
@@ -236,33 +211,37 @@
         ellipse at center,
         rgba(
           var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
+          var(--hero-overlay-strong)
         ) 0%,
         rgba(
           var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 45%,
+          var(--hero-overlay-medium)
+        ) 48%,
         rgba(
           var(--hero-overlay-rgb),
-          var(--hero-overlay-extra-soft)
-        ) 68%,
+          var(--hero-overlay-soft)
+        ) 78%,
         rgba(
           var(--hero-overlay-rgb),
           0
-        ) 84%
+        ) 96%
       );
   }
 
 
-  /* --------------------------------------------------------------------------
-     Top left
-     -------------------------------------------------------------------------- */
+  /*
+   * Corners.
+   *
+   * Use one radial gradient rather than stacking two
+   * gradients. This avoids making corners artificially
+   * darker than the straight positions.
+   */
 
   .custom-hero--desktop-top-left
   .custom-hero__media::after{
     background:
-      linear-gradient(
-        90deg,
+      radial-gradient(
+        ellipse at left var(--hero-content-top-offset),
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-strong)
@@ -270,39 +249,24 @@
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-medium)
-        ) 30%,
+        ) 48%,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-soft)
-        ) 58%,
+        ) 78%,
         rgba(
           var(--hero-overlay-rgb),
           0
-        ) 78%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 45%
+        ) 100%
       );
   }
 
-
-  /* --------------------------------------------------------------------------
-     Top right
-     -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-top-right
   .custom-hero__media::after{
     background:
-      linear-gradient(
-        270deg,
+      radial-gradient(
+        ellipse at right var(--hero-content-top-offset),
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-strong)
@@ -310,39 +274,24 @@
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-medium)
-        ) 30%,
+        ) 48%,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-soft)
-        ) 58%,
+        ) 78%,
         rgba(
           var(--hero-overlay-rgb),
           0
-        ) 78%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 45%
+        ) 100%
       );
   }
 
-
-  /* --------------------------------------------------------------------------
-     Bottom left
-     -------------------------------------------------------------------------- */
 
   .custom-hero--desktop-bottom-left
   .custom-hero__media::after{
     background:
-      linear-gradient(
-        90deg,
+      radial-gradient(
+        ellipse at left bottom,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-strong)
@@ -350,39 +299,24 @@
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-medium)
-        ) 30%,
+        ) 48%,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-soft)
-        ) 58%,
+        ) 78%,
         rgba(
           var(--hero-overlay-rgb),
           0
-        ) 78%
-      ),
-      linear-gradient(
-        0deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 45%
+        ) 100%
       );
   }
 
 
-  /* --------------------------------------------------------------------------
-     Bottom right
-     -------------------------------------------------------------------------- */
-
   .custom-hero--desktop-bottom-right
   .custom-hero__media::after{
     background:
-      linear-gradient(
-        270deg,
+      radial-gradient(
+        ellipse at right bottom,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-strong)
@@ -390,26 +324,15 @@
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-medium)
-        ) 30%,
+        ) 48%,
         rgba(
           var(--hero-overlay-rgb),
           var(--hero-overlay-soft)
-        ) 58%,
+        ) 78%,
         rgba(
           var(--hero-overlay-rgb),
           0
-        ) 78%
-      ),
-      linear-gradient(
-        0deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 45%
+        ) 100%
       );
   }
 
@@ -971,317 +894,224 @@
   
 
 
-     /* --------------------------------------------------------------------------
-     Mobile overlays — left
-     -------------------------------------------------------------------------- */
+   /* --------------------------------------------------------------------------
+   Mobile overlays — straight directions
+   -------------------------------------------------------------------------- */
 
-  .custom-hero--mobile-centre-left
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        90deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 38%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 68%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 90%
-      );
-  }
+.custom-hero--mobile-centre-left{
+  --hero-overlay-angle:90deg;
+}
 
 
-  /* --------------------------------------------------------------------------
-     Mobile overlays — right
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-centre-right
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        270deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 38%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 68%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 90%
-      );
-  }
+.custom-hero--mobile-centre-right{
+  --hero-overlay-angle:270deg;
+}
 
 
-  /* --------------------------------------------------------------------------
-     Mobile overlays — top
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-top-centre
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        180deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 28%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 50%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-extra-soft)
-        ) 68%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 82%
-      );
-  }
+.custom-hero--mobile-bottom-centre{
+  --hero-overlay-angle:0deg;
+}
 
 
-  /* --------------------------------------------------------------------------
-     Mobile overlays — bottom
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-bottom-centre
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        0deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 28%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 50%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-extra-soft)
-        ) 68%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 82%
-      );
-  }
+.custom-hero--mobile-centre-left
+.custom-hero__media::after,
+.custom-hero--mobile-centre-right
+.custom-hero__media::after,
+.custom-hero--mobile-bottom-centre
+.custom-hero__media::after{
+  background:
+    linear-gradient(
+      var(--hero-overlay-angle),
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) 0%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-medium)
+      ) 32%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-soft)
+      ) 62%,
+      rgba(
+        var(--hero-overlay-rgb),
+        0
+      ) 86%
+    );
+}
 
 
-  /* --------------------------------------------------------------------------
-     Mobile overlay — centre
-     -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Mobile overlay — top
+   -------------------------------------------------------------------------- */
 
-  .custom-hero--mobile-centre
-  .custom-hero__media::after{
-    background:
-      radial-gradient(
-        ellipse at center,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 45%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-extra-soft)
-        ) 70%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 88%
-      );
-  }
-
-
-  /* --------------------------------------------------------------------------
-     Mobile overlays — top left
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-top-left
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        180deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 45%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 75%
+.custom-hero--mobile-top-centre
+.custom-hero__media::after{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) 0,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) var(--hero-content-top-offset),
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-medium)
+      ) calc(
+        var(--hero-content-top-offset) + 24%
       ),
-      linear-gradient(
-        90deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 75%
-      );
-  }
-
-
-  /* --------------------------------------------------------------------------
-     Mobile overlays — top right
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-top-right
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        180deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 45%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 75%
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-soft)
+      ) calc(
+        var(--hero-content-top-offset) + 48%
       ),
-      linear-gradient(
-        270deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 75%
-      );
-  }
+      rgba(
+        var(--hero-overlay-rgb),
+        0
+      ) calc(
+        var(--hero-content-top-offset) + 68%
+      )
+    );
+}
 
 
-  /* --------------------------------------------------------------------------
-     Mobile overlays — bottom left
-     -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Mobile overlay — centre
+   -------------------------------------------------------------------------- */
 
-  .custom-hero--mobile-bottom-left
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        0deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 28%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 50%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-extra-soft)
-        ) 68%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 82%
-      ),
-      linear-gradient(
-        90deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 70%
-      );
-  }
+.custom-hero--mobile-centre
+.custom-hero__media::after{
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) 0%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-medium)
+      ) 40%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-soft)
+      ) 72%,
+      rgba(
+        var(--hero-overlay-rgb),
+        0
+      ) 90%
+    );
+}
 
 
-  /* --------------------------------------------------------------------------
-     Mobile overlays — bottom right
-     -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Mobile overlays — corners
+   -------------------------------------------------------------------------- */
 
-  .custom-hero--mobile-bottom-right
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        0deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 28%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 50%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-extra-soft)
-        ) 68%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 82%
-      ),
-      linear-gradient(
-        270deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 70%
-      );
-  }
+.custom-hero--mobile-top-left
+.custom-hero__media::after{
+  background:
+    radial-gradient(
+      ellipse at left var(--hero-content-top-offset),
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) 0%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-medium)
+      ) 40%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-soft)
+      ) 72%,
+      rgba(
+        var(--hero-overlay-rgb),
+        0
+      ) 92%
+    );
+}
+
+
+.custom-hero--mobile-top-right
+.custom-hero__media::after{
+  background:
+    radial-gradient(
+      ellipse at right var(--hero-content-top-offset),
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) 0%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-medium)
+      ) 40%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-soft)
+      ) 72%,
+      rgba(
+        var(--hero-overlay-rgb),
+        0
+      ) 92%
+    );
+}
+
+
+.custom-hero--mobile-bottom-left
+.custom-hero__media::after{
+  background:
+    radial-gradient(
+      ellipse at left bottom,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) 0%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-medium)
+      ) 40%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-soft)
+      ) 72%,
+      rgba(
+        var(--hero-overlay-rgb),
+        0
+      ) 92%
+    );
+}
+
+
+.custom-hero--mobile-bottom-right
+.custom-hero__media::after{
+  background:
+    radial-gradient(
+      ellipse at right bottom,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-strong)
+      ) 0%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-medium)
+      ) 40%,
+      rgba(
+        var(--hero-overlay-rgb),
+        var(--hero-overlay-soft)
+      ) 72%,
+      rgba(
+        var(--hero-overlay-rgb),
+        0
+      ) 92%
+    );
+}
 
 
   .custom-hero__image{
