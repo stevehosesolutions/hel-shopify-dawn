@@ -114,7 +114,7 @@
       "name": "Custom hero",
       "settings": {
         "auto_rotate": true,
-        "rotation_speed": 6
+        "rotation_speed": 10
       }
     },
     "image_banner": {
