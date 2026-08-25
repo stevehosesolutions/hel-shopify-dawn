@@ -375,15 +375,33 @@
   background:var(--hel-red);
 }
 
+
+/* ==========================================================================
+   Desktop
+   ========================================================================== */
+
 @media(min-width:1200px){
+
+  /* Centre — horizontal line underneath */
+
+  .custom-hero--desktop-top-centre .custom-hero__eyebrow,
+  .custom-hero--desktop-centre .custom-hero__eyebrow,
+  .custom-hero--desktop-bottom-centre .custom-hero__eyebrow{
+    flex-direction:column;
+    align-items:center;
+  }
 
   .custom-hero--desktop-top-centre .custom-hero__eyebrow::before,
   .custom-hero--desktop-centre .custom-hero__eyebrow::before,
   .custom-hero--desktop-bottom-centre .custom-hero__eyebrow::before{
+    order:2;
     width:24px;
     height:2px;
-    flex:0 0 24px;
+    flex:0 0 2px;
   }
+
+
+  /* Right — vertical line on right */
 
   .custom-hero--desktop-top-right .custom-hero__eyebrow::before,
   .custom-hero--desktop-centre-right .custom-hero__eyebrow::before,
@@ -401,7 +419,13 @@
     flex:0 0 2px;
     background:var(--hel-red);
   }
+
 }
+
+
+/* ==========================================================================
+   Mobile
+   ========================================================================== */
 
 @media(max-width:1199px){
 
@@ -409,6 +433,9 @@
     content:none;
     display:none;
   }
+
+
+  /* Left — vertical line on left */
 
   .custom-hero--mobile-top-left .custom-hero__eyebrow::before,
   .custom-hero--mobile-centre-left .custom-hero__eyebrow::before,
@@ -419,14 +446,28 @@
     flex:0 0 2px;
   }
 
+
+  /* Centre — horizontal line underneath */
+
+  .custom-hero--mobile-top-centre .custom-hero__eyebrow,
+  .custom-hero--mobile-centre .custom-hero__eyebrow,
+  .custom-hero--mobile-bottom-centre .custom-hero__eyebrow{
+    flex-direction:column;
+    align-items:center;
+  }
+
   .custom-hero--mobile-top-centre .custom-hero__eyebrow::before,
   .custom-hero--mobile-centre .custom-hero__eyebrow::before,
   .custom-hero--mobile-bottom-centre .custom-hero__eyebrow::before{
     display:block;
+    order:2;
     width:24px;
     height:2px;
-    flex:0 0 24px;
+    flex:0 0 2px;
   }
+
+
+  /* Right — vertical line on right */
 
   .custom-hero--mobile-top-right .custom-hero__eyebrow::before,
   .custom-hero--mobile-centre-right .custom-hero__eyebrow::before,
@@ -444,6 +485,7 @@
     flex:0 0 2px;
     background:var(--hel-red);
   }
+
 }
 
 /* ========================================================================== */
