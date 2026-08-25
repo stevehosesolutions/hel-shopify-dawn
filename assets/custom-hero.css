@@ -301,11 +301,19 @@
     padding-top:var(--page-padding);
   }
 
-  .custom-hero--desktop-centre-left .custom-hero__content,
-  .custom-hero--desktop-centre .custom-hero__content,
-  .custom-hero--desktop-centre-right .custom-hero__content{
-    align-items:center;
-  }
+.custom-hero--desktop-centre-left .custom-hero__content,
+.custom-hero--desktop-centre .custom-hero__content,
+.custom-hero--desktop-centre-right .custom-hero__content{
+  align-items:center;
+
+  padding-top:var(--page-padding);
+
+  padding-bottom:
+    calc(
+      var(--page-padding) +
+      var(--hero-navigation-clearance)
+    );
+}
 
   .custom-hero--desktop-bottom-left .custom-hero__content,
   .custom-hero--desktop-bottom-centre .custom-hero__content,
@@ -828,11 +836,19 @@
     padding-top:var(--page-padding);
   }
 
-  .custom-hero--mobile-centre-left .custom-hero__content,
-  .custom-hero--mobile-centre .custom-hero__content,
-  .custom-hero--mobile-centre-right .custom-hero__content{
-    align-items:center;
-  }
+.custom-hero--mobile-centre-left .custom-hero__content,
+.custom-hero--mobile-centre .custom-hero__content,
+.custom-hero--mobile-centre-right .custom-hero__content{
+  align-items:center;
+
+  padding-top:var(--page-padding);
+
+  padding-bottom:
+    calc(
+      var(--page-padding) +
+      var(--hero-navigation-clearance)
+    );
+}
 
   .custom-hero--mobile-bottom-left .custom-hero__content,
   .custom-hero--mobile-bottom-centre .custom-hero__content,
