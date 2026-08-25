@@ -34,9 +34,13 @@
             "subheading_line_2": "Subheading 1",
             "button_text": "Button 1",
             "button_link": "/link",
-            "button_style": "outline",
+            "button_style": "solid",
             "button_size": "medium",
-            "button_show_arrow": true
+            "button_show_arrow": true,
+            "secondary_button_text": "Explore 1",
+            "secondary_button_link": "/explore1",
+            "secondary_button_style": "outline",
+            "secondary_button_show_arrow": true
           }
         },
         "slide_h8aKgT": {
@@ -61,9 +65,13 @@
             "subheading_line_2": "Subheading 2",
             "button_text": "Button 2",
             "button_link": "/link2",
-            "button_style": "outline",
+            "button_style": "solid",
             "button_size": "medium",
-            "button_show_arrow": true
+            "button_show_arrow": true,
+            "secondary_button_text": "Explore 2",
+            "secondary_button_link": "/explore2",
+            "secondary_button_style": "outline",
+            "secondary_button_show_arrow": true
           }
         },
         "slide_hqFBEq": {
@@ -88,9 +96,13 @@
             "subheading_line_2": "Subheading 3",
             "button_text": "Button 3",
             "button_link": "/link3",
-            "button_style": "outline",
+            "button_style": "solid",
             "button_size": "medium",
-            "button_show_arrow": true
+            "button_show_arrow": true,
+            "secondary_button_text": "Explore 3",
+            "secondary_button_link": "/explore3",
+            "secondary_button_style": "outline",
+            "secondary_button_show_arrow": true
           }
         }
       },
