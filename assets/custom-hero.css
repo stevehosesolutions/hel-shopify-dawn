@@ -929,15 +929,15 @@
       rgba(
         var(--hero-overlay-rgb),
         var(--hero-overlay-medium)
-      ) 32%,
+      ) 38%,
       rgba(
         var(--hero-overlay-rgb),
         var(--hero-overlay-soft)
-      ) 62%,
+      ) 68%,
       rgba(
         var(--hero-overlay-rgb),
         0
-      ) 86%
+      ) 90%
     );
 }
 
