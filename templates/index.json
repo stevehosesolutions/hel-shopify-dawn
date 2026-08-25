@@ -12,37 +12,6 @@
     "custom_hero_ejXGqV": {
       "type": "custom-hero",
       "blocks": {
-        "slide_LaqwPU": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "01",
-            "image": "shopify://shop_images/hel-bg.jpg",
-            "mobile_image": "shopify://shop_images/hel-bg.jpg",
-            "desktop_position_x": 50,
-            "mobile_position_x": 50,
-            "desktop_content_position": "centre-left",
-            "mobile_content_position": "bottom-left",
-            "content_theme": "light",
-            "overlay_strength_percent": 85,
-            "eyebrow": "Eyebrow 1",
-            "heading_size": "large",
-            "heading_emphasis": "equal",
-            "heading_accent": "line-1",
-            "heading_line_1": "Head 1",
-            "heading_line_2": "Head 1",
-            "subheading_line_1": "Subheading 1",
-            "subheading_line_2": "Subheading 1",
-            "button_text": "Button 1",
-            "button_link": "/link",
-            "button_style": "solid",
-            "button_size": "medium",
-            "button_show_arrow": true,
-            "secondary_button_text": "Explore 1",
-            "secondary_button_link": "/explore1",
-            "secondary_button_style": "outline",
-            "secondary_button_show_arrow": true
-          }
-        },
         "slide_h8aKgT": {
           "type": "slide",
           "settings": {
@@ -70,6 +39,37 @@
             "button_show_arrow": true,
             "secondary_button_text": "Explore 2",
             "secondary_button_link": "/explore2",
+            "secondary_button_style": "outline",
+            "secondary_button_show_arrow": true
+          }
+        },
+        "slide_LaqwPU": {
+          "type": "slide",
+          "settings": {
+            "navigation_label": "01",
+            "image": "shopify://shop_images/hel-bg.jpg",
+            "mobile_image": "shopify://shop_images/hel-bg.jpg",
+            "desktop_position_x": 50,
+            "mobile_position_x": 50,
+            "desktop_content_position": "centre-left",
+            "mobile_content_position": "bottom-left",
+            "content_theme": "light",
+            "overlay_strength_percent": 85,
+            "eyebrow": "Eyebrow 1",
+            "heading_size": "large",
+            "heading_emphasis": "equal",
+            "heading_accent": "line-1",
+            "heading_line_1": "Head 1",
+            "heading_line_2": "Head 1",
+            "subheading_line_1": "Subheading 1",
+            "subheading_line_2": "Subheading 1",
+            "button_text": "Button 1",
+            "button_link": "/link",
+            "button_style": "solid",
+            "button_size": "medium",
+            "button_show_arrow": true,
+            "secondary_button_text": "Explore 1",
+            "secondary_button_link": "/explore1",
             "secondary_button_style": "outline",
             "secondary_button_show_arrow": true
           }
@@ -107,13 +107,13 @@
         }
       },
       "block_order": [
-        "slide_LaqwPU",
         "slide_h8aKgT",
+        "slide_LaqwPU",
         "slide_hqFBEq"
       ],
       "name": "Custom hero",
       "settings": {
-        "auto_rotate": false,
+        "auto_rotate": true,
         "rotation_speed": 10
       }
     },
