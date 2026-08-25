@@ -322,6 +322,7 @@
 
     {{ 'custom-base.css' | asset_url | stylesheet_tag }}
     {{ 'custom-fonts.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-theme.css' | asset_url | stylesheet_tag }}
     {{ 'custom-navigation.css' | asset_url | stylesheet_tag }}
     {{ 'custom-overlay.css' | asset_url | stylesheet_tag }}
     {{ 'custom-modal.css' | asset_url | stylesheet_tag }}
@@ -422,7 +423,7 @@
 
 
 
-
+    <script src="{{ 'custom-theme.js' | asset_url }}" defer></script>
     <script src="{{ 'custom-header.js' | asset_url }}" defer></script>
     <script src="{{ 'custom-navigation.js' | asset_url }}" defer></script>
     <script src="{{ 'custom-overlay.js' | asset_url }}" defer></script>

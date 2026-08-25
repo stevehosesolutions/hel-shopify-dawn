@@ -139,3 +139,40 @@
   padding-right:var(--page-padding);
 }
 
+
+
+
+
+/* ==========================================================================
+   Motion in
+   ========================================================================== */
+
+.motion-in{
+  opacity:0;
+  transform:translateY(24px);
+
+  transition:
+    opacity var(--transition-slower) var(--easing),
+    transform var(--transition-slower) var(--easing);
+
+  will-change:opacity, transform;
+}
+
+
+.motion-in.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+/* Reduced motion */
+
+@media(prefers-reduced-motion:reduce){
+
+  .motion-in{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+
+}
