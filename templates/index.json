@@ -15,6 +15,7 @@
         "slide_LaqwPU": {
           "type": "slide",
           "settings": {
+            "navigation_label": "Slide 01",
             "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
@@ -41,13 +42,14 @@
         "slide_h8aKgT": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/hel-hero-light.jpg",
+            "navigation_label": "Slide 02",
+            "image": "shopify://shop_images/axel-1.jpg",
             "mobile_image": "shopify://shop_images/axel-1.jpg",
             "desktop_position_x": 50,
             "mobile_position_x": 50,
             "desktop_content_position": "centre",
             "mobile_content_position": "centre",
-            "content_theme": "dark",
+            "content_theme": "light",
             "overlay_strength_percent": 100,
             "eyebrow": "Eyebrow 2",
             "heading_size": "large",
@@ -63,11 +65,39 @@
             "button_size": "medium",
             "button_show_arrow": true
           }
+        },
+        "slide_hqFBEq": {
+          "type": "slide",
+          "settings": {
+            "navigation_label": "Slide 03",
+            "image": "shopify://shop_images/hel-bg.jpg",
+            "mobile_image": "shopify://shop_images/hel-bg.jpg",
+            "desktop_position_x": 50,
+            "mobile_position_x": 50,
+            "desktop_content_position": "centre-right",
+            "mobile_content_position": "centre",
+            "content_theme": "light",
+            "overlay_strength_percent": 70,
+            "eyebrow": "Eyebrow 3",
+            "heading_size": "large",
+            "heading_emphasis": "equal",
+            "heading_accent": "line-1",
+            "heading_line_1": "Head 3",
+            "heading_line_2": "Head 3",
+            "subheading_line_1": "Subheading 3",
+            "subheading_line_2": "Subheading 3",
+            "button_text": "Button 3",
+            "button_link": "/link3",
+            "button_style": "outline",
+            "button_size": "medium",
+            "button_show_arrow": true
+          }
         }
       },
       "block_order": [
         "slide_LaqwPU",
-        "slide_h8aKgT"
+        "slide_h8aKgT",
+        "slide_hqFBEq"
       ],
       "name": "Custom hero",
       "settings": {}
