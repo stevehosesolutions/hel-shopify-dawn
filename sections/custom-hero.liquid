@@ -70,9 +70,7 @@
           custom-hero--accent-{{ block.settings.heading_accent }}
           custom-hero--heading-{{ block.settings.heading_size }}
           custom-hero--heading-{{ block.settings.heading_emphasis }}
-          custom-hero--button-{{ block.settings.button_style }}
           custom-hero--button-size-{{ block.settings.button_size }}
-          {% if block.settings.button_show_arrow %}custom-hero--button-arrow{% endif %}
           {% if forloop.first %}is-active{% endif %}
         "
         data-hero-theme="{{ block.settings.content_theme }}"
@@ -174,15 +172,49 @@
             {% endif %}
 
 
-            {% if block.settings.button_text != blank and block.settings.button_link != blank %}
-              <a
-                class="custom-hero__button"
-                href="{{ block.settings.button_link }}"
-              >
-                <span class="custom-hero__button-text">
-                  {{ block.settings.button_text }}
-                </span>
-              </a>
+            {% if
+              block.settings.button_text != blank and block.settings.button_link != blank
+              or
+              block.settings.secondary_button_text != blank and block.settings.secondary_button_link != blank
+            %}
+
+              <div class="custom-hero__buttons">
+
+                {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+                  <a
+                    class="
+                      custom-hero__button
+                      custom-hero__button--primary
+                      custom-hero__button--{{ block.settings.button_style }}
+                      {% if block.settings.button_show_arrow %}custom-hero__button--arrow{% endif %}
+                    "
+                    href="{{ block.settings.button_link }}"
+                  >
+                    <span class="custom-hero__button-text">
+                      {{ block.settings.button_text }}
+                    </span>
+                  </a>
+                {% endif %}
+
+
+                {% if block.settings.secondary_button_text != blank and block.settings.secondary_button_link != blank %}
+                  <a
+                    class="
+                      custom-hero__button
+                      custom-hero__button--secondary
+                      custom-hero__button--{{ block.settings.secondary_button_style }}
+                      {% if block.settings.secondary_button_show_arrow %}custom-hero__button--arrow{% endif %}
+                    "
+                    href="{{ block.settings.secondary_button_link }}"
+                  >
+                    <span class="custom-hero__button-text">
+                      {{ block.settings.secondary_button_text }}
+                    </span>
+                  </a>
+                {% endif %}
+
+              </div>
+
             {% endif %}
 
           </div>
