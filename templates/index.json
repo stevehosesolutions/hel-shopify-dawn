@@ -83,7 +83,7 @@
             "desktop_position_x": 50,
             "mobile_position_x": 50,
             "desktop_content_position": "top-right",
-            "mobile_content_position": "centre",
+            "mobile_content_position": "bottom-right",
             "content_theme": "light",
             "overlay_strength_percent": 75,
             "eyebrow": "Eyebrow 3",
