@@ -112,7 +112,10 @@
         "slide_hqFBEq"
       ],
       "name": "Custom hero",
-      "settings": {}
+      "settings": {
+        "auto_rotate": true,
+        "rotation_speed": 6
+      }
     },
     "image_banner": {
       "type": "image-banner",
