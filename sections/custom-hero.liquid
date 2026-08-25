@@ -27,9 +27,19 @@
                 aria-current="true"
               {% endif %}
             >
-              <span class="custom-hero__navigation-number">
+            <span class="custom-hero__navigation-label">
+
+              {% if block.settings.navigation_label != blank %}
+
+                {{ block.settings.navigation_label }}
+
+              {% else %}
+
                 {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
-              </span>
+
+              {% endif %}
+
+            </span>
             </button>
 
           {% endfor %}
@@ -193,6 +203,11 @@
       "name": "Slide",
       "limit": 5,
       "settings": [
+        {
+          "type": "text",
+          "id": "navigation_label",
+          "label": "Navigation label"
+        },
         {
           "type": "image_picker",
           "id": "image",

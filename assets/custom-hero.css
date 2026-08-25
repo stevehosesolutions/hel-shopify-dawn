@@ -29,6 +29,26 @@
       );
 
     height:min(960px, 100svh);
+
+    --hero-navigation-clearance:
+      calc(
+        var(--font-xs) +
+        var(--xxs) +
+        var(--m)
+      );
+  }
+
+   .custom-hero--desktop-bottom-left
+  .custom-hero__content,
+  .custom-hero--desktop-bottom-centre
+  .custom-hero__content,
+  .custom-hero--desktop-bottom-right
+  .custom-hero__content{
+    padding-bottom:
+      calc(
+        var(--page-padding) +
+        var(--hero-navigation-clearance)
+      );
   }
 
 }
@@ -911,6 +931,13 @@
         --mobile-nav-offset,
         var(--nav-height)
       );
+
+    --hero-navigation-clearance:
+      calc(
+        var(--font-xs) +
+        var(--xxs) +
+        var(--m)
+      );
   }
 
   .custom-hero__content{
@@ -940,6 +967,8 @@
     --hero-heading-size:
       clamp(64px, 18vw, 104px);
   }
+
+  
 
 
      /* --------------------------------------------------------------------------
@@ -1304,7 +1333,11 @@
   .custom-hero__content{
     align-items:flex-end;
 
-    padding-bottom:var(--page-padding);
+    padding-bottom:
+    calc(
+      var(--page-padding) +
+      var(--hero-navigation-clearance)
+    );
   }
 
 
@@ -1412,6 +1445,9 @@
   .custom-hero__button::after{
     transition:none;
   }
+   .custom-hero__slide{
+    transition:none;
+  }
 
 }
 
@@ -1428,21 +1464,42 @@
 }
 
 
+/* ==========================================================================
+   Hero slides
+   ========================================================================== */
+
 .custom-hero__slide{
   position:absolute;
   inset:0;
 
-  display:none;
-
   width:100%;
   height:100%;
+
+  opacity:0;
+  visibility:hidden;
+
+  pointer-events:none;
+
+  transition:
+    opacity var(--transition-slower) var(--easing),
+    visibility 0s linear var(--transition-slower);
+
+     z-index:0;
 }
 
 
 .custom-hero__slide.is-active{
-  display:block;
-}
+  opacity:1;
+  visibility:visible;
 
+  pointer-events:auto;
+
+  transition:
+    opacity var(--transition-slower) var(--easing),
+    visibility 0s linear 0s;
+
+    z-index:1;
+}
 
 
 /* ==========================================================================
@@ -1496,7 +1553,7 @@
 }
 
 
-.custom-hero__navigation-number{
+.custom-hero__navigation-label{
   font-size:var(--font-xs);
   font-weight:700;
 

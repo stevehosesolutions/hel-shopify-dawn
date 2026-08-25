@@ -63,9 +63,18 @@
 
     slides.forEach((slide, slideIndex) => {
 
+      const active =
+        slideIndex === index;
+
       slide.classList.toggle(
         "is-active",
-        slideIndex === index
+        active
+      );
+
+
+      slide.setAttribute(
+        "aria-hidden",
+        active ? "false" : "true"
       );
 
     });
