@@ -15,7 +15,7 @@
         "slide_LaqwPU": {
           "type": "slide",
           "settings": {
-            "navigation_label": "Slide 01",
+            "navigation_label": "01",
             "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
@@ -42,7 +42,7 @@
         "slide_h8aKgT": {
           "type": "slide",
           "settings": {
-            "navigation_label": "Slide 02",
+            "navigation_label": "02",
             "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
@@ -69,7 +69,7 @@
         "slide_hqFBEq": {
           "type": "slide",
           "settings": {
-            "navigation_label": "Slide 03",
+            "navigation_label": "03",
             "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
