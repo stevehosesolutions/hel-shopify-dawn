@@ -30,12 +30,11 @@
 
     height:min(960px, 100svh);
 
-    --hero-navigation-clearance:
-      calc(
-        var(--font-xs) +
-        var(--xxs) +
-        var(--m)
-      );
+   --hero-navigation-clearance:
+    calc(
+      var(--hero-navigation-height) +
+      var(--m)
+    );
   }
 
    .custom-hero--desktop-bottom-left
@@ -857,8 +856,7 @@
 
     --hero-navigation-clearance:
       calc(
-        var(--font-xs) +
-        var(--xxs) +
+        var(--hero-navigation-height) +
         var(--m)
       );
   }
@@ -1336,6 +1334,12 @@
    Hero navigation
    ========================================================================== */
 
+.custom-hero{
+  --hero-navigation-height:28px;
+  --hero-navigation-gap:var(--m);
+}
+
+
 .custom-hero__navigation{
   position:absolute;
   right:0;
@@ -1344,14 +1348,20 @@
 
   z-index:3;
 
+  height:var(--hero-navigation-height);
+
   pointer-events:none;
 }
 
 
 .custom-hero__navigation-inner{
-  display:flex;
-  align-items:center;
-  gap:var(--m);
+  position:relative;
+
+  display:inline-flex;
+  align-items:flex-start;
+  gap:var(--hero-navigation-gap);
+
+  height:100%;
 
   pointer-events:auto;
 }
@@ -1360,7 +1370,13 @@
 .custom-hero__navigation-button{
   position:relative;
 
-  padding:0 0 var(--xxs);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+
+  min-width:32px;
+
+  padding:0;
 
   border:0;
 
@@ -1368,16 +1384,23 @@
   color:var(--hero-navigation-color, #fff);
 
   font:inherit;
+
   cursor:pointer;
 
-  opacity:.55;
+  opacity:.5;
 
   transition:
     opacity var(--transition-fast) var(--easing);
+
+    text-transform:uppercase;
 }
 
 
-.custom-hero__navigation-button:hover,
+.custom-hero__navigation-button:hover{
+  opacity:.8;
+}
+
+
 .custom-hero__navigation-button.is-active{
   opacity:1;
 }
@@ -1385,7 +1408,25 @@
 
 .custom-hero__navigation-label{
   font-size:var(--font-xs);
+  line-height:1;
   font-weight:700;
 
   letter-spacing:.08em;
+}
+
+
+.custom-hero__navigation-indicator{
+  position:absolute;
+  bottom:0;
+  left:0;
+
+  height:2px;
+
+  background:var(--hel-red);
+
+  pointer-events:none;
+
+  transition:
+    transform var(--transition-slow) var(--easing),
+    width var(--transition-slow) var(--easing);
 }

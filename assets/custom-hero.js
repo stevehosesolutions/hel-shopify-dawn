@@ -104,8 +104,56 @@
 
     });
 
-
+    updateNavigationIndicator(hero);
     updateHeaderHeroTheme(hero);
+
+  }
+
+
+  function updateNavigationIndicator(hero) {
+
+    const navigation =
+      hero.querySelector(
+        ".custom-hero__navigation-inner"
+      );
+
+    const activeButton =
+      hero.querySelector(
+        ".custom-hero__navigation-button.is-active"
+      );
+
+    const indicator =
+      hero.querySelector(
+        ".custom-hero__navigation-indicator"
+      );
+
+
+    if (
+      !navigation ||
+      !activeButton ||
+      !indicator
+    ) {
+      return;
+    }
+
+
+    const navigationRect =
+      navigation.getBoundingClientRect();
+
+    const buttonRect =
+      activeButton.getBoundingClientRect();
+
+
+    const x =
+      buttonRect.left -
+      navigationRect.left;
+
+
+    indicator.style.width =
+      `${buttonRect.width}px`;
+
+    indicator.style.transform =
+      `translateX(${x}px)`;
 
   }
 
@@ -156,9 +204,20 @@
 
 
     updateHeaderHeroTheme(hero);
+    updateNavigationIndicator(hero);
 
   }
 
+
+  function updateAllNavigationIndicators() {
+
+    document
+      .querySelectorAll(".custom-hero")
+      .forEach(hero => {
+        updateNavigationIndicator(hero);
+      });
+
+  }
 
   function initCustomHeroes(scope = document) {
 
@@ -191,5 +250,29 @@
       initCustomHeroes(event.target);
     }
   );
+
+  let heroResizeRaf = null;
+
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      if (heroResizeRaf) {
+        return;
+      }
+
+      heroResizeRaf =
+        requestAnimationFrame(() => {
+
+          heroResizeRaf = null;
+
+          updateAllNavigationIndicators();
+
+        });
+
+    }
+  );
+
 
 })();
