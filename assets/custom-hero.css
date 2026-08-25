@@ -1,63 +1,25 @@
-/* ==========================================================================
-   Custom hero
-   ========================================================================== */
+/* ========================================================================== */
+/*   Custom hero                                                              */
+/* ========================================================================== */
 
 .custom-hero{
   --hero-content-top-offset:0px;
+  --hero-navigation-height:24px;
+  --hero-navigation-gap:var(--m);
+  --hero-navigation-clearance:calc(var(--hero-navigation-height) + var(--m));
 
   position:relative;
   width:100%;
   height:100vh;
   height:100svh;
-
   overflow:hidden;
-
   background:#111;
   color:var(--hero-text-color);
 }
 
-
-@media(min-width:1200px){
-
-  .custom-hero{
-    --hero-content-top-offset:
-      calc(
-        var(--header-utility-height) +
-        var(--header-main-height) +
-        var(--nav-height)
-      );
-
-    height:min(960px, 100svh);
-
-   --hero-navigation-clearance:
-    calc(
-      var(--hero-navigation-height) +
-      var(--m)
-    );
-  }
-
-   .custom-hero--desktop-bottom-left
-  .custom-hero__content,
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__content,
-  .custom-hero--desktop-bottom-right
-  .custom-hero__content{
-    padding-bottom:
-      calc(
-        var(--page-padding) +
-        var(--hero-navigation-clearance)
-      );
-  }
-
-}
-
-
-
-
-
-/* ==========================================================================
-   Content themes
-   ========================================================================== */
+/* ========================================================================== */
+/*   Content themes                                                           */
+/* ========================================================================== */
 
 .custom-hero--theme-light{
   --hero-text-color:#fff;
@@ -65,1524 +27,826 @@
   --hero-button-contrast-color:#111;
 }
 
-
 .custom-hero--theme-dark{
   --hero-text-color:#111;
   --hero-overlay-rgb:255,255,255;
   --hero-button-contrast-color:#fff;
 }
 
-/* ==========================================================================
-   Media
-   ========================================================================== */
+/* ========================================================================== */
+/*   Hero slides                                                              */
+/* ========================================================================== */
 
-.custom-hero__media{
+.custom-hero__slides{
   position:absolute;
   inset:0;
-
   width:100%;
   height:100%;
 }
 
+.custom-hero__slide{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:
+    opacity var(--transition-slower) var(--easing),
+    visibility 0s linear var(--transition-slower);
+}
 
-/*
- * Desktop overlay
- *
- * Protects the left-hand content area while allowing
- * the product photography to retain contrast on the right.
- */
+.custom-hero__slide.is-active{
+  z-index:1;
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transition:
+    opacity var(--transition-slower) var(--easing),
+    visibility 0s linear 0s;
+}
+
+/* ========================================================================== */
+/*   Media                                                                    */
+/* ========================================================================== */
+
+.custom-hero__media{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
 .custom-hero__media::after{
   content:"";
-
   position:absolute;
   inset:0;
   z-index:1;
-
   pointer-events:none;
 }
 
-/* ==========================================================================
-   Desktop overlays
-   ========================================================================== */
+.custom-hero__media picture{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.custom-hero__image{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:var(--hero-position-x) center;
+}
+
+/* ========================================================================== */
+/*   Desktop overlays                                                         */
+/* ========================================================================== */
 
 @media(min-width:1200px){
-
-  /*
-   * Standard directional profile.
-   */
 
   .custom-hero--desktop-centre-left{
     --hero-overlay-angle:90deg;
   }
 
-
   .custom-hero--desktop-centre-right{
     --hero-overlay-angle:270deg;
   }
-
 
   .custom-hero--desktop-bottom-centre{
     --hero-overlay-angle:0deg;
   }
 
-
-  .custom-hero--desktop-centre-left
-  .custom-hero__media::after,
-  .custom-hero--desktop-centre-right
-  .custom-hero__media::after,
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        var(--hero-overlay-angle),
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 38%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 68%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 90%
-      );
+  .custom-hero--desktop-centre-left .custom-hero__media::after,
+  .custom-hero--desktop-centre-right .custom-hero__media::after,
+  .custom-hero--desktop-bottom-centre .custom-hero__media::after{
+    background:linear-gradient(
+      var(--hero-overlay-angle),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 38%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 68%,
+      rgba(var(--hero-overlay-rgb),0) 90%
+    );
   }
 
-
-  /*
-   * Top centre.
-   *
-   * Hold the strongest part of the gradient through the
-   * overlaid header so the visible content area receives
-   * the same protection as the other positions.
-   */
-
-  .custom-hero--desktop-top-centre
-  .custom-hero__media::after{
-    background:
-      linear-gradient(
-        180deg,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) var(--hero-content-top-offset),
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) calc(
-          var(--hero-content-top-offset) + 30%
-        ),
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) calc(
-          var(--hero-content-top-offset) + 58%
-        ),
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) calc(
-          var(--hero-content-top-offset) + 82%
-        )
-      );
+  .custom-hero--desktop-top-centre .custom-hero__media::after{
+    background:linear-gradient(
+      180deg,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) var(--hero-content-top-offset),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) calc(var(--hero-content-top-offset) + 30%),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) calc(var(--hero-content-top-offset) + 58%),
+      rgba(var(--hero-overlay-rgb),0) calc(var(--hero-content-top-offset) + 82%)
+    );
   }
 
-
-  /*
-   * Centre.
-   */
-
-  .custom-hero--desktop-centre
-  .custom-hero__media::after{
-    background:
-      radial-gradient(
-        ellipse at center,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 48%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 78%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 96%
-      );
+  .custom-hero--desktop-centre .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at center,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 48%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 78%,
+      rgba(var(--hero-overlay-rgb),0) 96%
+    );
   }
 
-
-  /*
-   * Corners.
-   *
-   * Use one radial gradient rather than stacking two
-   * gradients. This avoids making corners artificially
-   * darker than the straight positions.
-   */
-
-  .custom-hero--desktop-top-left
-  .custom-hero__media::after{
-    background:
-      radial-gradient(
-        ellipse at left var(--hero-content-top-offset),
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 48%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 78%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 100%
-      );
+  .custom-hero--desktop-top-left .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at left var(--hero-content-top-offset),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 48%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 78%,
+      rgba(var(--hero-overlay-rgb),0) 100%
+    );
   }
 
-
-  .custom-hero--desktop-top-right
-  .custom-hero__media::after{
-    background:
-      radial-gradient(
-        ellipse at right var(--hero-content-top-offset),
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 48%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 78%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 100%
-      );
+  .custom-hero--desktop-top-right .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at right var(--hero-content-top-offset),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 48%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 78%,
+      rgba(var(--hero-overlay-rgb),0) 100%
+    );
   }
 
-
-  .custom-hero--desktop-bottom-left
-  .custom-hero__media::after{
-    background:
-      radial-gradient(
-        ellipse at left bottom,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 48%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 78%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 100%
-      );
+  .custom-hero--desktop-bottom-left .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at left bottom,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 48%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 78%,
+      rgba(var(--hero-overlay-rgb),0) 100%
+    );
   }
 
-
-  .custom-hero--desktop-bottom-right
-  .custom-hero__media::after{
-    background:
-      radial-gradient(
-        ellipse at right bottom,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-strong)
-        ) 0%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-medium)
-        ) 48%,
-        rgba(
-          var(--hero-overlay-rgb),
-          var(--hero-overlay-soft)
-        ) 78%,
-        rgba(
-          var(--hero-overlay-rgb),
-          0
-        ) 100%
-      );
+  .custom-hero--desktop-bottom-right .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at right bottom,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 48%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 78%,
+      rgba(var(--hero-overlay-rgb),0) 100%
+    );
   }
-
 }
 
-
-.custom-hero__media picture{
-  display:block;
-
-  width:100%;
-  height:100%;
-}
-
-
-.custom-hero__image{
-  display:block;
-
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-  object-position:
-    var(--hero-position-x)
-    center;
-}
-
-
-/* ==========================================================================
-   Hero content
-   ========================================================================== */
+/* ========================================================================== */
+/*   Hero content                                                             */
+/* ========================================================================== */
 
 .custom-hero__content{
   position:relative;
   z-index:2;
-
   display:flex;
-
   width:100%;
   height:100%;
 }
-
 
 .custom-hero__content-inner{
   width:100%;
   max-width:1200px;
 }
 
-
-/* ==========================================================================
-   Desktop content positions
-   ========================================================================== */
+/* ========================================================================== */
+/*   Desktop content layout                                                   */
+/* ========================================================================== */
 
 @media(min-width:1200px){
 
-
-    .custom-hero__content{
-    height:
-      calc(
-        100% -
-        var(--hero-content-top-offset)
-      );
-
-    margin-top:
-      var(--hero-content-top-offset);
+  .custom-hero{
+    --hero-content-top-offset:calc(
+      var(--header-utility-height) +
+      var(--header-main-height) +
+      var(--nav-height)
+    );
+    height:min(960px,100svh);
   }
-  /* --------------------------------------------------------------------------
-     Vertical — top
-     -------------------------------------------------------------------------- */
 
-  .custom-hero--desktop-top-left
-  .custom-hero__content,
-  .custom-hero--desktop-top-centre
-  .custom-hero__content,
-  .custom-hero--desktop-top-right
   .custom-hero__content{
+    height:calc(100% - var(--hero-content-top-offset));
+    margin-top:var(--hero-content-top-offset);
+  }
+
+  .custom-hero--desktop-top-left .custom-hero__content,
+  .custom-hero--desktop-top-centre .custom-hero__content,
+  .custom-hero--desktop-top-right .custom-hero__content{
     align-items:flex-start;
-
-    padding-top: var(--page-padding);
+    padding-top:var(--page-padding);
   }
 
-
-/* --------------------------------------------------------------------------
-   Vertical — centre
-   -------------------------------------------------------------------------- */
-
-  .custom-hero--desktop-centre-left
-  .custom-hero__content,
-  .custom-hero--desktop-centre
-  .custom-hero__content,
-  .custom-hero--desktop-centre-right
-  .custom-hero__content{
+  .custom-hero--desktop-centre-left .custom-hero__content,
+  .custom-hero--desktop-centre .custom-hero__content,
+  .custom-hero--desktop-centre-right .custom-hero__content{
     align-items:center;
-
-  
   }
 
-
-  /* --------------------------------------------------------------------------
-     Vertical — bottom
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--desktop-bottom-left
-  .custom-hero__content,
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__content,
-  .custom-hero--desktop-bottom-right
-  .custom-hero__content{
+  .custom-hero--desktop-bottom-left .custom-hero__content,
+  .custom-hero--desktop-bottom-centre .custom-hero__content,
+  .custom-hero--desktop-bottom-right .custom-hero__content{
     align-items:flex-end;
-
-    padding-bottom: var(--page-padding);
+    padding-bottom:calc(var(--page-padding) + var(--hero-navigation-clearance));
   }
 
-
-  /* --------------------------------------------------------------------------
-     Horizontal — left
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--desktop-top-left
-  .custom-hero__content-inner,
-  .custom-hero--desktop-centre-left
-  .custom-hero__content-inner,
-  .custom-hero--desktop-bottom-left
-  .custom-hero__content-inner{
+  .custom-hero--desktop-top-left .custom-hero__content-inner,
+  .custom-hero--desktop-centre-left .custom-hero__content-inner,
+  .custom-hero--desktop-bottom-left .custom-hero__content-inner{
     margin-right:auto;
-
     text-align:left;
   }
 
-
-  /* --------------------------------------------------------------------------
-     Horizontal — centre
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--desktop-top-centre
-  .custom-hero__content-inner,
-  .custom-hero--desktop-centre
-  .custom-hero__content-inner,
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__content-inner{
+  .custom-hero--desktop-top-centre .custom-hero__content-inner,
+  .custom-hero--desktop-centre .custom-hero__content-inner,
+  .custom-hero--desktop-bottom-centre .custom-hero__content-inner{
     margin-right:auto;
     margin-left:auto;
-
     text-align:center;
   }
 
-
-  /* --------------------------------------------------------------------------
-     Horizontal — right
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--desktop-top-right
-  .custom-hero__content-inner,
-  .custom-hero--desktop-centre-right
-  .custom-hero__content-inner,
-  .custom-hero--desktop-bottom-right
-  .custom-hero__content-inner{
+  .custom-hero--desktop-top-right .custom-hero__content-inner,
+  .custom-hero--desktop-centre-right .custom-hero__content-inner,
+  .custom-hero--desktop-bottom-right .custom-hero__content-inner{
     margin-left:auto;
-
     text-align:right;
   }
 
-
-  /* --------------------------------------------------------------------------
-     Constrained subheading alignment
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--desktop-top-centre
-  .custom-hero__subheading,
-  .custom-hero--desktop-centre
-  .custom-hero__subheading,
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__subheading{
+  .custom-hero--desktop-top-centre .custom-hero__subheading,
+  .custom-hero--desktop-centre .custom-hero__subheading,
+  .custom-hero--desktop-bottom-centre .custom-hero__subheading{
     margin-right:auto;
     margin-left:auto;
   }
 
-
-  .custom-hero--desktop-top-right
-  .custom-hero__subheading,
-  .custom-hero--desktop-centre-right
-  .custom-hero__subheading,
-  .custom-hero--desktop-bottom-right
-  .custom-hero__subheading{
+  .custom-hero--desktop-top-right .custom-hero__subheading,
+  .custom-hero--desktop-centre-right .custom-hero__subheading,
+  .custom-hero--desktop-bottom-right .custom-hero__subheading{
     margin-left:auto;
   }
 
+  .custom-hero--desktop-top-left .custom-hero__buttons,
+  .custom-hero--desktop-centre-left .custom-hero__buttons,
+  .custom-hero--desktop-bottom-left .custom-hero__buttons{
+    justify-content:flex-start;
+  }
+
+  .custom-hero--desktop-top-centre .custom-hero__buttons,
+  .custom-hero--desktop-centre .custom-hero__buttons,
+  .custom-hero--desktop-bottom-centre .custom-hero__buttons{
+    justify-content:center;
+  }
+
+  .custom-hero--desktop-top-right .custom-hero__buttons,
+  .custom-hero--desktop-centre-right .custom-hero__buttons,
+  .custom-hero--desktop-bottom-right .custom-hero__buttons{
+    justify-content:flex-end;
+  }
 }
 
-
-/* ==========================================================================
-   Eyebrow
-   ========================================================================== */
+/* ========================================================================== */
+/*   Eyebrow                                                                  */
+/* ========================================================================== */
 
 .custom-hero__eyebrow{
   display:inline-flex;
   align-items:center;
   gap:var(--xs);
-
   margin-bottom:var(--s);
-
+  color:var(--hero-text-color);
   font-size:var(--font-xs);
   line-height:1.2;
   font-weight:600;
-
   letter-spacing:.08em;
   text-transform:uppercase;
-
-  color:var(--hero-text-color);
 }
-
-
-/* --------------------------------------------------------------------------
-   Default accent — left
-   -------------------------------------------------------------------------- */
 
 .custom-hero__eyebrow::before{
   content:"";
-
   display:block;
-
   width:2px;
   height:1.8em;
-
   flex:0 0 2px;
-
   background:var(--hel-red);
 }
 
-
-/* ==========================================================================
-   Desktop eyebrow accents
-   ========================================================================== */
-
 @media(min-width:1200px){
 
-  /*
-   * Centre — horizontal accent on left
-   */
-
-  .custom-hero--desktop-top-centre
-  .custom-hero__eyebrow::before,
-  .custom-hero--desktop-centre
-  .custom-hero__eyebrow::before,
-  .custom-hero--desktop-bottom-centre
-  .custom-hero__eyebrow::before{
+  .custom-hero--desktop-top-centre .custom-hero__eyebrow::before,
+  .custom-hero--desktop-centre .custom-hero__eyebrow::before,
+  .custom-hero--desktop-bottom-centre .custom-hero__eyebrow::before{
     width:24px;
     height:2px;
-
     flex:0 0 24px;
   }
 
-
-  /*
-   * Right — remove left accent
-   */
-
-  .custom-hero--desktop-top-right
-  .custom-hero__eyebrow::before,
-  .custom-hero--desktop-centre-right
-  .custom-hero__eyebrow::before,
-  .custom-hero--desktop-bottom-right
-  .custom-hero__eyebrow::before{
+  .custom-hero--desktop-top-right .custom-hero__eyebrow::before,
+  .custom-hero--desktop-centre-right .custom-hero__eyebrow::before,
+  .custom-hero--desktop-bottom-right .custom-hero__eyebrow::before{
     display:none;
   }
 
-
-  /*
-   * Right — vertical accent on right
-   */
-
-  .custom-hero--desktop-top-right
-  .custom-hero__eyebrow::after,
-  .custom-hero--desktop-centre-right
-  .custom-hero__eyebrow::after,
-  .custom-hero--desktop-bottom-right
-  .custom-hero__eyebrow::after{
+  .custom-hero--desktop-top-right .custom-hero__eyebrow::after,
+  .custom-hero--desktop-centre-right .custom-hero__eyebrow::after,
+  .custom-hero--desktop-bottom-right .custom-hero__eyebrow::after{
     content:"";
-
     display:block;
-
     width:2px;
     height:1.8em;
-
     flex:0 0 2px;
-
     background:var(--hel-red);
   }
-
 }
 
-
-/* ==========================================================================
-   Mobile / tablet eyebrow accents
-   ========================================================================== */
-
 @media(max-width:1199px){
-
-  /*
-   * Always reset the right-hand accent first.
-   */
 
   .custom-hero__eyebrow::after{
     content:none;
     display:none;
   }
 
-
-  /*
-   * Left — vertical accent on left
-   */
-
-  .custom-hero--mobile-top-left
-  .custom-hero__eyebrow::before,
-  .custom-hero--mobile-centre-left
-  .custom-hero__eyebrow::before,
-  .custom-hero--mobile-bottom-left
-  .custom-hero__eyebrow::before{
+  .custom-hero--mobile-top-left .custom-hero__eyebrow::before,
+  .custom-hero--mobile-centre-left .custom-hero__eyebrow::before,
+  .custom-hero--mobile-bottom-left .custom-hero__eyebrow::before{
     display:block;
-
     width:2px;
     height:1.8em;
-
     flex:0 0 2px;
   }
 
-
-  /*
-   * Centre — horizontal accent on left
-   */
-
-  .custom-hero--mobile-top-centre
-  .custom-hero__eyebrow::before,
-  .custom-hero--mobile-centre
-  .custom-hero__eyebrow::before,
-  .custom-hero--mobile-bottom-centre
-  .custom-hero__eyebrow::before{
+  .custom-hero--mobile-top-centre .custom-hero__eyebrow::before,
+  .custom-hero--mobile-centre .custom-hero__eyebrow::before,
+  .custom-hero--mobile-bottom-centre .custom-hero__eyebrow::before{
     display:block;
-
     width:24px;
     height:2px;
-
     flex:0 0 24px;
   }
 
-
-  /*
-   * Right — remove left accent
-   */
-
-  .custom-hero--mobile-top-right
-  .custom-hero__eyebrow::before,
-  .custom-hero--mobile-centre-right
-  .custom-hero__eyebrow::before,
-  .custom-hero--mobile-bottom-right
-  .custom-hero__eyebrow::before{
+  .custom-hero--mobile-top-right .custom-hero__eyebrow::before,
+  .custom-hero--mobile-centre-right .custom-hero__eyebrow::before,
+  .custom-hero--mobile-bottom-right .custom-hero__eyebrow::before{
     display:none;
   }
 
-
-  /*
-   * Right — vertical accent on right
-   */
-
-  .custom-hero--mobile-top-right
-  .custom-hero__eyebrow::after,
-  .custom-hero--mobile-centre-right
-  .custom-hero__eyebrow::after,
-  .custom-hero--mobile-bottom-right
-  .custom-hero__eyebrow::after{
+  .custom-hero--mobile-top-right .custom-hero__eyebrow::after,
+  .custom-hero--mobile-centre-right .custom-hero__eyebrow::after,
+  .custom-hero--mobile-bottom-right .custom-hero__eyebrow::after{
     content:"";
-
     display:block;
-
     width:2px;
     height:1.8em;
-
     flex:0 0 2px;
-
     background:var(--hel-red);
   }
-
 }
 
-/* ==========================================================================
-   Heading sizes
-   ========================================================================== */
+/* ========================================================================== */
+/*   Heading                                                                  */
+/* ========================================================================== */
 
 .custom-hero--heading-small{
-  --hero-heading-size:
-    clamp(64px, 7vw, 120px);
+  --hero-heading-size:clamp(64px,7vw,120px);
 }
-
 
 .custom-hero--heading-medium{
-  --hero-heading-size:
-    clamp(72px, 8.5vw, 144px);
+  --hero-heading-size:clamp(72px,8.5vw,144px);
 }
-
 
 .custom-hero--heading-large{
-  --hero-heading-size:
-    clamp(80px, 10vw, 168px);
+  --hero-heading-size:clamp(80px,10vw,168px);
 }
-
-
-/* ==========================================================================
-   Heading
-   ========================================================================== */
 
 .custom-hero__heading{
   margin:0;
-
+  color:var(--hero-text-color);
   font-family:var(--font-barlow-condensed-italic);
   font-size:var(--hero-heading-size);
   line-height:.78;
   font-weight:800;
   font-style:italic;
-
   letter-spacing:-.05em;
   text-transform:uppercase;
-
-  color:var(--hero-text-color);
 }
-
 
 .custom-hero__heading-line{
   display:block;
 }
 
-
-.custom-hero--accent-line-1
-.custom-hero__heading-line:first-of-type{
+.custom-hero--accent-line-1 .custom-hero__heading-line:first-of-type{
   color:var(--hel-red);
 }
 
-
-.custom-hero--accent-line-2
-.custom-hero__heading-line:last-of-type{
+.custom-hero--accent-line-2 .custom-hero__heading-line:last-of-type{
   color:var(--hel-red);
 }
 
-/* ==========================================================================
-   Heading emphasis
-   ========================================================================== */
-
-.custom-hero--heading-top
-.custom-hero__heading-line:nth-child(2){
+.custom-hero--heading-top .custom-hero__heading-line:nth-child(2){
   font-size:.72em;
 }
 
-
-.custom-hero--heading-bottom
-.custom-hero__heading-line:nth-child(1){
+.custom-hero--heading-bottom .custom-hero__heading-line:nth-child(1){
   font-size:.72em;
 }
 
-
-/* ==========================================================================
-   Subheading
-   ========================================================================== */
+/* ========================================================================== */
+/*   Subheading                                                               */
+/* ========================================================================== */
 
 .custom-hero__subheading{
   max-width:680px;
-
   margin-top:var(--m);
-
+  color:var(--hero-text-color);
   font-size:var(--font-m);
   line-height:1.45;
   font-weight:500;
-
   letter-spacing:.14em;
   text-transform:uppercase;
-
-  color:var(--hero-text-color);
 }
-
-@media(max-width:1199px){
-
-  .custom-hero__subheading{
-    max-width:560px;
-
-    margin-top:var(--s);
-
-    font-size:var(--font-s);
-    line-height:1.5;
-
-    letter-spacing:.10em;
-  }
-
-}
-
 
 .custom-hero__subheading-line{
   display:block;
 }
 
-
 .custom-hero__subheading-line + .custom-hero__subheading-line{
   margin-top:var(--xxxs);
 }
 
+/* ========================================================================== */
+/*   Button group                                                             */
+/* ========================================================================== */
 
+.custom-hero__buttons{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--s);
+  width:100%;
+  margin-top:var(--l);
+}
 
-
-/* ==========================================================================
-   Button
-   ========================================================================== */
+/* ========================================================================== */
+/*   Button                                                                   */
+/* ========================================================================== */
 
 .custom-hero__button{
   display:inline-flex;
   align-items:center;
   gap:var(--xs);
-
-  margin-top:var(--l);
-
   color:var(--hero-text-color);
-
   font-weight:700;
   text-decoration:none;
-
   transition:
     background-color var(--transition-fast) var(--easing),
     border-color var(--transition-fast) var(--easing),
     color var(--transition-fast) var(--easing);
 }
 
-
-/* ==========================================================================
-   Button arrow
-   ========================================================================== */
-
-.custom-hero--button-arrow
-.custom-hero__button::after{
+.custom-hero__button--arrow::after{
   content:"→";
-
   display:block;
-
   color:var(--hel-red);
-
   line-height:1;
-
   transform:translateY(0);
-
-  transition:
-    transform
-    var(--transition-fast)
-    var(--easing);
+  transition:transform var(--transition-fast) var(--easing);
 }
 
-
-.custom-hero--button-arrow
-.custom-hero__button:hover::after{
-  transform:translate(4px, 0);
+.custom-hero__button--arrow:hover::after{
+  transform:translate(4px,0);
 }
 
-
-/* ==========================================================================
-   Button styles
-   ========================================================================== */
-
-/* Text */
-
-.custom-hero--button-text
-.custom-hero__button{
+.custom-hero__button--text{
   padding:0;
-
   border:0;
   background:none;
 }
 
-
-/* Solid */
-
-.custom-hero--button-solid
-.custom-hero__button{
+.custom-hero__button--solid{
   border:1px solid var(--hero-text-color);
-
-  background:var(--hero-text-color);
-}
-
-
-.custom-hero--theme-light.custom-hero--button-solid
-.custom-hero__button,
-.custom-hero--theme-dark.custom-hero--button-solid
-.custom-hero__button{
-  color:var(--hero-button-contrast-color);
-}
-
-
-.custom-hero--button-solid
-.custom-hero__button:hover{
-  background:transparent;
-  color:var(--hero-text-color);
-}
-
-
-/* Outline */
-
-.custom-hero--button-outline
-.custom-hero__button{
-  border:1px solid var(--hero-text-color);
-
-  background:transparent;
-  color:var(--hero-text-color);
-}
-
-
-.custom-hero--button-outline
-.custom-hero__button:hover{
   background:var(--hero-text-color);
   color:var(--hero-button-contrast-color);
 }
 
+.custom-hero__button--solid:hover{
+  background:transparent;
+  color:var(--hero-text-color);
+}
 
-/* ==========================================================================
-   Button sizes
-   ========================================================================== */
+.custom-hero__button--outline{
+  border:1px solid var(--hero-text-color);
+  background:transparent;
+  color:var(--hero-text-color);
+}
 
-/* Small */
+.custom-hero__button--outline:hover{
+  background:var(--hero-text-color);
+  color:var(--hero-button-contrast-color);
+}
 
-.custom-hero--button-size-small
-.custom-hero__button{
+.custom-hero--button-size-small .custom-hero__button{
   font-size:var(--font-s);
 }
 
-
-.custom-hero--button-size-small.custom-hero--button-solid
-.custom-hero__button,
-.custom-hero--button-size-small.custom-hero--button-outline
-.custom-hero__button{
+.custom-hero--button-size-small .custom-hero__button--solid,
+.custom-hero--button-size-small .custom-hero__button--outline{
   padding:var(--xxs) var(--xs);
 }
 
-
-/* Medium */
-
-.custom-hero--button-size-medium
-.custom-hero__button{
+.custom-hero--button-size-medium .custom-hero__button{
   font-size:var(--font-m);
 }
 
-
-.custom-hero--button-size-medium.custom-hero--button-solid
-.custom-hero__button,
-.custom-hero--button-size-medium.custom-hero--button-outline
-.custom-hero__button{
+.custom-hero--button-size-medium .custom-hero__button--solid,
+.custom-hero--button-size-medium .custom-hero__button--outline{
   padding:var(--xs) var(--s);
 }
 
-
-/* Large */
-
-.custom-hero--button-size-large
-.custom-hero__button{
+.custom-hero--button-size-large .custom-hero__button{
   font-size:var(--font-l);
 }
 
-
-.custom-hero--button-size-large.custom-hero--button-solid
-.custom-hero__button,
-.custom-hero--button-size-large.custom-hero--button-outline
-.custom-hero__button{
+.custom-hero--button-size-large .custom-hero__button--solid,
+.custom-hero--button-size-large .custom-hero__button--outline{
   padding:var(--s) var(--m);
 }
 
-
-/* ==========================================================================
-   Mobile / Tablet
-   ========================================================================== */
+/* ========================================================================== */
+/*   Mobile / tablet                                                          */
+/* ========================================================================== */
 
 @media(max-width:1199px){
 
   .custom-hero{
-    --hero-content-top-offset:
-      var(
-        --mobile-nav-offset,
-        var(--nav-height)
-      );
-
-    --hero-navigation-clearance:
-      calc(
-        var(--hero-navigation-height) +
-        var(--m)
-      );
+    --hero-content-top-offset:var(--mobile-nav-offset,var(--nav-height));
   }
 
   .custom-hero__content{
-    height:
-      calc(
-        100% -
-        var(--hero-content-top-offset)
-      );
+    height:calc(100% - var(--hero-content-top-offset));
+    margin-top:var(--hero-content-top-offset);
+  }
 
-    margin-top:
-      var(--hero-content-top-offset);
+  .custom-hero__image{
+    object-position:var(--hero-mobile-position-x) center;
   }
 
   .custom-hero--heading-small{
-    --hero-heading-size:
-      clamp(48px, 12vw, 72px);
+    --hero-heading-size:clamp(48px,12vw,72px);
   }
-
 
   .custom-hero--heading-medium{
-    --hero-heading-size:
-      clamp(56px, 15vw, 88px);
+    --hero-heading-size:clamp(56px,15vw,88px);
   }
-
 
   .custom-hero--heading-large{
-    --hero-heading-size:
-      clamp(64px, 18vw, 104px);
+    --hero-heading-size:clamp(64px,18vw,104px);
   }
 
-  
+  .custom-hero--mobile-centre-left{
+    --hero-overlay-angle:90deg;
+  }
 
+  .custom-hero--mobile-centre-right{
+    --hero-overlay-angle:270deg;
+  }
 
-   /* --------------------------------------------------------------------------
-   Mobile overlays — straight directions
-   -------------------------------------------------------------------------- */
+  .custom-hero--mobile-bottom-centre{
+    --hero-overlay-angle:0deg;
+  }
 
-.custom-hero--mobile-centre-left{
-  --hero-overlay-angle:90deg;
-}
-
-
-.custom-hero--mobile-centre-right{
-  --hero-overlay-angle:270deg;
-}
-
-
-.custom-hero--mobile-bottom-centre{
-  --hero-overlay-angle:0deg;
-}
-
-
-.custom-hero--mobile-centre-left
-.custom-hero__media::after,
-.custom-hero--mobile-centre-right
-.custom-hero__media::after,
-.custom-hero--mobile-bottom-centre
-.custom-hero__media::after{
-  background:
-    linear-gradient(
+  .custom-hero--mobile-centre-left .custom-hero__media::after,
+  .custom-hero--mobile-centre-right .custom-hero__media::after,
+  .custom-hero--mobile-bottom-centre .custom-hero__media::after{
+    background:linear-gradient(
       var(--hero-overlay-angle),
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) 0%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-medium)
-      ) 38%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-soft)
-      ) 68%,
-      rgba(
-        var(--hero-overlay-rgb),
-        0
-      ) 90%
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 38%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 68%,
+      rgba(var(--hero-overlay-rgb),0) 90%
     );
-}
-
-
-/* --------------------------------------------------------------------------
-   Mobile overlay — top
-   -------------------------------------------------------------------------- */
-
-.custom-hero--mobile-top-centre
-.custom-hero__media::after{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) 0,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) var(--hero-content-top-offset),
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-medium)
-      ) calc(
-        var(--hero-content-top-offset) + 24%
-      ),
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-soft)
-      ) calc(
-        var(--hero-content-top-offset) + 48%
-      ),
-      rgba(
-        var(--hero-overlay-rgb),
-        0
-      ) calc(
-        var(--hero-content-top-offset) + 68%
-      )
-    );
-}
-
-
-/* --------------------------------------------------------------------------
-   Mobile overlay — centre
-   -------------------------------------------------------------------------- */
-
-.custom-hero--mobile-centre
-.custom-hero__media::after{
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) 0%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-medium)
-      ) 40%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-soft)
-      ) 72%,
-      rgba(
-        var(--hero-overlay-rgb),
-        0
-      ) 90%
-    );
-}
-
-
-/* --------------------------------------------------------------------------
-   Mobile overlays — corners
-   -------------------------------------------------------------------------- */
-
-.custom-hero--mobile-top-left
-.custom-hero__media::after{
-  background:
-    radial-gradient(
-      ellipse at left var(--hero-content-top-offset),
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) 0%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-medium)
-      ) 40%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-soft)
-      ) 72%,
-      rgba(
-        var(--hero-overlay-rgb),
-        0
-      ) 92%
-    );
-}
-
-
-.custom-hero--mobile-top-right
-.custom-hero__media::after{
-  background:
-    radial-gradient(
-      ellipse at right var(--hero-content-top-offset),
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) 0%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-medium)
-      ) 40%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-soft)
-      ) 72%,
-      rgba(
-        var(--hero-overlay-rgb),
-        0
-      ) 92%
-    );
-}
-
-
-.custom-hero--mobile-bottom-left
-.custom-hero__media::after{
-  background:
-    radial-gradient(
-      ellipse at left bottom,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) 0%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-medium)
-      ) 40%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-soft)
-      ) 72%,
-      rgba(
-        var(--hero-overlay-rgb),
-        0
-      ) 92%
-    );
-}
-
-
-.custom-hero--mobile-bottom-right
-.custom-hero__media::after{
-  background:
-    radial-gradient(
-      ellipse at right bottom,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-strong)
-      ) 0%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-medium)
-      ) 40%,
-      rgba(
-        var(--hero-overlay-rgb),
-        var(--hero-overlay-soft)
-      ) 72%,
-      rgba(
-        var(--hero-overlay-rgb),
-        0
-      ) 92%
-    );
-}
-
-
-  .custom-hero__image{
-    object-position:
-      var(--hero-mobile-position-x)
-      center;
   }
 
+  .custom-hero--mobile-top-centre .custom-hero__media::after{
+    background:linear-gradient(
+      180deg,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) var(--hero-content-top-offset),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) calc(var(--hero-content-top-offset) + 24%),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) calc(var(--hero-content-top-offset) + 48%),
+      rgba(var(--hero-overlay-rgb),0) calc(var(--hero-content-top-offset) + 68%)
+    );
+  }
 
-  /* --------------------------------------------------------------------------
-     Vertical — top
-     -------------------------------------------------------------------------- */
+  .custom-hero--mobile-centre .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at center,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 40%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 72%,
+      rgba(var(--hero-overlay-rgb),0) 90%
+    );
+  }
 
-  .custom-hero--mobile-top-left
-  .custom-hero__content,
-  .custom-hero--mobile-top-centre
-  .custom-hero__content,
-  .custom-hero--mobile-top-right
-  .custom-hero__content{
+  .custom-hero--mobile-top-left .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at left var(--hero-content-top-offset),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 40%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 72%,
+      rgba(var(--hero-overlay-rgb),0) 92%
+    );
+  }
+
+  .custom-hero--mobile-top-right .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at right var(--hero-content-top-offset),
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 40%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 72%,
+      rgba(var(--hero-overlay-rgb),0) 92%
+    );
+  }
+
+  .custom-hero--mobile-bottom-left .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at left bottom,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 40%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 72%,
+      rgba(var(--hero-overlay-rgb),0) 92%
+    );
+  }
+
+  .custom-hero--mobile-bottom-right .custom-hero__media::after{
+    background:radial-gradient(
+      ellipse at right bottom,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-strong)) 0%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-medium)) 40%,
+      rgba(var(--hero-overlay-rgb),var(--hero-overlay-soft)) 72%,
+      rgba(var(--hero-overlay-rgb),0) 92%
+    );
+  }
+
+  .custom-hero--mobile-top-left .custom-hero__content,
+  .custom-hero--mobile-top-centre .custom-hero__content,
+  .custom-hero--mobile-top-right .custom-hero__content{
     align-items:flex-start;
-
     padding-top:var(--page-padding);
   }
 
-
-  /* --------------------------------------------------------------------------
-     Vertical — centre
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-centre-left
-  .custom-hero__content,
-  .custom-hero--mobile-centre
-  .custom-hero__content,
-  .custom-hero--mobile-centre-right
-  .custom-hero__content{
+  .custom-hero--mobile-centre-left .custom-hero__content,
+  .custom-hero--mobile-centre .custom-hero__content,
+  .custom-hero--mobile-centre-right .custom-hero__content{
     align-items:center;
   }
 
-
-  /* --------------------------------------------------------------------------
-     Vertical — bottom
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-bottom-left
-  .custom-hero__content,
-  .custom-hero--mobile-bottom-centre
-  .custom-hero__content,
-  .custom-hero--mobile-bottom-right
-  .custom-hero__content{
+  .custom-hero--mobile-bottom-left .custom-hero__content,
+  .custom-hero--mobile-bottom-centre .custom-hero__content,
+  .custom-hero--mobile-bottom-right .custom-hero__content{
     align-items:flex-end;
-
-    padding-bottom:
-    calc(
-      var(--page-padding) +
-      var(--hero-navigation-clearance)
-    );
+    padding-bottom:calc(var(--page-padding) + var(--hero-navigation-clearance));
   }
 
-
-  /* --------------------------------------------------------------------------
-     Horizontal — left
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-top-left
-  .custom-hero__content-inner,
-  .custom-hero--mobile-centre-left
-  .custom-hero__content-inner,
-  .custom-hero--mobile-bottom-left
-  .custom-hero__content-inner{
+  .custom-hero--mobile-top-left .custom-hero__content-inner,
+  .custom-hero--mobile-centre-left .custom-hero__content-inner,
+  .custom-hero--mobile-bottom-left .custom-hero__content-inner{
     text-align:left;
   }
 
-
-  /* --------------------------------------------------------------------------
-     Horizontal — centre
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-top-centre
-  .custom-hero__content-inner,
-  .custom-hero--mobile-centre
-  .custom-hero__content-inner,
-  .custom-hero--mobile-bottom-centre
-  .custom-hero__content-inner{
+  .custom-hero--mobile-top-centre .custom-hero__content-inner,
+  .custom-hero--mobile-centre .custom-hero__content-inner,
+  .custom-hero--mobile-bottom-centre .custom-hero__content-inner{
     text-align:center;
   }
 
-
-  /* --------------------------------------------------------------------------
-     Horizontal — right
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-top-right
-  .custom-hero__content-inner,
-  .custom-hero--mobile-centre-right
-  .custom-hero__content-inner,
-  .custom-hero--mobile-bottom-right
-  .custom-hero__content-inner{
+  .custom-hero--mobile-top-right .custom-hero__content-inner,
+  .custom-hero--mobile-centre-right .custom-hero__content-inner,
+  .custom-hero--mobile-bottom-right .custom-hero__content-inner{
     text-align:right;
   }
 
-
-  /* --------------------------------------------------------------------------
-     Constrained subheading alignment
-     -------------------------------------------------------------------------- */
-
-  .custom-hero--mobile-top-centre
-  .custom-hero__subheading,
-  .custom-hero--mobile-centre
-  .custom-hero__subheading,
-  .custom-hero--mobile-bottom-centre
-  .custom-hero__subheading{
+  .custom-hero--mobile-top-centre .custom-hero__subheading,
+  .custom-hero--mobile-centre .custom-hero__subheading,
+  .custom-hero--mobile-bottom-centre .custom-hero__subheading{
     margin-right:auto;
     margin-left:auto;
   }
 
-
-  .custom-hero--mobile-top-right
-  .custom-hero__subheading,
-  .custom-hero--mobile-centre-right
-  .custom-hero__subheading,
-  .custom-hero--mobile-bottom-right
-  .custom-hero__subheading{
+  .custom-hero--mobile-top-right .custom-hero__subheading,
+  .custom-hero--mobile-centre-right .custom-hero__subheading,
+  .custom-hero--mobile-bottom-right .custom-hero__subheading{
     margin-left:auto;
   }
 
+  .custom-hero--mobile-top-left .custom-hero__buttons,
+  .custom-hero--mobile-centre-left .custom-hero__buttons,
+  .custom-hero--mobile-bottom-left .custom-hero__buttons{
+    justify-content:flex-start;
+  }
 
-  /* --------------------------------------------------------------------------
-     Mobile typography
-     -------------------------------------------------------------------------- */
+  .custom-hero--mobile-top-centre .custom-hero__buttons,
+  .custom-hero--mobile-centre .custom-hero__buttons,
+  .custom-hero--mobile-bottom-centre .custom-hero__buttons{
+    justify-content:center;
+  }
+
+  .custom-hero--mobile-top-right .custom-hero__buttons,
+  .custom-hero--mobile-centre-right .custom-hero__buttons,
+  .custom-hero--mobile-bottom-right .custom-hero__buttons{
+    justify-content:flex-end;
+  }
 
   .custom-hero__content-inner{
     max-width:100%;
   }
 
-
-
   .custom-hero__subheading{
     max-width:560px;
-
     margin-top:var(--s);
-
     font-size:var(--font-s);
     line-height:var(--line-s);
+    letter-spacing:.10em;
   }
 
-
-  .custom-hero__button{
+  .custom-hero__buttons{
     margin-top:var(--m);
   }
-
 }
 
-
-/* ==========================================================================
-   Reduced motion
-   ========================================================================== */
-
-@media(prefers-reduced-motion:reduce){
-
-  .custom-hero--button-arrow
-  .custom-hero__button::after{
-    transition:none;
-  }
-   .custom-hero__slide{
-    transition:none;
-  }
-
-}
-
-
-
-
-
-.custom-hero__slides{
-  position:absolute;
-  inset:0;
-
-  width:100%;
-  height:100%;
-}
-
-
-/* ==========================================================================
-   Hero slides
-   ========================================================================== */
-
-.custom-hero__slide{
-  position:absolute;
-  inset:0;
-
-  width:100%;
-  height:100%;
-
-  opacity:0;
-  visibility:hidden;
-
-  pointer-events:none;
-
-  transition:
-    opacity var(--transition-slower) var(--easing),
-    visibility 0s linear var(--transition-slower);
-
-     z-index:0;
-}
-
-
-.custom-hero__slide.is-active{
-  opacity:1;
-  visibility:visible;
-
-  pointer-events:auto;
-
-  transition:
-    opacity var(--transition-slower) var(--easing),
-    visibility 0s linear 0s;
-
-    z-index:1;
-}
-
-
-/* ==========================================================================
-   Hero navigation
-   ========================================================================== */
-
-.custom-hero{
-  --hero-navigation-height:28px;
-  --hero-navigation-gap:var(--m);
-}
-
+/* ========================================================================== */
+/*   Hero navigation                                                         */
+/* ========================================================================== */
 
 .custom-hero__navigation{
   position:absolute;
   right:0;
   bottom:var(--page-padding);
   left:0;
-
   z-index:3;
-
   height:var(--hero-navigation-height);
-
   pointer-events:none;
 }
 
-
 .custom-hero__navigation-inner{
   position:relative;
-
   display:inline-flex;
   align-items:flex-start;
   gap:var(--hero-navigation-gap);
-
   height:100%;
-
   pointer-events:auto;
 }
 
-
 .custom-hero__navigation-button{
   position:relative;
-
   display:flex;
   align-items:flex-start;
   justify-content:center;
-
   min-width:32px;
-
   padding:0;
-
   border:0;
-
   background:none;
-  color:var(--hero-navigation-color, #fff);
-
+  color:var(--hero-navigation-color,#fff);
   font:inherit;
-
   cursor:pointer;
-
   opacity:.5;
-
-  transition:
-    opacity var(--transition-fast) var(--easing);
-
-    text-transform:uppercase;
+  text-transform:uppercase;
+  transition:opacity var(--transition-fast) var(--easing);
 }
-
 
 .custom-hero__navigation-button:hover{
   opacity:.8;
 }
 
-
 .custom-hero__navigation-button.is-active{
   opacity:1;
 }
-
 
 .custom-hero__navigation-label{
   font-size:var(--font-xs);
   line-height:1;
   font-weight:700;
-
   letter-spacing:.08em;
 }
-
 
 .custom-hero__navigation-indicator{
   position:absolute;
   bottom:0;
   left:0;
-
   height:2px;
-
   background:var(--hel-red);
-
   pointer-events:none;
-
   transition:
     transform var(--transition-slow) var(--easing),
     width var(--transition-slow) var(--easing);
+}
+
+/* ========================================================================== */
+/*   Reduced motion                                                           */
+/* ========================================================================== */
+
+@media(prefers-reduced-motion:reduce){
+  .custom-hero__slide,
+  .custom-hero__button--arrow::after,
+  .custom-hero__navigation-indicator{
+    transition:none;
+  }
 }
