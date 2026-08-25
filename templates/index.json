@@ -12,6 +12,32 @@
     "custom_hero_ejXGqV": {
       "type": "custom-hero",
       "blocks": {
+        "slide_h8aKgT": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/hel-hero-light.jpg",
+            "mobile_image": "shopify://shop_images/axel-1.jpg",
+            "desktop_position_x": 50,
+            "mobile_position_x": 50,
+            "desktop_content_position": "centre",
+            "mobile_content_position": "centre",
+            "content_theme": "dark",
+            "overlay_strength_percent": 100,
+            "eyebrow": "Eyebrow 2",
+            "heading_size": "large",
+            "heading_emphasis": "bottom",
+            "heading_accent": "line-2",
+            "heading_line_1": "Heading 1",
+            "heading_line_2": "Heading 2",
+            "subheading_line_1": "Sub 1",
+            "subheading_line_2": "Sub 2",
+            "button_text": "Button 2",
+            "button_link": "/link2",
+            "button_style": "solid",
+            "button_size": "medium",
+            "button_show_arrow": true
+          }
+        },
         "slide_LaqwPU": {
           "type": "slide",
           "settings": {
@@ -40,6 +66,7 @@
         }
       },
       "block_order": [
+        "slide_h8aKgT",
         "slide_LaqwPU"
       ],
       "name": "Custom hero",
