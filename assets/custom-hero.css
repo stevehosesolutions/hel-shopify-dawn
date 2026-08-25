@@ -665,7 +665,7 @@
    */
 
   .custom-hero__media::after{
-    inset:var(--hero-mobile-overlay-top, 0px) 0 0 0;
+    inset:var(--hero-content-top-offset) 0 0 0;
 
     background:
       radial-gradient(
@@ -694,56 +694,38 @@
   /* Top */
 
   .custom-hero--mobile-top-left{
-    --hero-mobile-overlay-top:0px;
     --hero-overlay-x:18%;
-    --hero-overlay-y:
-      calc(
-        var(--hero-content-top-offset) +
-        var(--page-padding)
-      );
+    --hero-overlay-y:var(--page-padding);
   }
 
 
   .custom-hero--mobile-top-centre{
-    --hero-mobile-overlay-top:0px;
     --hero-overlay-x:50%;
-    --hero-overlay-y:
-      calc(
-        var(--hero-content-top-offset) +
-        var(--page-padding)
-      );
+    --hero-overlay-y:var(--page-padding);
   }
 
 
   .custom-hero--mobile-top-right{
-    --hero-mobile-overlay-top:0px;
     --hero-overlay-x:82%;
-    --hero-overlay-y:
-      calc(
-        var(--hero-content-top-offset) +
-        var(--page-padding)
-      );
+    --hero-overlay-y:var(--page-padding);
   }
 
 
   /* Centre */
 
   .custom-hero--mobile-centre-left{
-    --hero-mobile-overlay-top:var(--hero-content-top-offset);
     --hero-overlay-x:18%;
     --hero-overlay-y:50%;
   }
 
 
   .custom-hero--mobile-centre{
-    --hero-mobile-overlay-top:var(--hero-content-top-offset);
     --hero-overlay-x:50%;
     --hero-overlay-y:50%;
   }
 
 
   .custom-hero--mobile-centre-right{
-    --hero-mobile-overlay-top:var(--hero-content-top-offset);
     --hero-overlay-x:82%;
     --hero-overlay-y:50%;
   }
@@ -752,7 +734,6 @@
   /* Bottom */
 
   .custom-hero--mobile-bottom-left{
-    --hero-mobile-overlay-top:0px;
     --hero-overlay-x:18%;
     --hero-overlay-y:
       calc(
@@ -764,7 +745,6 @@
 
 
   .custom-hero--mobile-bottom-centre{
-    --hero-mobile-overlay-top:0px;
     --hero-overlay-x:50%;
     --hero-overlay-y:
       calc(
@@ -776,7 +756,6 @@
 
 
   .custom-hero--mobile-bottom-right{
-    --hero-mobile-overlay-top:0px;
     --hero-overlay-x:82%;
     --hero-overlay-y:
       calc(
