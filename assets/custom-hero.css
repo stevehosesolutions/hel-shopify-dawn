@@ -6,7 +6,6 @@
   --hero-content-top-offset:0px;
 
   position:relative;
-
   width:100%;
   height:100vh;
   height:100svh;
@@ -543,6 +542,10 @@
 }
 
 
+/* --------------------------------------------------------------------------
+   Default accent — left
+   -------------------------------------------------------------------------- */
+
 .custom-hero__eyebrow::before{
   content:"";
 
@@ -557,6 +560,159 @@
 }
 
 
+/* ==========================================================================
+   Desktop eyebrow accents
+   ========================================================================== */
+
+@media(min-width:1200px){
+
+  /*
+   * Centre — horizontal accent on left
+   */
+
+  .custom-hero--desktop-top-centre
+  .custom-hero__eyebrow::before,
+  .custom-hero--desktop-centre
+  .custom-hero__eyebrow::before,
+  .custom-hero--desktop-bottom-centre
+  .custom-hero__eyebrow::before{
+    width:24px;
+    height:2px;
+
+    flex:0 0 24px;
+  }
+
+
+  /*
+   * Right — remove left accent
+   */
+
+  .custom-hero--desktop-top-right
+  .custom-hero__eyebrow::before,
+  .custom-hero--desktop-centre-right
+  .custom-hero__eyebrow::before,
+  .custom-hero--desktop-bottom-right
+  .custom-hero__eyebrow::before{
+    display:none;
+  }
+
+
+  /*
+   * Right — vertical accent on right
+   */
+
+  .custom-hero--desktop-top-right
+  .custom-hero__eyebrow::after,
+  .custom-hero--desktop-centre-right
+  .custom-hero__eyebrow::after,
+  .custom-hero--desktop-bottom-right
+  .custom-hero__eyebrow::after{
+    content:"";
+
+    display:block;
+
+    width:2px;
+    height:1.8em;
+
+    flex:0 0 2px;
+
+    background:var(--hel-red);
+  }
+
+}
+
+
+/* ==========================================================================
+   Mobile / tablet eyebrow accents
+   ========================================================================== */
+
+@media(max-width:1199px){
+
+  /*
+   * Always reset the right-hand accent first.
+   */
+
+  .custom-hero__eyebrow::after{
+    content:none;
+    display:none;
+  }
+
+
+  /*
+   * Left — vertical accent on left
+   */
+
+  .custom-hero--mobile-top-left
+  .custom-hero__eyebrow::before,
+  .custom-hero--mobile-centre-left
+  .custom-hero__eyebrow::before,
+  .custom-hero--mobile-bottom-left
+  .custom-hero__eyebrow::before{
+    display:block;
+
+    width:2px;
+    height:1.8em;
+
+    flex:0 0 2px;
+  }
+
+
+  /*
+   * Centre — horizontal accent on left
+   */
+
+  .custom-hero--mobile-top-centre
+  .custom-hero__eyebrow::before,
+  .custom-hero--mobile-centre
+  .custom-hero__eyebrow::before,
+  .custom-hero--mobile-bottom-centre
+  .custom-hero__eyebrow::before{
+    display:block;
+
+    width:24px;
+    height:2px;
+
+    flex:0 0 24px;
+  }
+
+
+  /*
+   * Right — remove left accent
+   */
+
+  .custom-hero--mobile-top-right
+  .custom-hero__eyebrow::before,
+  .custom-hero--mobile-centre-right
+  .custom-hero__eyebrow::before,
+  .custom-hero--mobile-bottom-right
+  .custom-hero__eyebrow::before{
+    display:none;
+  }
+
+
+  /*
+   * Right — vertical accent on right
+   */
+
+  .custom-hero--mobile-top-right
+  .custom-hero__eyebrow::after,
+  .custom-hero--mobile-centre-right
+  .custom-hero__eyebrow::after,
+  .custom-hero--mobile-bottom-right
+  .custom-hero__eyebrow::after{
+    content:"";
+
+    display:block;
+
+    width:2px;
+    height:1.8em;
+
+    flex:0 0 2px;
+
+    background:var(--hel-red);
+  }
+
+}
 
 /* ==========================================================================
    Heading sizes
