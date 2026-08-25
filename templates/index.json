@@ -61,7 +61,7 @@
             "subheading_line_2": "Subheading 2",
             "button_text": "Button 2",
             "button_link": "/link2",
-            "button_style": "solid",
+            "button_style": "outline",
             "button_size": "medium",
             "button_show_arrow": true
           }
