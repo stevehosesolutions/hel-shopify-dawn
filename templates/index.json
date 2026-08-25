@@ -15,7 +15,7 @@
         "slide_h8aKgT": {
           "type": "slide",
           "settings": {
-            "navigation_label": "02",
+            "navigation_label": "Calipers",
             "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
@@ -46,7 +46,7 @@
         "slide_LaqwPU": {
           "type": "slide",
           "settings": {
-            "navigation_label": "01",
+            "navigation_label": "Masters",
             "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
@@ -77,7 +77,7 @@
         "slide_hqFBEq": {
           "type": "slide",
           "settings": {
-            "navigation_label": "03",
+            "navigation_label": "Clutch",
             "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
