@@ -274,5 +274,59 @@
     }
   );
 
+  /*
+ * Shopify Theme Editor — show selected slide
+ */
+
+  document.addEventListener(
+    "shopify:block:select",
+    event => {
+
+      const slide =
+        event.target.closest(
+          ".custom-hero__slide"
+        );
+
+
+      if (!slide) {
+        return;
+      }
+
+
+      const hero =
+        slide.closest(
+          ".custom-hero"
+        );
+
+
+      if (!hero) {
+        return;
+      }
+
+
+      const slides = [
+        ...hero.querySelectorAll(
+          ".custom-hero__slide"
+        )
+      ];
+
+
+      const index =
+        slides.indexOf(slide);
+
+
+      if (index === -1) {
+        return;
+      }
+
+
+      showSlide(
+        hero,
+        index
+      );
+
+    }
+  );
+
 
 })();
