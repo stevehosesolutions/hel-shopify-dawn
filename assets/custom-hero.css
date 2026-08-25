@@ -651,18 +651,12 @@
   /* -------------------------------------------------------------------------- */
 
   /*
-   * Mobile keeps the offset behaviour that was working previously:
-   *
-   * - top positions are measured from the full hero and include
-   *   the mobile navigation offset in their Y origin;
-   * - centre positions crop the overlay itself below the mobile
-   *   navigation and then centre the radial within that area;
-   * - bottom positions remain anchored to the bottom.
-   *
-   * As on desktop, every position uses the same radial rule and
-   * only changes CSS variables. This avoids the active slide
-   * inheriting a previous slide's apparent gradient position.
-   */
+ * Mobile overlays begin below the mobile navigation offset.
+ *
+ * All nine positions use the same radial gradient.
+ * The position classes only change the radial X/Y origin,
+ * keeping gradient behaviour consistent between slides.
+ */
 
   .custom-hero__media::after{
     inset:var(--hero-content-top-offset) 0 0 0;

@@ -233,7 +233,26 @@
 {% schema %}
 {
   "name": "Custom hero",
-  "settings": [],
+
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto rotate slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "rotation_speed",
+      "min": 4,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slide every",
+      "default": 6
+    }
+  ],
+
   "blocks": [
     {
       "type": "slide",
