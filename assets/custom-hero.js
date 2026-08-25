@@ -53,7 +53,7 @@
 
     const navigation =
       hero.querySelector(
-        ".custom-hero__navigation-inner"
+        ".custom-hero__navigation"
       );
 
     const activeButton =

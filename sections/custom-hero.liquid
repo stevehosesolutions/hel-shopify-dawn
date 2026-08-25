@@ -9,56 +9,59 @@
 
   <div class="custom-hero__slides">
 
-    {% if section.blocks.size > 1 %}
+{% if section.blocks.size > 1 %}
 
-      <div
-        class="custom-hero__navigation page-width"
-        aria-label="Hero slides"
-      >
+  <div
+    class="custom-hero__navigation page-width"
+    aria-label="Hero slides"
+  >
 
-        <div class="custom-hero__navigation-inner">
+    <div class="custom-hero__navigation-inner">
 
-          {% for block in section.blocks %}
+      {% for block in section.blocks %}
 
-            <button
-              type="button"
-              class="
-                custom-hero__navigation-button
-                {% if forloop.first %}is-active{% endif %}
-              "
-              data-hero-slide="{{ forloop.index0 }}"
-              aria-label="Show slide {{ forloop.index }}"
-              {% if forloop.first %}
-                aria-current="true"
-              {% endif %}
-            >
-            <span class="custom-hero__navigation-label">
+        <button
+          type="button"
+          class="
+            custom-hero__navigation-button
+            {% if forloop.first %}is-active{% endif %}
+          "
+          data-hero-slide="{{ forloop.index0 }}"
+          aria-label="Show slide {{ forloop.index }}"
+          {% if forloop.first %}
+            aria-current="true"
+          {% endif %}
+        >
 
-              {% if block.settings.navigation_label != blank %}
+          <span class="custom-hero__navigation-label">
 
-                {{ block.settings.navigation_label }}
+            {% if block.settings.navigation_label != blank %}
 
-              {% else %}
+              {{ block.settings.navigation_label }}
 
-                {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+            {% else %}
 
-              {% endif %}
+              {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
 
-            </span>
-            </button>
+            {% endif %}
 
-          {% endfor %}
+          </span>
 
-          <span
-            class="custom-hero__navigation-indicator"
-            aria-hidden="true"
-          ></span>
+        </button>
 
-        </div>
+      {% endfor %}
 
-      </div>
 
-    {% endif %}
+      <span
+        class="custom-hero__navigation-indicator"
+        aria-hidden="true"
+      ></span>
+
+    </div>
+
+  </div>
+
+{% endif %}
 
 
 
