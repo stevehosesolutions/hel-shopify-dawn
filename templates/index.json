@@ -25,7 +25,7 @@
             "content_theme": "light",
             "overlay_strength_percent": 85,
             "eyebrow": "Eyebrow 2",
-            "heading_size": "large",
+            "heading_size": "medium",
             "heading_emphasis": "equal",
             "heading_accent": "line-1",
             "heading_line_1": "Main Head 2",
@@ -113,7 +113,7 @@
       ],
       "name": "Custom hero",
       "settings": {
-        "auto_rotate": true,
+        "auto_rotate": false,
         "rotation_speed": 10
       }
     },
