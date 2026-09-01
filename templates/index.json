@@ -15,8 +15,8 @@
         "slide_h8aKgT": {
           "type": "slide",
           "settings": {
-            "navigation_label": "halloween",
-            "image": "shopify://shop_images/axel-1.jpg",
+            "navigation_label": "V2 Calipers",
+            "image": "shopify://shop_images/hel-bg.jpg",
             "mobile_image": "shopify://shop_images/hel-bg.jpg",
             "desktop_position_x": 50,
             "mobile_position_x": 50,
@@ -26,7 +26,7 @@
             "overlay_strength_percent": 70,
             "eyebrow": "Eyebrow 2",
             "heading_size": "large",
-            "heading_emphasis": "top",
+            "heading_emphasis": "equal",
             "heading_accent": "line-1",
             "heading_line_1": "Main Head 2",
             "heading_line_2": "Head 2",
@@ -114,7 +114,7 @@
       "name": "Custom hero",
       "settings": {
         "auto_rotate": true,
-        "rotation_speed": 10
+        "rotation_speed": 5
       }
     },
     "image_banner": {
